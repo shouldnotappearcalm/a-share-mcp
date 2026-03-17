@@ -685,3 +685,241 @@ def fetch_limit_up_down(
         
     except Exception as e:
         return f"获取涨跌停统计失败: {str(e)}"
+
+
+def fetch_limit_up_pool(
+    date: Optional[str] = None,
+    top_n: int = 30,
+    format: str = 'markdown',
+) -> str:
+    """
+    Fetch limit up stocks pool (涨停股池).
+    
+    Args:
+        date: Date in format 'YYYYMMDD' (default: today)
+        top_n: Number of stocks to return (default 30)
+        format: Output format: 'markdown' | 'json' | 'csv'
+    
+    Returns:
+        List of limit up stocks with details: 封板资金, 连板数, 首次封板时间, 所属行业.
+    """
+    validate_output_format(format)
+    
+    if date is None:
+        date = datetime.now().strftime("%Y%m%d")
+    
+    try:
+        df = ak.stock_zt_pool_em(date=date)
+        
+        if df is None or df.empty:
+            return f"未找到 {date} 的涨停股数据"
+        
+        # Select and rename columns
+        df_result = df[['序号', '代码', '名称', '涨跌幅', '最新价', '成交额', '流通市值', 
+                        '换手率', '封板资金', '首次封板时间', '最后封板时间', '炸板次数', 
+                        '连板数', '所属行业']].head(top_n).copy()
+        
+        # Rename columns
+        df_result.columns = ['序号', '代码', '名称', '涨跌幅(%)', '最新价', '成交额', 
+                             '流通市值', '换手率(%)', '封板资金', '首次封板', '最后封板', 
+                             '炸板次数', '连板数', '所属行业']
+        
+        # Round numeric columns
+        df_result['涨跌幅(%)'] = df_result['涨跌幅(%)'].round(2)
+        df_result['最新价'] = df_result['最新价'].round(2)
+        df_result['换手率(%)'] = df_result['换手率(%)'].round(2)
+        df_result['成交额'] = (df_result['成交额'] / 1e8).round(2)  # 转亿
+        df_result['流通市值'] = (df_result['流通市值'] / 1e8).round(2)  # 转亿
+        
+        # Rename for clarity
+        df_result = df_result.rename(columns={'成交额': '成交额(亿)', '流通市值': '流通市值(亿)'})
+        
+        meta = {
+            'date': date,
+            'data_source': '东方财富 (Akshare)',
+            'fetch_time': datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+        }
+        
+        return format_table_output(df_result, format=format, max_rows=top_n, meta=meta)
+        
+    except Exception as e:
+        return f"获取涨停股池失败: {str(e)}"
+
+
+def fetch_limit_down_pool(
+    date: Optional[str] = None,
+    top_n: int = 30,
+    format: str = 'markdown',
+) -> str:
+    """
+    Fetch limit down stocks pool (跌停股池).
+    
+    Args:
+        date: Date in format 'YYYYMMDD' (default: today)
+        top_n: Number of stocks to return (default 30)
+        format: Output format: 'markdown' | 'json' | 'csv'
+    
+    Returns:
+        List of limit down stocks with details.
+    """
+    validate_output_format(format)
+    
+    if date is None:
+        date = datetime.now().strftime("%Y%m%d")
+    
+    try:
+        df = ak.stock_zt_pool_dtgc_em(date=date)
+        
+        if df is None or df.empty:
+            return f"未找到 {date} 的跌停股数据"
+        
+        # Select and rename columns
+        df_result = df[['序号', '代码', '名称', '涨跌幅', '最新价', '成交额', '流通市值', 
+                        '换手率']].head(top_n).copy()
+        
+        # Rename columns
+        df_result.columns = ['序号', '代码', '名称', '涨跌幅(%)', '最新价', '成交额', 
+                             '流通市值', '换手率(%)']
+        
+        # Round numeric columns
+        df_result['涨跌幅(%)'] = df_result['涨跌幅(%)'].round(2)
+        df_result['最新价'] = df_result['最新价'].round(2)
+        df_result['换手率(%)'] = df_result['换手率(%)'].round(2)
+        df_result['成交额'] = (df_result['成交额'] / 1e8).round(2)
+        df_result['流通市值'] = (df_result['流通市值'] / 1e8).round(2)
+        
+        df_result = df_result.rename(columns={'成交额': '成交额(亿)', '流通市值': '流通市值(亿)'})
+        
+        meta = {
+            'date': date,
+            'data_source': '东方财富 (Akshare)',
+            'fetch_time': datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+        }
+        
+        return format_table_output(df_result, format=format, max_rows=top_n, meta=meta)
+        
+    except Exception as e:
+        return f"获取跌停股池失败: {str(e)}"
+
+
+def fetch_stock_money_flow(
+    code: str,
+    top_n: int = 10,
+    format: str = 'markdown',
+) -> str:
+    """
+    Fetch individual stock money flow data (个股资金流向).
+    
+    Args:
+        code: Stock code (e.g., '600519' or 'sh600519')
+        top_n: Number of recent days to return (default 10)
+        format: Output format: 'markdown' | 'json' | 'csv'
+    
+    Returns:
+        Money flow data including: 主力净流入, 超大单, 大单, 中单, 小单.
+    """
+    validate_output_format(format)
+    
+    # Parse code
+    normalized = normalize_code(code)
+    market = 'sh' if normalized.startswith('sh') else 'sz'
+    clean_code = normalized[2:]
+    
+    try:
+        df = ak.stock_individual_fund_flow(stock=clean_code, market=market)
+        
+        if df is None or df.empty:
+            return f"未找到股票 {code} 的资金流向数据"
+        
+        # Get recent data
+        df_result = df.tail(top_n).copy()
+        df_result = df_result.iloc[::-1]  # Reverse to show latest first
+        
+        # Select and rename columns
+        df_result = df_result[['日期', '收盘价', '涨跌幅', '主力净流入-净额', '主力净流入-净占比',
+                               '超大单净流入-净额', '超大单净流入-净占比', '大单净流入-净额', 
+                               '大单净流入-净占比', '中单净流入-净额', '中单净流入-净占比',
+                               '小单净流入-净额', '小单净流入-净占比']].copy()
+        
+        df_result.columns = ['日期', '收盘价', '涨跌幅(%)', '主力净额(万)', '主力占比(%)',
+                             '超大单净额(万)', '超大单占比(%)', '大单净额(万)', 
+                             '大单占比(%)', '中单净额(万)', '中单占比(%)',
+                             '小单净额(万)', '小单占比(%)']
+        
+        # Convert to 万元
+        for col in ['主力净额(万)', '超大单净额(万)', '大单净额(万)', '中单净额(万)', '小单净额(万)']:
+            df_result[col] = (df_result[col] / 1e4).round(2)
+        
+        # Round other columns
+        for col in ['收盘价', '涨跌幅(%)', '主力占比(%)', '超大单占比(%)', '大单占比(%)', 
+                    '中单占比(%)', '小单占比(%)']:
+            df_result[col] = df_result[col].round(2)
+        
+        # Add row number
+        df_result.insert(0, '序号', range(1, len(df_result) + 1))
+        
+        meta = {
+            'code': code,
+            'normalized_code': normalized,
+            'data_source': '东方财富 (Akshare)',
+            'fetch_time': datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+        }
+        
+        return format_table_output(df_result, format=format, max_rows=top_n, meta=meta)
+        
+    except Exception as e:
+        return f"获取资金流向失败: {str(e)}"
+
+
+def fetch_consecutive_limit_up(
+    date: Optional[str] = None,
+    top_n: int = 30,
+    format: str = 'markdown',
+) -> str:
+    """
+    Fetch consecutive limit up stocks (连板股).
+    
+    Args:
+        date: Date in format 'YYYYMMDD' (default: today)
+        top_n: Number of stocks to return (default 30)
+        format: Output format: 'markdown' | 'json' | 'csv'
+    
+    Returns:
+        List of stocks with consecutive limit up days (昨日连板股今日表现).
+    """
+    validate_output_format(format)
+    
+    if date is None:
+        date = datetime.now().strftime("%Y%m%d")
+    
+    try:
+        df = ak.stock_zt_pool_previous_em(date=date)
+        
+        if df is None or df.empty:
+            return f"未找到 {date} 的连板股数据"
+        
+        # Select and rename columns
+        df_result = df[['序号', '代码', '名称', '涨跌幅', '最新价', '成交额', 
+                        '换手率', '昨日连板数', '涨停统计', '所属行业']].head(top_n).copy()
+        
+        df_result.columns = ['序号', '代码', '名称', '涨跌幅(%)', '最新价', '成交额', 
+                             '换手率(%)', '连板数', '涨停统计', '所属行业']
+        
+        # Round numeric columns
+        df_result['涨跌幅(%)'] = df_result['涨跌幅(%)'].round(2)
+        df_result['最新价'] = df_result['最新价'].round(2)
+        df_result['换手率(%)'] = df_result['换手率(%)'].round(2)
+        df_result['成交额'] = (df_result['成交额'] / 1e8).round(2)
+        
+        df_result = df_result.rename(columns={'成交额': '成交额(亿)'})
+        
+        meta = {
+            'date': date,
+            'data_source': '东方财富 (Akshare)',
+            'fetch_time': datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+        }
+        
+        return format_table_output(df_result, format=format, max_rows=top_n, meta=meta)
+        
+    except Exception as e:
+        return f"获取连板股失败: {str(e)}"

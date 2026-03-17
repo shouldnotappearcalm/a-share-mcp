@@ -7,6 +7,10 @@ from typing import List, Optional
 
 from mcp.server.fastmcp import FastMCP
 from src.use_cases.realtime_market import (
+    fetch_limit_up_pool,
+    fetch_limit_down_pool,
+    fetch_stock_money_flow,
+    fetch_consecutive_limit_up,
     fetch_realtime_kline,
     fetch_technical_indicators,
     fetch_realtime_quote,
@@ -263,5 +267,112 @@ def register_realtime_market_tools(app: FastMCP):
         """
         logger.info("Tool 'get_limit_up_down' called")
         return fetch_limit_up_down(
+            format=format,
+        )
+    @app.tool()
+    def get_limit_up_pool(
+        date: Optional[str] = None,
+        top_n: int = 30,
+        format: str = "markdown",
+    ) -> str:
+        """
+        Fetches limit up stocks pool (涨停股池).
+        
+        Returns detailed list of stocks hitting daily upper price limit.
+        Data source: Eastmoney via Akshare.
+
+        Args:
+            date: Date in format 'YYYYMMDD'. Defaults to today.
+            top_n: Number of stocks to return. Defaults to 30.
+            format: Output format: 'markdown' | 'json' | 'csv'. Defaults to 'markdown'.
+
+        Returns:
+            Limit up stocks with: 代码, 名称, 涨跌幅, 最新价, 封板资金, 连板数, 首次封板时间, 所属行业
+        """
+        logger.info(f"Tool 'get_limit_up_pool' called (date={date})")
+        return fetch_limit_up_pool(
+            date=date,
+            top_n=top_n,
+            format=format,
+        )
+
+    @app.tool()
+    def get_limit_down_pool(
+        date: Optional[str] = None,
+        top_n: int = 30,
+        format: str = "markdown",
+    ) -> str:
+        """
+        Fetches limit down stocks pool (跌停股池).
+        
+        Returns detailed list of stocks hitting daily lower price limit.
+        Data source: Eastmoney via Akshare.
+
+        Args:
+            date: Date in format 'YYYYMMDD'. Defaults to today.
+            top_n: Number of stocks to return. Defaults to 30.
+            format: Output format: 'markdown' | 'json' | 'csv'. Defaults to 'markdown'.
+
+        Returns:
+            Limit down stocks with: 代码, 名称, 涨跌幅, 最新价, 成交额, 流通市值
+        """
+        logger.info(f"Tool 'get_limit_down_pool' called (date={date})")
+        return fetch_limit_down_pool(
+            date=date,
+            top_n=top_n,
+            format=format,
+        )
+
+    @app.tool()
+    def get_stock_money_flow(
+        code: str,
+        top_n: int = 10,
+        format: str = "markdown",
+    ) -> str:
+        """
+        Fetches individual stock money flow data (个股资金流向).
+        
+        Shows capital flow breakdown by investor size categories.
+        Data source: Eastmoney via Akshare.
+
+        Args:
+            code: Stock code (e.g., '600519' or 'sh600519').
+            top_n: Number of recent days to return. Defaults to 10.
+            format: Output format: 'markdown' | 'json' | 'csv'. Defaults to 'markdown'.
+
+        Returns:
+            Money flow data with: 主力净流入, 超大单, 大单, 中单, 小单 净额和占比
+        """
+        logger.info(f"Tool 'get_stock_money_flow' called for {code}")
+        return fetch_stock_money_flow(
+            code=code,
+            top_n=top_n,
+            format=format,
+        )
+
+    @app.tool()
+    def get_consecutive_limit_up(
+        date: Optional[str] = None,
+        top_n: int = 30,
+        format: str = "markdown",
+    ) -> str:
+        """
+        Fetches consecutive limit up stocks (连板股).
+        
+        Returns stocks that have been limit up for consecutive days.
+        Data source: Eastmoney via Akshare.
+
+        Args:
+            date: Date in format 'YYYYMMDD'. Defaults to today.
+            top_n: Number of stocks to return. Defaults to 30.
+            format: Output format: 'markdown' | 'json' | 'csv'. Defaults to 'markdown'.
+
+        Returns:
+            Consecutive limit up stocks with: 代码, 名称, 连板数, 涨停统计, 所属行业
+        """
+        logger.info(f"Tool 'get_consecutive_limit_up' called (date={date})")
+        return fetch_consecutive_limit_up(
+            date=date,
+            top_n=top_n,
             format=format,
         )
