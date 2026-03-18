@@ -378,7 +378,7 @@ def fetch_lhb_detail(
         df = ak.stock_lhb_detail_em(start_date=start_date, end_date=end_date)
         
         if df is None or df.empty:
-            return f"未找到 {start_date} 至 {end_date} 的龙虎榜数据"
+            return f"未找到 {start_date} 至 {end_date} 的龙虎榜数据（可能当日数据尚未发布或该日期无龙虎榜数据）"
         
         columns_map = {
             '代码': '代码',
@@ -424,7 +424,11 @@ def fetch_lhb_detail(
         return format_table_output(df_result, format=format, max_rows=top_n, meta=meta)
         
     except Exception as e:
-        return f"获取龙虎榜数据失败: {str(e)}"
+        error_msg = str(e)
+        # 处理 akshare 返回 None 的情况
+        if 'NoneType' in error_msg:
+            return f"未找到 {start_date} 至 {end_date} 的龙虎榜数据（可能当日数据尚未发布或该日期无龙虎榜数据）"
+        return f"获取龙虎榜数据失败: {error_msg}"
 
 
 def fetch_north_money(
