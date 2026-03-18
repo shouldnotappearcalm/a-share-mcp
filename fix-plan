@@ -1,0 +1,145 @@
+# 实时行情接口修复技术方案
+
+## 问题描述
+
+`src/use_cases/realtime_market.py` 中的实时行情实现存在以下问题：
+
+1. **`fetch_realtime_quote` 数据逻辑错误** — 日线当快照用，日期显示昨天，涨跌幅算的是昨天的，最新价却是今天分钟线的，数据自相矛盾
+2. **Ashare 库通过 `sys.path.insert` hack 导入** — 脆弱、不可移植，且没有封装，错误处理靠 `except: pass` 静默吞掉
+3. **`realtime_market.py` 职责过重** — 900+ 行，实时报价、K线、技术指标、涨停池、龙虎榜、北向资金全塞一个文件
+4. **缺少批量查询和当日分钟 K 线工具** — 自选股监控、分时走势分析无法支持
+
+---
+
+## 修复方案
+
+### 1. 新建 `src/ashare_data_source.py` — Ashare 数据源封装
+
+**目的**：替代 `sys.path.insert` + `from Ashare import get_price` 的 hack 方式
+
+- 实现 `AshareDataSource` 类，内部封装新浪/腾讯两个 HTTP 接口
+- 实现 `FinancialDataSource` 接口的 `get_historical_k_data` 方法（日线/周线/月线/分钟线）
+- 财报等不支持的方法抛 `NotImplementedError`
+- 新浪为主力、腾讯为备用，自动降级
+- 使用 `requests` 库（项目已有依赖），设置超时，异常抛自定义 `DataSourceError` / `NoDataFoundError`
+- `normalize_code()` 静态方法统一股票代码格式
+
+关键接口签名：
+
+```python
+class AshareDataSource(FinancialDataSource):
+    def get_historical_k_data(self, code, start_date, end_date, frequency, adjust_flag, fields) -> pd.DataFrame
+
+    @staticmethod
+    def normalize_code(code: str) -> str
+```
+
+内部三个私有方法（复刻 Ashare 库逻辑，加上完善的错误处理）：
+
+```python
+def _get_price_sina(self, code, end_date, count, frequency) -> pd.DataFrame     # 新浪全周期（主力）
+def _get_price_day_tx(self, code, end_date, count, frequency) -> pd.DataFrame   # 腾讯日线（备用）
+def _get_price_min_tx(self, code, end_date, count, frequency) -> pd.DataFrame   # 腾讯分钟线（备用 + 1m 专用）
+```
+
+---
+
+### 2. 重写 `src/use_cases/realtime_market.py` — 只保留实时报价相关函数
+
+拆分前（900+ 行，13 个函数混在一起），拆分后只保留 3 个函数：
+
+#### (a) `fetch_realtime_quote` — 完全重写
+
+核心修复：**用分钟 K 线聚合今日行情，不再用日线当快照**
+
+```
+步骤：
+1. 日线取昨收 → df_day.iloc[-2]['close']
+2. 5 分钟线 tail(48) → 筛选 index.date == today → 聚合出今开/今高/今低/最新价/成交量
+3. 涨跌幅 = (最新价 - 昨收) / 昨收
+4. 5 分钟线失败 → 降级 15 分钟线
+5. 今天无数据 → 使用最近数据 + 标注"最近"
+6. 添加市场状态判断（交易中/休市）
+7. 添加精确到秒的更新时间
+```
+
+不再依赖东方财富 API 拿换手率（简化依赖、减少外部故障点）。
+
+#### (b) `fetch_intraday_minute_kline` — 新增
+
+当日分钟 K 线工具，只返回今日数据，列名汉化（时间/开盘/最高/最低/收盘/成交量）。
+
+#### (c) `fetch_realtime_multi_quote` — 新增
+
+批量查询（最多 10 只），按涨跌幅排序，单只失败不影响整体。
+
+---
+
+### 3. 新建 `src/use_cases/market_data.py` — 承接拆出的市场数据函数
+
+将以下基于 akshare 的函数**原样搬迁**（不改逻辑，只移文件）：
+
+- `fetch_hot_sectors`
+- `fetch_market_index`
+- `fetch_lhb_detail`
+- `fetch_north_money`
+- `fetch_limit_up_down`
+- `fetch_limit_up_pool`
+- `fetch_limit_down_pool`
+- `fetch_stock_money_flow`
+- `fetch_consecutive_limit_up`
+
+同时搬迁 `normalize_code`（akshare 类函数仍需用到）。
+
+技术指标相关函数（`fetch_realtime_kline`、`fetch_technical_indicators`）因依赖 MyTT 库，也暂时搬到此文件，保持 `sys.path.insert` 方式不变，后续单独清理。
+
+---
+
+### 4. 更新 `src/tools/realtime_market.py` — 注册层适配
+
+- 函数签名添加 `ashare_data_source: AshareDataSource` 参数
+- `get_realtime_quote` 调用改为通过 `ashare_data_source`
+- 新增注册 `get_intraday_minute_kline` 和 `get_realtime_multi_quote`
+- 所有 tool 调用统一走 `run_tool_with_handling` 错误兜底
+- 更新 import 路径
+
+---
+
+### 5. 新建 `src/tools/market_data.py` — 市场数据 tool 注册
+
+- 从 `src/tools/realtime_market.py` 中拆出 akshare 类工具的注册
+- 注册 `get_hot_sectors` / `get_market_index` / `get_lhb_detail` / `get_realtime_kline` / `get_technical_indicators` 等
+- import 从 `src.use_cases.market_data` 导入
+
+---
+
+### 6. 更新 `mcp_server.py`
+
+- 新建 `AshareDataSource()` 实例
+- `register_realtime_market_tools(app, ashare_data_source)` — 传入数据源
+- 新增 `register_market_data_tools(app)` — 注册市场数据工具
+- 更新 system prompt 中的工具描述
+
+---
+
+## 文件变更清单
+
+| 操作 | 文件 | 说明 |
+|------|------|------|
+| 新建 | `src/ashare_data_source.py` | Ashare 数据源封装（新浪+腾讯） |
+| 重写 | `src/use_cases/realtime_market.py` | 只保留 3 个实时报价函数 |
+| 新建 | `src/use_cases/market_data.py` | akshare 市场数据 + 技术指标函数（原样搬迁） |
+| 重写 | `src/tools/realtime_market.py` | 适配新数据源，新增 2 个 tool |
+| 新建 | `src/tools/market_data.py` | 市场数据 tool 注册 |
+| 修改 | `mcp_server.py` | 注入 AshareDataSource，注册新 tools |
+
+---
+
+## 验证方式
+
+1. **数据源验证**：`uv run python -c "from src.ashare_data_source import AshareDataSource; ds = AshareDataSource(); print(ds.get_historical_k_data('sz002837','','','1d'))"` 确认新浪/腾讯接口可用
+2. **实时报价验证**：启动 MCP server，调用 `get_realtime_quote(code="sz002837")`，确认日期显示今天、涨跌幅语义正确
+3. **分钟 K 线验证**：调用 `get_intraday_minute_kline(code="sz002837", frequency="15m")`，确认只返回今日数据
+4. **批量查询验证**：调用 `get_realtime_multi_quote(codes=["sh600519","sz002837"])`，确认按涨跌幅排序
+5. **市场数据回归**：确认涨停池、龙虎榜、北向资金等拆分后的工具仍然正常工作
+6. **全量测试**：`uv run pytest` 确认无回归
