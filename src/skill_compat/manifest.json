@@ -1,7 +1,7 @@
 {
   "source_worktree_dirty": true,
   "source_repo": "https://github.com/shouldnotappearcalm/a-share-skill",
-  "source_commit": "f1452731221108ea62214cc5e1de1dbf2a740d16",
+  "source_commit": "8874bd1c46813ddb188aa293e6f9ae34f016ba4d",
   "modules": {
     "history": {
       "source": "fetch_history_fallback.py",
@@ -57,7 +57,7 @@
       "_is_trading_session",
       "normalize_code"
     ],
-    "source_sha256": "1f632b1d9d6c4ce8aa2688331eaf169bcce9edde2156c596dbd7be88eb71aebc"
+    "source_sha256": "406dcd080d431708df1d2678836b3e39cafe3beb77cbf3616a591a43a25f9b64"
   },
   "company_news": {
     "source": "fetch_company_news.py",
@@ -72,6 +72,22 @@
     "fetch_industry": {
       "source": "fetch_industry.py",
       "source_sha256": "830c82bea412c21295eb9a47dc3195c69d8ee6f7ec97a0fa327aecc61cff9299"
+    },
+    "reference_common": {
+      "source": "reference_common.py",
+      "source_sha256": "a955b51894382f49912ebd0ea44367d6d1b7e1ed4aaf9340189925d90d0bb62d"
+    },
+    "fetch_stock_concepts": {
+      "source": "fetch_stock_concepts.py",
+      "source_sha256": "7bf1e346925f625dc594cf55d11c472e6bd88c1aca463a089d1c2d5ecf5c92ff"
+    },
+    "fetch_corporate_actions": {
+      "source": "fetch_corporate_actions.py",
+      "source_sha256": "1d8047c7b6b6f84da466bedb1a75d540b16f5233ce73cda482092068bae64666"
+    },
+    "fetch_market_details": {
+      "source": "fetch_market_details.py",
+      "source_sha256": "2926475a25609a4286d7fead9c4223fd02691f04e9727a663a7d8285cbc2da03"
     }
   }
 }

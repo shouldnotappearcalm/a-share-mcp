@@ -251,7 +251,7 @@ uv --directory "/Users/YourName/Projects/a-share-mcp" run python mcp_server.py
 
 ## 工具列表
 
-该 MCP 服务器目前提供 **63** 个工具，覆盖股票、财报、宏观、日期分析、实时行情等全方位数据。以下列出原有工具分组；与skill对齐的新增工具见上方入口表：
+该 MCP 服务器目前提供 **67** 个工具，覆盖股票、财报、宏观、日期分析、实时行情等全方位数据。以下列出原有工具分组；与skill对齐的新增工具见上方入口表：
 
 <div align="center">
   <details>
@@ -388,3 +388,14 @@ uv --directory "/Users/YourName/Projects/a-share-mcp" run python mcp_server.py
 同步命令仍为 `python scripts/sync_skill_reference.py --source ../a-share-skill`；生成器保留条件导入，记录复制模块SHA256及source_worktree_dirty。只有数据内容、参数语义对齐，不能把当前成员称为历史成员。
 
 [验证报告](reports/data-upgrade-2026-10-11.md)。参考stock-api的API协议与诊断方法，未增加对父目录或Node的运行时依赖。
+
+### 概念、公司事件、池详情与席位
+
+| 数据 | 原始数据工具 |
+|---|---|
+| 公司全部展示概念及供应商入选理由 | `get_stock_concepts` |
+| 解禁、回购计划/进展、已披露股东增减持 | `get_corporate_actions` |
+| 涨停/炸板详情、真实交易日与市场范围 | `get_market_pool_details` |
+| 指定股票/日期的龙虎榜买卖席位 | `get_lhb_seats` |
+
+参数、JSON示例、原始字段单位、分页、缓存及能力边界见[数据工具使用说明](docs/data-tools.md)。这些工具与A股skill共享同一份同步代码，运行无需相邻仓库或stock-sdk服务。

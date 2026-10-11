@@ -57,7 +57,7 @@ manifest['company_news']={'source':'fetch_company_news.py','source_sha256':hashl
 (package/'manifest.json').write_text(json.dumps(manifest,ensure_ascii=False,indent=2))
 print('Skill-compatible data modules and exact realtime helpers synchronized')
 
-for module in ('data_runtime','fetch_industry'):
+for module in ('data_runtime','fetch_industry','reference_common','fetch_stock_concepts','fetch_corporate_actions','fetch_market_details'):
  original=(source/(module+'.py')).read_text()
  generated=original
  (package/(module+'.py')).write_text(generated)

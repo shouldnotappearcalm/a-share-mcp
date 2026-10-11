@@ -23,6 +23,7 @@ from src.tools.realtime_market import register_realtime_market_tools
 from src.tools.market_data import register_market_data_tools
 from src.tools.company_news import register_company_news_tools
 from src.tools.skill_data import register_skill_data_tools
+from src.tools.reference_data import register_reference_data_tools
 
 # --- Logging Setup ---
 # Call the setup function from utils
@@ -65,6 +66,10 @@ app = FastMCP(
 - 行业目录/真实成员/行业指数历史使用get_industry_data，明确taxonomy；个股行业归属与热门板块不能混为同一入口
 - 行业/概念热力图get_boards_summary、groupKey成分get_board_members；检查stale和交易日，require_fresh可拒绝旧快照
 - 原始公司资讯get_company_news；市场快讯get_market_news；不做业务分类
+- 公司概念及供应商原文依据get_stock_concepts，区分同花顺全部展示类别与东财精准概念
+- 解禁/回购/已披露股东变动get_corporate_actions，分页、计划与实际及公告日口径显式返回
+- 涨停/炸板原始详情get_market_pool_details，核对实际trade_date与市场范围；THS不含北交所
+- 龙虎榜买卖席位get_lhb_seats(code,date)，保留BUY/SELL/NET及多种上榜原因
 
 📊 市场数据工具:
 - get_hot_sectors: 热点板块
@@ -94,6 +99,7 @@ register_realtime_market_tools(app, ashare_data_source)
 register_market_data_tools(app)
 register_company_news_tools(app)
 register_skill_data_tools(app)
+register_reference_data_tools(app)
 
 # --- Main Execution Block ---
 if __name__ == "__main__":
