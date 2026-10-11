@@ -66,3 +66,31 @@ def test_price_history_output_fields_match_skill(monkeypatch):
     assert list(result["data"][0])==["time","code","open","high","low","close","preclose","volume","pctChg"]
     assert result["data"][0]["code"]=="sz000001"
     assert result["meta"]["source"]=="腾讯"
+
+
+def test_complete_copied_module_hashes_are_verifiable():
+    package=Path(__file__).parents[1]/'src/skill_compat'
+    manifest=json.loads((package/'manifest.json').read_text())
+    for name,entry in manifest['copied_modules'].items():
+        assert hashlib.sha256((package/(name+'.py')).read_bytes()).hexdigest()==entry['source_sha256']
+
+
+def test_industry_facade_uses_canonical_raw_payload(monkeypatch):
+    from src.skill_compat import fetch_industry
+    raw={'status':'ok','meta':{'taxonomy':'sw','effective_at':None},'data':[{'额外字段':42}]}
+    monkeypatch.setattr(fetch_industry,'query_industry',lambda *a:raw)
+    registry=Registry();register_skill_data_tools(registry)
+    assert json.loads(registry.tools['get_industry_data'](taxonomy='sw'))==raw
+
+
+def test_default_json_format_is_preserved_on_errors():
+    registry=Registry();register_skill_data_tools(registry)
+    result=json.loads(registry.tools['get_price_history'](code='600519',frequency='invalid'))
+    assert result['status']=='error' and result['data']==[]
+
+
+def test_generated_history_keeps_conditional_runtime_imports(monkeypatch):
+    raw=pd.DataFrame({'time':pd.to_datetime(['2026-10-09']),'open':[10.],'high':[12.],'low':[9.],'close':[11.],'volume':[100]})
+    monkeypatch.setattr(history,'get_kline_tencent',lambda *a,**kw:raw)
+    data,source=history._fetch_kline_with_fallback(None,'sh600519','1d',1,no_cache=True)
+    assert source=='腾讯' and data.iloc[0]['close']==11

@@ -9,13 +9,15 @@ source_repo=Path(args.source).resolve()
 source=source_repo/'a-share-data/scripts'
 package=root/'src/skill_compat';package.mkdir(exist_ok=True);(package/'__init__.py').write_text('"""Data functions synchronized from the a-share-data skill; no sibling imports."""\n')
 specs={
- 'history':('fetch_history_fallback.py',{'_build_session','normalize_code','_code_digits','_to_secid','_get_json','_get_text','get_kline_sina','get_kline_tencent','_estimate_fetch_count','get_kline_xueqiu','get_kline_eastmoney','_fetch_kline_with_fallback','_format_kline_output','_industry_from_eastmoney','_get_boards_from_akshare','_scan_boards_for_code','cmd_industry','_financials_from_akshare','_financial_single_from_akshare','_filter_financial_periods'}),
+ 'history':('fetch_history_fallback.py',{'_build_session','normalize_code','_code_digits','_to_secid','_get_json','_get_text','get_kline_sina','get_kline_tencent','_estimate_fetch_count','get_kline_xueqiu','get_kline_eastmoney','_fetch_kline_uncached','_fetch_kline_with_fallback','_format_kline_output','_industry_from_eastmoney','_get_boards_from_akshare','_scan_boards_for_code','cmd_industry','_financials_from_akshare','_financial_single_from_akshare','_filter_financial_periods'}),
  'danginvest':('fetch_danginvest.py',{'_build_session','_get_json','normalize_mode','normalize_sort','_now_meta','cmd_news','cmd_summary','cmd_detail'})}
-manifest={'source_repo':'https://github.com/shouldnotappearcalm/a-share-skill','source_commit':subprocess.check_output(['git','-C',str(source_repo),'rev-parse','HEAD'],text=True).strip(),'modules':{}}
+manifest={'source_worktree_dirty':bool(subprocess.check_output(['git','-C',str(source_repo),'status','--porcelain'],text=True).strip()),'source_repo':'https://github.com/shouldnotappearcalm/a-share-skill','source_commit':subprocess.check_output(['git','-C',str(source_repo),'rev-parse','HEAD'],text=True).strip(),'modules':{}}
 for target,(filename,names) in specs.items():
  text=(source/filename).read_text();tree=ast.parse(text);selected=[]
  for node in tree.body:
   if isinstance(node,(ast.Import,ast.ImportFrom,ast.Assign,ast.AnnAssign)):
+   selected.append(node)
+  elif isinstance(node,ast.Try) and all(isinstance(statement,(ast.Import,ast.ImportFrom)) for statement in node.body):
    selected.append(node)
   elif isinstance(node,(ast.FunctionDef,ast.ClassDef)) and node.name in names:
    if node.name.startswith('cmd_'):
@@ -54,3 +56,10 @@ news_text=(source/'fetch_company_news.py').read_text()
 manifest['company_news']={'source':'fetch_company_news.py','source_sha256':hashlib.sha256((source/'fetch_company_news.py').read_bytes()).hexdigest(),'note':'src/company_news.py keeps the source module through build_payload; CLI main removed'}
 (package/'manifest.json').write_text(json.dumps(manifest,ensure_ascii=False,indent=2))
 print('Skill-compatible data modules and exact realtime helpers synchronized')
+
+for module in ('data_runtime','fetch_industry'):
+ original=(source/(module+'.py')).read_text()
+ generated=original
+ (package/(module+'.py')).write_text(generated)
+ manifest.setdefault('copied_modules',{})[module]={'source':module+'.py','source_sha256':hashlib.sha256(original.encode()).hexdigest()}
+(package/'manifest.json').write_text(json.dumps(manifest,ensure_ascii=False,indent=2)+'\n')

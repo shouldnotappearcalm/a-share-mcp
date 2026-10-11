@@ -59,10 +59,11 @@ app = FastMCP(
 - get_technical_indicators: 计算技术指标（MA/MACD/KDJ/BOLL/RSI等）
 
 📊 与a-share-data技能对齐的默认数据路径:
-- 历史价格优先get_price_history；get_historical_k_data保留Baostock复权兼容
-- 财务指标优先get_financials；Baostock的完整财务维度工具仍可单独调用
+- 历史价格优先get_price_history，显式adjust=raw/qfq/hfq；get_historical_k_data保留Baostock复权兼容
+- 财务指标优先get_financials；as_of按公告日期过滤、缺日期拒绝推断，不保证完整PIT；Baostock工具仍可单独调用
 - 个股东财行业get_industry_info；get_stock_industry是证监会分类，不能混为同一标准
-- 行业/概念热力图get_boards_summary、成分get_board_members；必须检查stale和交易日
+- 行业目录/真实成员/行业指数历史使用get_industry_data，明确taxonomy；个股行业归属与热门板块不能混为同一入口
+- 行业/概念热力图get_boards_summary、groupKey成分get_board_members；检查stale和交易日，require_fresh可拒绝旧快照
 - 原始公司资讯get_company_news；市场快讯get_market_news；不做业务分类
 
 📊 市场数据工具:

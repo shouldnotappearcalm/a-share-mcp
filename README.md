@@ -236,9 +236,22 @@ uv --directory "/Users/YourName/Projects/a-share-mcp" run python mcp_server.py
 
 ![CherryStudio配置示例2](resource/img/img_2.png)
 
+## 常用数据能力入口
+
+| 功能 | MCP工具 | 参数与边界 |
+|---|---|---|
+| 历史K线与显式复权 | `get_price_history` | adjust=raw/qfq/hfq，no_cache；与skill共用口径 |
+| 财务指标与公告日期过滤 | `get_financials` | kind、start/end、as_of；不是完整PIT |
+| 个股行业归属 | `get_industry_info` | 东财公司行业；旧get_stock_industry使用不同分类 |
+| 行业目录、真实成员、行业指数历史 | `get_industry_data` | action、taxonomy、level、symbol、start/end、no_cache |
+| 热门板块与groupKey成员 | `get_boards_summary`、`get_board_members` | 保留stale，require_fresh可拒绝旧快照 |
+| 公司资讯和市场快讯 | `get_company_news`、`get_market_news` | 原始候选与来源诊断，不做语义筛选 |
+
+完整参数和示例见 [数据工具说明](docs/data-tools.md)。缓存/并发由服务内部处理，使用MCP工具无需另外部署缓存服务。
+
 ## 工具列表
 
-该 MCP 服务器目前提供 **62** 个工具，覆盖股票、财报、宏观、日期分析、实时行情等全方位数据。以下是完整列表：
+该 MCP 服务器目前提供 **63** 个工具，覆盖股票、财报、宏观、日期分析、实时行情等全方位数据。以下列出原有工具分组；与skill对齐的新增工具见上方入口表：
 
 <div align="center">
   <details>
@@ -366,3 +379,12 @@ uv --directory "/Users/YourName/Projects/a-share-mcp" run python mcp_server.py
 常规数据优先 `get_price_history`、`get_financials`、`get_industry_info`、`get_boards_summary`、`get_board_members`、`get_company_news`、`get_market_news`。它们参照a-share-data同函数/数据源，保留原始字段及stale。旧Baostock接口保留复权、完整财务维度和证监会分类语义。
 
 [对齐矩阵、同步维护与逐项输出对比](reports/skill-alignment-2026-10-11.md)。
+
+
+## 数据口径与行业扩展
+
+`get_price_history(adjust="raw"|"qfq"|"hfq", no_cache=...)`与canonical skill保持同口径降级；默认raw，缓存300秒。`get_financials(as_of=...)`按公告日期过滤，缺日期拒绝推断，不能声称完整PIT。`get_industry_data(action="directory"|"members"|"history", taxonomy="sw"|"eastmoney_industry"|"eastmoney_concept")`提供独立行业目录、真实成分与指数历史。板块/快讯facade支持require_fresh，默认保留旧快照原始数据。工具和源分别使用有上限的后台工作线程。
+
+同步命令仍为 `python scripts/sync_skill_reference.py --source ../a-share-skill`；生成器保留条件导入，记录复制模块SHA256及source_worktree_dirty。只有数据内容、参数语义对齐，不能把当前成员称为历史成员。
+
+[验证报告](reports/data-upgrade-2026-10-11.md)。参考stock-api的API协议与诊断方法，未增加对父目录或Node的运行时依赖。

@@ -6,6 +6,7 @@ import time
 from datetime import datetime
 from typing import Any, Dict, Optional
 import requests
+_REQUIRE_FRESH = False
 from requests.adapters import HTTPAdapter
 from urllib3.util.retry import Retry
 HEADERS = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36'}
@@ -38,7 +39,13 @@ def _get_json(url: str, params: Optional[Dict[str, Any]]=None, retries: int=2, t
             payload = resp.json()
             if isinstance(payload, dict) and payload.get('error'):
                 raise RuntimeError(str(payload.get('error')))
+            if isinstance(payload, dict):
+                payload['data_quality'] = 'stale' if payload.get('stale') else 'unknown' if 'stale' not in payload else 'provider_fresh'
+                if _REQUIRE_FRESH and payload.get('stale') is not False:
+                    raise ValueError('fresh data unavailable: upstream snapshot is stale or freshness unknown')
             return payload
+        except ValueError:
+            raise
         except Exception as exc:
             last_error = exc
             if attempt < attempts - 1:
@@ -90,7 +97,7 @@ def cmd_summary(mode: str, limit: int, sort: str, retries: int, output_json: boo
     payload = _get_json(BOARDS_SUMMARY_URL, {'mode': api_mode, 'limit': limit, 'sort': api_sort}, retries=retries)
     data = payload.get('data') or {}
     items = data.get('items') or []
-    meta = {'url': BOARDS_SUMMARY_URL, 'mode': api_mode, 'limit': limit, 'sort': api_sort, 'tradeDate': payload.get('tradeDate'), 'snapshotTsMs': payload.get('snapshotTsMs'), 'stale': payload.get('stale'), 'count': data.get('count'), 'total': data.get('total'), 'update_time': _now_meta(), 'data_source': 'DangInvest'}
+    meta = {'url': BOARDS_SUMMARY_URL, 'mode': api_mode, 'limit': limit, 'sort': api_sort, 'tradeDate': payload.get('tradeDate'), 'snapshotTsMs': payload.get('snapshotTsMs'), 'stale': payload.get('stale'), 'data_quality': payload.get('data_quality'), 'count': data.get('count'), 'total': data.get('total'), 'update_time': _now_meta(), 'data_source': 'DangInvest'}
     return {'meta': meta, 'data': items}
 
 def cmd_detail(mode: str, group_key: str, sort: str, items_limit: int, items_offset: int, retries: int, output_json: bool) -> None:
@@ -100,6 +107,6 @@ def cmd_detail(mode: str, group_key: str, sort: str, items_limit: int, items_off
     api_mode = normalize_mode(mode)
     api_sort = normalize_sort(sort, for_detail=True)
     payload = _get_json(BOARDS_DETAIL_URL, {'mode': api_mode, 'groupKey': group_key, 'sort': api_sort, 'items_limit': items_limit, 'items_offset': items_offset}, retries=retries)
-    meta = {'url': BOARDS_DETAIL_URL, 'mode': api_mode, 'groupKey': group_key, 'sort': api_sort, 'items_limit': items_limit, 'items_offset': items_offset, 'tradeDate': payload.get('tradeDate'), 'snapshotTsMs': payload.get('snapshotTsMs'), 'stale': payload.get('stale'), 'update_time': _now_meta(), 'data_source': 'DangInvest'}
+    meta = {'url': BOARDS_DETAIL_URL, 'mode': api_mode, 'groupKey': group_key, 'sort': api_sort, 'items_limit': items_limit, 'items_offset': items_offset, 'tradeDate': payload.get('tradeDate'), 'snapshotTsMs': payload.get('snapshotTsMs'), 'stale': payload.get('stale'), 'data_quality': payload.get('data_quality'), 'update_time': _now_meta(), 'data_source': 'DangInvest'}
     data = payload.get('data') or {}
     return {'meta': meta, 'data': data}

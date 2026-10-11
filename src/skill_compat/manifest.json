@@ -1,14 +1,16 @@
 {
+  "source_worktree_dirty": true,
   "source_repo": "https://github.com/shouldnotappearcalm/a-share-skill",
-  "source_commit": "914ee8492e27ec49d4506cf7fc6810def6bee7bd",
+  "source_commit": "f1452731221108ea62214cc5e1de1dbf2a740d16",
   "modules": {
     "history": {
       "source": "fetch_history_fallback.py",
-      "source_sha256": "3e7a8f9f2a0ad71b66565326829ac324b0c6f5f94c3f8d7850765bef74457181",
+      "source_sha256": "0ed1eaf50070420b980af341eb8609a153cb82bfb27646b6c92e415e264b4c74",
       "functions": [
         "_build_session",
         "_code_digits",
         "_estimate_fetch_count",
+        "_fetch_kline_uncached",
         "_fetch_kline_with_fallback",
         "_filter_financial_periods",
         "_financial_single_from_akshare",
@@ -27,11 +29,11 @@
         "get_kline_xueqiu",
         "normalize_code"
       ],
-      "generated_sha256": "22936e077c04b271fb6534e2a349a3cbdc52f29fd0acc33078a6a2c9eea96711"
+      "generated_sha256": "75ca232c7719bf2a493a61c49d1ad73387538b4cc8bf30186f549ddca81c59a1"
     },
     "danginvest": {
       "source": "fetch_danginvest.py",
-      "source_sha256": "21df8f5390bdd0b8d1ade54d67576639adbf5a3dbdd4ff122df4954eb136b29c",
+      "source_sha256": "e00b7cd49353570f84ab7c02fca9a610583f82d342010097878af44f22eb759f",
       "functions": [
         "_build_session",
         "_get_json",
@@ -42,7 +44,7 @@
         "normalize_mode",
         "normalize_sort"
       ],
-      "generated_sha256": "807e0ca51a62e3f6d1ac778991bc9f11087f31dab0af3652fc3c318005691cbd"
+      "generated_sha256": "01d7d999cb3df9d261fb1364f5940f55edefc6cb620f88d469fc354e471a428c"
     }
   },
   "realtime_helpers": {
@@ -61,5 +63,15 @@
     "source": "fetch_company_news.py",
     "source_sha256": "8016b0743ada18d122467ede4a48546bd61ca51a5904a613bfc8098023c42026",
     "note": "src/company_news.py keeps the source module through build_payload; CLI main removed"
+  },
+  "copied_modules": {
+    "data_runtime": {
+      "source": "data_runtime.py",
+      "source_sha256": "5634639216b42bc0ac40df20fe099bc08ce5b3618a187edb527aabb2ac1c8e72"
+    },
+    "fetch_industry": {
+      "source": "fetch_industry.py",
+      "source_sha256": "830c82bea412c21295eb9a47dc3195c69d8ee6f7ec97a0fa327aecc61cff9299"
+    }
   }
 }

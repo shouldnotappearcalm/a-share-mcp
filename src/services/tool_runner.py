@@ -5,6 +5,10 @@ import os
 import queue
 import threading
 from functools import wraps
+from inspect import signature
+from src.skill_compat.data_runtime import SourcePool
+
+_TOOL_POOL = SourcePool(workers=8, backlog=32)
 from typing import Callable
 
 from src.data_source_interface import NoDataFoundError, LoginError, DataSourceError
@@ -54,21 +58,18 @@ def json_tool_output(fn):
     @wraps(fn)
     def wrapped(*args, **kwargs):
         timeout=max(0.01,min(60,float(os.environ.get("A_SHARE_TOOL_TIMEOUT","35"))))
-        completed=queue.Queue()
-        def run():
-            try:completed.put((fn(*args,**kwargs),None))
-            except Exception as exc:completed.put((None,exc))
-        threading.Thread(target=run,daemon=True).start()
+        bound = signature(fn).bind_partial(*args, **kwargs)
+        bound.apply_defaults()
+        requested_format = bound.arguments.get("format", "markdown")
         try:
-            result,error=completed.get(timeout=timeout)
-            if error is not None:raise error
-        except queue.Empty:
+            result = _TOOL_POOL.call(lambda: fn(*args, **kwargs), timeout)
+        except TimeoutError:
             message=f"data source timeout after {timeout}s"
-            return json.dumps({"status":"error","error":message,"data":[]}) if kwargs.get("format")=="json" else message
+            return json.dumps({"status":"error","error":message,"data":[]}) if requested_format=="json" else message
         except Exception as exc:
             message=f"{type(exc).__name__}: {exc}"
-            return json.dumps({"status":"error","error":message,"data":[]},ensure_ascii=False) if kwargs.get("format")=="json" else message
-        if kwargs.get("format") == "json" and isinstance(result, str):
+            return json.dumps({"status":"error","error":message,"data":[]},ensure_ascii=False) if requested_format=="json" else message
+        if requested_format == "json" and isinstance(result, str):
             try:
                 json.loads(result)
             except ValueError:
