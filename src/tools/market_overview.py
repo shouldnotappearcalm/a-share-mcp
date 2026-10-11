@@ -43,6 +43,7 @@ def register_market_overview_tools(app: FastMCP, active_data_source: FinancialDa
         return run_tool_with_handling(
             lambda: fetch_trade_dates(active_data_source, start_date=start_date, end_date=end_date, limit=limit, format=format),
             context="get_trade_dates",
+            format=format,
         )
 
     @app.tool()
@@ -60,6 +61,7 @@ def register_market_overview_tools(app: FastMCP, active_data_source: FinancialDa
         return run_tool_with_handling(
             lambda: fetch_all_stock(active_data_source, date=date, limit=limit, format=format),
             context=f"get_all_stock:{date or 'default'}",
+            format=format,
         )
 
     @app.tool()
@@ -80,6 +82,7 @@ def register_market_overview_tools(app: FastMCP, active_data_source: FinancialDa
         return run_tool_with_handling(
             lambda: fetch_search_stocks(active_data_source, keyword=keyword, date=date, limit=limit, format=format),
             context=f"search_stocks:{keyword}",
+            format=format,
         )
 
     @app.tool()
@@ -99,4 +102,5 @@ def register_market_overview_tools(app: FastMCP, active_data_source: FinancialDa
         return run_tool_with_handling(
             lambda: fetch_suspensions(active_data_source, date=date, limit=limit, format=format),
             context=f"get_suspensions:{date or 'current'}",
+            format=format,
         )

@@ -27,7 +27,10 @@ def fetch_search_stocks(data_source: FinancialDataSource, *, keyword: str, date:
     if df is None or df.empty:
         return "(No data available to display)"
     kw = keyword.strip().lower()
-    filtered = df[df["code"].str.lower().str.contains(kw, na=False)]
+    mask = df["code"].str.lower().str.contains(kw, na=False, regex=False)
+    if "code_name" in df:
+        mask |= df["code_name"].str.lower().str.contains(kw, na=False, regex=False)
+    filtered = df[mask]
     meta = {"keyword": keyword, "as_of": date or "current"}
     return format_table_output(filtered, format=format, max_rows=limit, meta=meta)
 

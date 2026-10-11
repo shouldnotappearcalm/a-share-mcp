@@ -1,0 +1,3350 @@
+{
+  "base_commit": "30ad6576c9c578c3b18f5bb146772567e3ddcc02",
+  "scope": "data only; no strategy or trading run",
+  "baseline": [
+    {
+      "name": "03_get_realtime_kline",
+      "status": "ok",
+      "seconds": 1.917,
+      "exit_code": 0,
+      "command": [
+        "/tmp/stock-data-qa-venv/bin/python",
+        "/tmp/stock-data-audit/mcp_call.py",
+        "get_realtime_kline",
+        "{\"code\": \"600519\", \"frequency\": \"1d\", \"count\": 10, \"format\": \"json\"}"
+      ],
+      "stdout_preview": "{\"data\": [{\"time\": \"2026-09-18\", \"open\": 1262.99, \"close\": 1265.88, \"high\": 1256.1, \"low\": 1257.12, \"volume\": 2489087.0}, {\"time\": \"2026-09-21\", \"open\": 1259.0, \"close\": 1259.95, \"high\": 1250.8, \"low\": 1252.57, \"volume\": 2501689.0}, {\"time\": \"2026-09",
+      "stderr_tail": ""
+    },
+    {
+      "name": "00_get_realtime_quote",
+      "status": "ok",
+      "seconds": 2.18,
+      "exit_code": 0,
+      "command": [
+        "/tmp/stock-data-qa-venv/bin/python",
+        "/tmp/stock-data-audit/mcp_call.py",
+        "get_realtime_quote",
+        "{\"code\": \"600519\", \"format\": \"json\"}"
+      ],
+      "stdout_preview": "{\"data\": [{\"代码\": \"600519\", \"日期\": \"2026-10-09\", \"最新价\": 1263.0, \"今开\": 1255.42, \"最高\": 1282.0, \"最低\": 1255.42, \"昨收\": 1263.0, \"涨跌额\": 0.0, \"涨跌幅(%)\": 0.0, \"成交量\": 3511051, \"市场状态\": \"休市\", \"备注\": \"非交易日或休市，显示最近交易日(最近)数据\"}], \"meta\": {\"code\": \"600519\", \"normalized_c",
+      "stderr_tail": ""
+    },
+    {
+      "name": "01_get_realtime_quote",
+      "status": "ok",
+      "seconds": 2.196,
+      "exit_code": 0,
+      "command": [
+        "/tmp/stock-data-qa-venv/bin/python",
+        "/tmp/stock-data-audit/mcp_call.py",
+        "get_realtime_quote",
+        "{\"code\": \"000001\", \"format\": \"json\"}"
+      ],
+      "stdout_preview": "{\"data\": [{\"代码\": \"000001\", \"日期\": \"2026-10-09\", \"最新价\": 11.59, \"今开\": 11.78, \"最高\": 11.89, \"最低\": 11.58, \"昨收\": 11.59, \"涨跌额\": 0.0, \"涨跌幅(%)\": 0.0, \"成交量\": 107810561, \"市场状态\": \"休市\", \"备注\": \"非交易日或休市，显示最近交易日(最近)数据\"}], \"meta\": {\"code\": \"000001\", \"normalized_code\":",
+      "stderr_tail": ""
+    },
+    {
+      "name": "02_get_realtime_multi_quote",
+      "status": "ok",
+      "seconds": 2.482,
+      "exit_code": 0,
+      "command": [
+        "/tmp/stock-data-qa-venv/bin/python",
+        "/tmp/stock-data-audit/mcp_call.py",
+        "get_realtime_multi_quote",
+        "{\"codes\": [\"600519\", \"000001\", \"300750\"], \"format\": \"json\"}"
+      ],
+      "stdout_preview": "{\"data\": [{\"代码\": \"600519\", \"名称\": \"N/A\", \"最新价\": 1263.0, \"涨跌幅(%)\": 0.0, \"昨收\": 1263.0, \"状态\": \"成功\"}, {\"代码\": \"000001\", \"名称\": \"N/A\", \"最新价\": 11.59, \"涨跌幅(%)\": 0.0, \"昨收\": 11.59, \"状态\": \"成功\"}, {\"代码\": \"300750\", \"名称\": \"N/A\", \"最新价\": 297.75, \"涨跌幅(%)\": 0.0, \"昨收\": 29",
+      "stderr_tail": ""
+    },
+    {
+      "name": "04_get_realtime_kline",
+      "status": "ok",
+      "seconds": 1.45,
+      "exit_code": 0,
+      "command": [
+        "/tmp/stock-data-qa-venv/bin/python",
+        "/tmp/stock-data-audit/mcp_call.py",
+        "get_realtime_kline",
+        "{\"code\": \"600519\", \"frequency\": \"5m\", \"count\": 10, \"format\": \"json\"}"
+      ],
+      "stdout_preview": "{\"data\": [{\"time\": \"2026-10-09 14:15:00\", \"open\": 1267.83, \"close\": 1268.69, \"high\": 1265.36, \"low\": 1265.36, \"volume\": 65100.0}, {\"time\": \"2026-10-09 14:20:00\", \"open\": 1265.4, \"close\": 1266.0, \"high\": 1264.5, \"low\": 1266.0, \"volume\": 56750.0}, {\"ti",
+      "stderr_tail": ""
+    },
+    {
+      "name": "05_get_realtime_kline",
+      "status": "ok",
+      "seconds": 1.471,
+      "exit_code": 0,
+      "command": [
+        "/tmp/stock-data-qa-venv/bin/python",
+        "/tmp/stock-data-audit/mcp_call.py",
+        "get_realtime_kline",
+        "{\"code\": \"600519\", \"frequency\": \"1w\", \"count\": 10, \"format\": \"json\"}"
+      ],
+      "stdout_preview": "{\"data\": [{\"time\": \"2026-08-07\", \"open\": 1350.6, \"close\": 1363.35, \"high\": 1300.01, \"low\": 1309.22, \"volume\": 16672485.0}, {\"time\": \"2026-08-14\", \"open\": 1325.0, \"close\": 1359.97, \"high\": 1318.08, \"low\": 1341.99, \"volume\": 18702495.0}, {\"time\": \"2026",
+      "stderr_tail": ""
+    },
+    {
+      "name": "06_get_realtime_kline",
+      "status": "ok",
+      "seconds": 1.481,
+      "exit_code": 0,
+      "command": [
+        "/tmp/stock-data-qa-venv/bin/python",
+        "/tmp/stock-data-audit/mcp_call.py",
+        "get_realtime_kline",
+        "{\"code\": \"600519\", \"frequency\": \"1M\", \"count\": 10, \"format\": \"json\"}"
+      ],
+      "stdout_preview": "{\"data\": [{\"time\": \"2026-01-30\", \"open\": 1385.0, \"close\": 1445.0, \"high\": 1322.01, \"low\": 1401.0, \"volume\": 117529983.0}, {\"time\": \"2026-02-27\", \"open\": 1425.0, \"close\": 1568.0, \"high\": 1411.62, \"low\": 1455.02, \"volume\": 80526506.0}, {\"time\": \"2026-0",
+      "stderr_tail": ""
+    },
+    {
+      "name": "07_get_intraday_minute_kline",
+      "status": "non_json",
+      "seconds": 1.476,
+      "exit_code": 0,
+      "command": [
+        "/tmp/stock-data-qa-venv/bin/python",
+        "/tmp/stock-data-audit/mcp_call.py",
+        "get_intraday_minute_kline",
+        "{\"code\": \"600519\", \"format\": \"json\"}"
+      ],
+      "stdout_preview": "股票 600519 今日(2026-10-11)暂无分钟K线数据\n",
+      "stderr_tail": ""
+    },
+    {
+      "name": "08_get_technical_indicators",
+      "status": "ok",
+      "seconds": 1.48,
+      "exit_code": 0,
+      "command": [
+        "/tmp/stock-data-qa-venv/bin/python",
+        "/tmp/stock-data-audit/mcp_call.py",
+        "get_technical_indicators",
+        "{\"code\": \"600519\", \"count\": 120, \"format\": \"json\"}"
+      ],
+      "stdout_preview": "{\"data\": [{\"time\": \"2026-04-13\", \"open\": 1444.0, \"close\": 1446.5, \"high\": 1433.0, \"low\": 1443.31, \"volume\": 2521364.0, \"MA5\": NaN, \"MA10\": NaN, \"MA20\": NaN, \"MACD_DIF\": 0.0, \"MACD_DEA\": 0.0, \"MACD\": 0.0, \"KDJ_K\": NaN, \"KDJ_D\": NaN, \"KDJ_J\": NaN, \"BOL",
+      "stderr_tail": ""
+    },
+    {
+      "name": "10_get_north_money",
+      "status": "non_json",
+      "seconds": 1.582,
+      "exit_code": 0,
+      "command": [
+        "/tmp/stock-data-qa-venv/bin/python",
+        "/tmp/stock-data-audit/mcp_call.py",
+        "get_north_money",
+        "{\"format\": \"json\"}"
+      ],
+      "stdout_preview": "Error: Could not format data into JSON.\n",
+      "stderr_tail": "^^^^^^\n  File \"/Users/calm/.local/share/uv/python/cpython-3.12.13-macos-aarch64-none/lib/python3.12/json/encoder.py\", line 258, in iterencode\n    return _iterencode(o, 0)\n           ^^^^^^^^^^^^^^^^^\n  File \"/Users/calm/.local/share/uv/python/cpython-3.12.13-macos-aarch64-none/lib/python3.12/json/encoder.py\", line 180, in default\n    raise TypeError(f'Object of type {o.__class__.__name__} '\nTypeError: Object of type date is not JSON serializable\n"
+    },
+    {
+      "name": "11_get_limit_up_down",
+      "status": "ok",
+      "seconds": 1.596,
+      "exit_code": 0,
+      "command": [
+        "/tmp/stock-data-qa-venv/bin/python",
+        "/tmp/stock-data-audit/mcp_call.py",
+        "get_limit_up_down",
+        "{\"format\": \"json\"}"
+      ],
+      "stdout_preview": "{\"data\": [{\"日期\": \"2026-10-11\", \"涨停数量\": 69, \"跌停数量\": 8}], \"meta\": {\"data_source\": \"东方财富 (Akshare)\", \"fetch_time\": \"2026-10-11 10:59:16\", \"total_rows\": 1, \"returned_rows\": 1, \"truncated\": false, \"columns\": [\"日期\", \"涨停数量\", \"跌停数量\"]}}\n",
+      "stderr_tail": ""
+    },
+    {
+      "name": "09_get_market_index",
+      "status": "ok",
+      "seconds": 2.326,
+      "exit_code": 0,
+      "command": [
+        "/tmp/stock-data-qa-venv/bin/python",
+        "/tmp/stock-data-audit/mcp_call.py",
+        "get_market_index",
+        "{\"format\": \"json\"}"
+      ],
+      "stdout_preview": "{\"data\": [{\"指数名称\": \"上证指数\", \"代码\": \"sh000001\", \"当前点位\": 3804.09, \"最新价\": 3813.79, \"涨跌额\": 1.89, \"涨跌幅(%)\": 0.05}, {\"指数名称\": \"Ａ股指数\", \"代码\": \"sh000002\", \"当前点位\": 3988.3, \"最新价\": 3998.45, \"涨跌额\": 1.94, \"涨跌幅(%)\": 0.05}, {\"指数名称\": \"科创50\", \"代码\": \"sh000688\", \"当前点位\": 14",
+      "stderr_tail": "\n  0%|          | 0/8 [00:00<?, ?it/s]\n 12%|█▎        | 1/8 [00:00<00:00,  9.82it/s]\n 25%|██▌       | 2/8 [00:00<00:00,  9.68it/s]\n 50%|█████     | 4/8 [00:00<00:00,  9.98it/s]\n 62%|██████▎   | 5/8 [00:00<00:00,  9.90it/s]\n 75%|███████▌  | 6/8 [00:00<00:00,  9.85it/s]\n100%|██████████| 8/8 [00:00<00:00, 10.31it/s]\n                                             \n"
+    },
+    {
+      "name": "13_get_limit_up_pool",
+      "status": "ok",
+      "seconds": 1.411,
+      "exit_code": 0,
+      "command": [
+        "/tmp/stock-data-qa-venv/bin/python",
+        "/tmp/stock-data-audit/mcp_call.py",
+        "get_limit_up_pool",
+        "{\"date\": \"20261009\", \"top_n\": 3, \"format\": \"json\"}"
+      ],
+      "stdout_preview": "{\"data\": [{\"序号\": 1, \"代码\": \"002058\", \"名称\": \"紫竹高科\", \"涨跌幅(%)\": 9.99, \"最新价\": 24.44, \"成交额(亿)\": 1.01, \"流通市值(亿)\": 35.04, \"换手率(%)\": 2.88, \"封板资金\": 89302489, \"首次封板\": \"092500\", \"最后封板\": \"092500\", \"炸板次数\": 0, \"连板数\": 4, \"所属行业\": \"电池\"}, {\"序号\": 2, \"代码\": \"600241\", \"名称\"",
+      "stderr_tail": ""
+    },
+    {
+      "name": "14_get_limit_down_pool",
+      "status": "ok",
+      "seconds": 1.416,
+      "exit_code": 0,
+      "command": [
+        "/tmp/stock-data-qa-venv/bin/python",
+        "/tmp/stock-data-audit/mcp_call.py",
+        "get_limit_down_pool",
+        "{\"date\": \"20261009\", \"top_n\": 3, \"format\": \"json\"}"
+      ],
+      "stdout_preview": "{\"data\": [{\"序号\": 1, \"代码\": \"603400\", \"名称\": \"华之杰\", \"涨跌幅(%)\": -10.0, \"最新价\": 42.93, \"成交额(亿)\": 2.87, \"流通市值(亿)\": 15.55, \"换手率(%)\": 18.13}, {\"序号\": 2, \"代码\": \"603823\", \"名称\": \"百合花\", \"涨跌幅(%)\": -10.0, \"最新价\": 41.93, \"成交额(亿)\": 8.55, \"流通市值(亿)\": 174.58, \"换手率(%)\": 4.8",
+      "stderr_tail": ""
+    },
+    {
+      "name": "15_get_consecutive_limit_up",
+      "status": "ok",
+      "seconds": 1.399,
+      "exit_code": 0,
+      "command": [
+        "/tmp/stock-data-qa-venv/bin/python",
+        "/tmp/stock-data-audit/mcp_call.py",
+        "get_consecutive_limit_up",
+        "{\"date\": \"20261009\", \"top_n\": 3, \"format\": \"json\"}"
+      ],
+      "stdout_preview": "{\"data\": [{\"序号\": 1, \"代码\": \"000869\", \"名称\": \"张  裕Ａ\", \"涨跌幅(%)\": 3.3, \"最新价\": 19.38, \"成交额(亿)\": 3.76, \"换手率(%)\": 4.33, \"连板数\": 1, \"涨停统计\": \"2/1\", \"所属行业\": \"非白酒\"}, {\"序号\": 2, \"代码\": \"001300\", \"名称\": \"三柏硕\", \"涨跌幅(%)\": 9.99, \"最新价\": 14.86, \"成交额(亿)\": 1.22, \"换手率(%)\": 3.",
+      "stderr_tail": ""
+    },
+    {
+      "name": "17_get_stock_money_flow",
+      "status": "non_json",
+      "seconds": 1.429,
+      "exit_code": 0,
+      "command": [
+        "/tmp/stock-data-qa-venv/bin/python",
+        "/tmp/stock-data-audit/mcp_call.py",
+        "get_stock_money_flow",
+        "{\"code\": \"600519\", \"format\": \"json\"}"
+      ],
+      "stdout_preview": "获取资金流向失败: HTTPSConnectionPool(host='push2his.eastmoney.com', port=443): Max retries exceeded with url: /api/qt/stock/fflow/daykline/get?lmt=0&klt=101&secid=1.600519&fields1=f1%2Cf2%2Cf3%2Cf7&fields2=f51%2Cf52%2Cf53%2Cf54%2Cf55%2Cf56%2Cf57%2Cf58%2Cf59",
+      "stderr_tail": ""
+    },
+    {
+      "name": "16_get_lhb_detail",
+      "status": "ok",
+      "seconds": 1.777,
+      "exit_code": 0,
+      "command": [
+        "/tmp/stock-data-qa-venv/bin/python",
+        "/tmp/stock-data-audit/mcp_call.py",
+        "get_lhb_detail",
+        "{\"start_date\": \"20260928\", \"end_date\": \"20261009\", \"top_n\": 3, \"format\": \"json\"}"
+      ],
+      "stdout_preview": "{\"data\": [{\"序号\": 1, \"代码\": \"000002\", \"名称\": \"万科A\", \"上榜日期\": \"2026-09-30\", \"收盘价\": 4.26, \"涨跌幅(%)\": 4.41, \"净买额(万)\": 7138.46, \"买入额(万)\": 68896.48, \"卖出额(万)\": 61758.02, \"上榜原因\": \"日振幅值达到15%的前5只证券\", \"解读\": \"2家机构买入，成功率38.36%\", \"换手率(%)\": 13.48, \"流通市值\": 41386382036.0",
+      "stderr_tail": "\n  0%|          | 0/1 [00:00<?, ?it/s]\n100%|██████████| 1/1 [00:00<00:00,  4.90it/s]\n                                             \n"
+    },
+    {
+      "name": "18_get_historical_k_data",
+      "status": "non_json",
+      "seconds": 1.448,
+      "exit_code": 0,
+      "command": [
+        "/tmp/stock-data-qa-venv/bin/python",
+        "/tmp/stock-data-audit/mcp_call.py",
+        "get_historical_k_data",
+        "{\"code\": \"sh.600519\", \"start_date\": \"2026-09-01\", \"end_date\": \"2026-10-09\", \"limit\": 10, \"format\": \"json\"}"
+      ],
+      "stdout_preview": "login success!\nlogout success!\n{\"data\": [{\"date\": \"2026-09-01\", \"code\": \"sh.600519\", \"open\": \"1295.0000\", \"high\": \"1307.9900\", \"low\": \"1286.1000\", \"close\": \"1299.5600\", \"preclose\": \"1299.5200\", \"volume\": \"3266402\", \"amount\": \"4242440861.1000\", \"adjus",
+      "stderr_tail": ""
+    },
+    {
+      "name": "20_get_dividend_data",
+      "status": "non_json",
+      "seconds": 1.471,
+      "exit_code": 0,
+      "command": [
+        "/tmp/stock-data-qa-venv/bin/python",
+        "/tmp/stock-data-audit/mcp_call.py",
+        "get_dividend_data",
+        "{\"code\": \"sh.600519\", \"year\": \"2025\", \"format\": \"json\"}"
+      ],
+      "stdout_preview": "login success!\nlogout success!\n{\"data\": [{\"code\": \"sh.600519\", \"dividPreNoticeDate\": \"\", \"dividAgmPumDate\": \"2025-05-20\", \"dividPlanAnnounceDate\": \"2025-04-03\", \"dividPlanDate\": \"2025-06-20\", \"dividRegistDate\": \"2025-06-25\", \"dividOperateDate\": \"2025",
+      "stderr_tail": ""
+    },
+    {
+      "name": "19_get_stock_basic_info",
+      "status": "non_json",
+      "seconds": 1.628,
+      "exit_code": 0,
+      "command": [
+        "/tmp/stock-data-qa-venv/bin/python",
+        "/tmp/stock-data-audit/mcp_call.py",
+        "get_stock_basic_info",
+        "{\"code\": \"sh.600519\", \"format\": \"json\"}"
+      ],
+      "stdout_preview": "login success!\nlogout failed!\n{\"data\": [{\"code\": \"sh.600519\", \"code_name\": \"贵州茅台\", \"ipoDate\": \"2001-08-27\", \"outDate\": \"\", \"type\": \"1\", \"status\": \"1\"}], \"meta\": {\"code\": \"sh.600519\", \"total_rows\": 1, \"returned_rows\": 1, \"truncated\": false, \"columns\":",
+      "stderr_tail": ""
+    },
+    {
+      "name": "21_get_profit_data",
+      "status": "non_json",
+      "seconds": 1.621,
+      "exit_code": 0,
+      "command": [
+        "/tmp/stock-data-qa-venv/bin/python",
+        "/tmp/stock-data-audit/mcp_call.py",
+        "get_profit_data",
+        "{\"code\": \"sh.600519\", \"year\": \"2026\", \"quarter\": 2, \"format\": \"json\"}"
+      ],
+      "stdout_preview": "login success!\nlogout success!\n{\"data\": [{\"code\": \"sh.600519\", \"pubDate\": \"2026-08-15\", \"statDate\": \"2026-06-30\", \"roeAvg\": \"0.179543\", \"npMargin\": \"0.507516\", \"gpMargin\": \"0.895552\", \"netProfit\": \"46033330566.780000\", \"epsTTM\": \"65.142936\", \"MBReven",
+      "stderr_tail": ""
+    },
+    {
+      "name": "23_get_growth_data",
+      "status": "non_json",
+      "seconds": 1.71,
+      "exit_code": 0,
+      "command": [
+        "/tmp/stock-data-qa-venv/bin/python",
+        "/tmp/stock-data-audit/mcp_call.py",
+        "get_growth_data",
+        "{\"code\": \"sh.600519\", \"year\": \"2026\", \"quarter\": 2, \"format\": \"json\"}"
+      ],
+      "stdout_preview": "login success!\nlogout failed!\n{\"data\": [{\"code\": \"sh.600519\", \"pubDate\": \"2026-08-15\", \"statDate\": \"2026-06-30\", \"YOYEquity\": \"0.052827\", \"YOYAsset\": \"0.057460\", \"YOYNI\": \"-0.020290\", \"YOYEPSBasic\": \"-0.016860\", \"YOYPNI\": \"-0.019516\"}], \"meta\": {\"cod",
+      "stderr_tail": ""
+    },
+    {
+      "name": "22_get_operation_data",
+      "status": "non_json",
+      "seconds": 2.038,
+      "exit_code": 0,
+      "command": [
+        "/tmp/stock-data-qa-venv/bin/python",
+        "/tmp/stock-data-audit/mcp_call.py",
+        "get_operation_data",
+        "{\"code\": \"sh.600519\", \"year\": \"2026\", \"quarter\": 2, \"format\": \"json\"}"
+      ],
+      "stdout_preview": "login success!\nlogout success!\n{\"data\": [{\"code\": \"sh.600519\", \"pubDate\": \"2026-08-15\", \"statDate\": \"2026-06-30\", \"NRTurnRatio\": \"57047.089113\", \"NRTurnDays\": \"0.003155\", \"INVTurnRatio\": \"0.154365\", \"INVTurnDays\": \"1165.803109\", \"CATurnRatio\": \"0.359",
+      "stderr_tail": ""
+    },
+    {
+      "name": "24_get_balance_data",
+      "status": "non_json",
+      "seconds": 2.218,
+      "exit_code": 0,
+      "command": [
+        "/tmp/stock-data-qa-venv/bin/python",
+        "/tmp/stock-data-audit/mcp_call.py",
+        "get_balance_data",
+        "{\"code\": \"sh.600519\", \"year\": \"2026\", \"quarter\": 2, \"format\": \"json\"}"
+      ],
+      "stdout_preview": "login success!\nlogout success!\n{\"data\": [{\"code\": \"sh.600519\", \"pubDate\": \"2026-08-15\", \"statDate\": \"2026-06-30\", \"currentRatio\": \"5.589543\", \"quickRatio\": \"4.274995\", \"cashRatio\": \"1.147362\", \"YOYLiability\": \"0.088869\", \"liabilityToAsset\": \"0.151931",
+      "stderr_tail": ""
+    },
+    {
+      "name": "25_get_cash_flow_data",
+      "status": "non_json",
+      "seconds": 1.37,
+      "exit_code": 0,
+      "command": [
+        "/tmp/stock-data-qa-venv/bin/python",
+        "/tmp/stock-data-audit/mcp_call.py",
+        "get_cash_flow_data",
+        "{\"code\": \"sh.600519\", \"year\": \"2026\", \"quarter\": 2, \"format\": \"json\"}"
+      ],
+      "stdout_preview": "login success!\nlogout success!\n{\"data\": [{\"code\": \"sh.600519\", \"pubDate\": \"2026-08-15\", \"statDate\": \"2026-06-30\", \"CAToAsset\": \"0.843631\", \"NCAToAsset\": \"0.156370\", \"tangibleAssetToAsset\": \"0.763540\", \"ebitToInterest\": \"\", \"CFOToOR\": \"0.779363\", \"CFO",
+      "stderr_tail": ""
+    },
+    {
+      "name": "26_get_dupont_data",
+      "status": "non_json",
+      "seconds": 1.367,
+      "exit_code": 0,
+      "command": [
+        "/tmp/stock-data-qa-venv/bin/python",
+        "/tmp/stock-data-audit/mcp_call.py",
+        "get_dupont_data",
+        "{\"code\": \"sh.600519\", \"year\": \"2026\", \"quarter\": 2, \"format\": \"json\"}"
+      ],
+      "stdout_preview": "login success!\nlogout success!\n{\"data\": [{\"code\": \"sh.600519\", \"pubDate\": \"2026-08-15\", \"statDate\": \"2026-06-30\", \"dupontROE\": \"0.179543\", \"dupontAssetStoEquity\": \"1.235927\", \"dupontAssetTurn\": \"0.301127\", \"dupontPnitoni\": \"0.967058\", \"dupontNitogr\":",
+      "stderr_tail": ""
+    },
+    {
+      "name": "27_get_performance_express_report",
+      "status": "non_json",
+      "seconds": 1.433,
+      "exit_code": 0,
+      "command": [
+        "/tmp/stock-data-qa-venv/bin/python",
+        "/tmp/stock-data-audit/mcp_call.py",
+        "get_performance_express_report",
+        "{\"code\": \"sh.600519\", \"start_date\": \"2026-01-01\", \"end_date\": \"2026-10-09\", \"format\": \"json\"}"
+      ],
+      "stdout_preview": "login success!\nlogout success!\nError: No performance express report found for sh.600519 in range 2026-01-01-2026-10-09 (empty result set).\n",
+      "stderr_tail": "No performance express report found for sh.600519 in range 2026-01-01-2026-10-09 (empty result set).\nCaught known error fetching performance express report for sh.600519: NoDataFoundError\nget_performance_express_report:sh.600519:2026-01-01-2026-10-09: No data found: No performance express report found for sh.600519 in range 2026-01-01-2026-10-09 (empty result set).\n"
+    },
+    {
+      "name": "28_get_forecast_report",
+      "status": "non_json",
+      "seconds": 2.375,
+      "exit_code": 0,
+      "command": [
+        "/tmp/stock-data-qa-venv/bin/python",
+        "/tmp/stock-data-audit/mcp_call.py",
+        "get_forecast_report",
+        "{\"code\": \"sh.600519\", \"start_date\": \"2026-01-01\", \"end_date\": \"2026-10-09\", \"format\": \"json\"}"
+      ],
+      "stdout_preview": "login success!\nlogout success!\nError: No performance forecast report found for sh.600519 in range 2026-01-01-2026-10-09 (empty result set).\n",
+      "stderr_tail": "No performance forecast report found for sh.600519 in range 2026-01-01-2026-10-09 (empty result set).\nCaught known error fetching performance forecast report for sh.600519: NoDataFoundError\nget_forecast_report:sh.600519:2026-01-01-2026-10-09: No data found: No performance forecast report found for sh.600519 in range 2026-01-01-2026-10-09 (empty result set).\n"
+    },
+    {
+      "name": "30_get_stock_industry",
+      "status": "non_json",
+      "seconds": 1.438,
+      "exit_code": 0,
+      "command": [
+        "/tmp/stock-data-qa-venv/bin/python",
+        "/tmp/stock-data-audit/mcp_call.py",
+        "get_stock_industry",
+        "{\"code\": \"sh.600519\", \"format\": \"json\"}"
+      ],
+      "stdout_preview": "login success!\nlogout success!\n{\"data\": [{\"updateDate\": \"2026-10-05\", \"code\": \"sh.600519\", \"code_name\": \"贵州茅台\", \"industry\": \"C15酒、饮料和精制茶制造业\", \"industryClassification\": \"证监会行业分类\"}], \"meta\": {\"code\": \"sh.600519\", \"as_of\": \"latest\", \"total_rows\": 1, \"re",
+      "stderr_tail": ""
+    },
+    {
+      "name": "29_get_fina_indicator",
+      "status": "non_json",
+      "seconds": 3.135,
+      "exit_code": 0,
+      "command": [
+        "/tmp/stock-data-qa-venv/bin/python",
+        "/tmp/stock-data-audit/mcp_call.py",
+        "get_fina_indicator",
+        "{\"code\": \"sh.600519\", \"start_date\": \"2026-01-01\", \"end_date\": \"2026-10-09\", \"format\": \"json\"}"
+      ],
+      "stdout_preview": "login success!\nlogout failed!\n{\"data\": [{\"code\": \"sh.600519\", \"year\": \"2026\", \"quarter\": 1, \"profit_code\": \"sh.600519\", \"profit_pubDate\": \"2026-04-25\", \"profit_statDate\": \"2026-03-31\", \"profit_roeAvg\": \"0.105687\", \"profit_npMargin\": \"0.522245\", \"prof",
+      "stderr_tail": ""
+    },
+    {
+      "name": "31_get_sz50_stocks",
+      "status": "non_json",
+      "seconds": 1.616,
+      "exit_code": 0,
+      "command": [
+        "/tmp/stock-data-qa-venv/bin/python",
+        "/tmp/stock-data-audit/mcp_call.py",
+        "get_sz50_stocks",
+        "{\"format\": \"json\"}"
+      ],
+      "stdout_preview": "login success!\nlogout success!\n{\"data\": [{\"updateDate\": \"2026-10-05\", \"code\": \"sh.600028\", \"code_name\": \"中国石化\"}, {\"updateDate\": \"2026-10-05\", \"code\": \"sh.600030\", \"code_name\": \"中信证券\"}, {\"updateDate\": \"2026-10-05\", \"code\": \"sh.600031\", \"code_name\": \"三",
+      "stderr_tail": ""
+    },
+    {
+      "name": "32_get_hs300_stocks",
+      "status": "non_json",
+      "seconds": 1.693,
+      "exit_code": 0,
+      "command": [
+        "/tmp/stock-data-qa-venv/bin/python",
+        "/tmp/stock-data-audit/mcp_call.py",
+        "get_hs300_stocks",
+        "{\"format\": \"json\"}"
+      ],
+      "stdout_preview": "login success!\nlogout failed!\n{\"data\": [{\"updateDate\": \"2026-10-05\", \"code\": \"sh.600000\", \"code_name\": \"浦发银行\"}, {\"updateDate\": \"2026-10-05\", \"code\": \"sh.600009\", \"code_name\": \"上海机场\"}, {\"updateDate\": \"2026-10-05\", \"code\": \"sh.600010\", \"code_name\": \"包钢",
+      "stderr_tail": ""
+    },
+    {
+      "name": "33_get_zz500_stocks",
+      "status": "non_json",
+      "seconds": 2.0,
+      "exit_code": 0,
+      "command": [
+        "/tmp/stock-data-qa-venv/bin/python",
+        "/tmp/stock-data-audit/mcp_call.py",
+        "get_zz500_stocks",
+        "{\"format\": \"json\"}"
+      ],
+      "stdout_preview": "login success!\nlogout success!\n{\"data\": [{\"updateDate\": \"2026-10-05\", \"code\": \"sh.600004\", \"code_name\": \"白云机场\"}, {\"updateDate\": \"2026-10-05\", \"code\": \"sh.600008\", \"code_name\": \"首创环保\"}, {\"updateDate\": \"2026-10-05\", \"code\": \"sh.600021\", \"code_name\": \"上",
+      "stderr_tail": ""
+    },
+    {
+      "name": "35_get_all_stock",
+      "status": "non_json",
+      "seconds": 1.407,
+      "exit_code": 0,
+      "command": [
+        "/tmp/stock-data-qa-venv/bin/python",
+        "/tmp/stock-data-audit/mcp_call.py",
+        "get_all_stock",
+        "{\"format\": \"json\"}"
+      ],
+      "stdout_preview": "login success!\nlogout success!\nError: No stock list found for date None (empty result set).\n",
+      "stderr_tail": "No stock list returned for date None (empty result set).\nCaught known error fetching all stock list for date None: NoDataFoundError\nget_all_stock:default: No data found: No stock list found for date None (empty result set).\n"
+    },
+    {
+      "name": "12_get_hot_sectors",
+      "status": "timeout",
+      "seconds": 15.005,
+      "exit_code": null,
+      "command": [
+        "/tmp/stock-data-qa-venv/bin/python",
+        "/tmp/stock-data-audit/mcp_call.py",
+        "get_hot_sectors",
+        "{\"format\": \"json\"}"
+      ],
+      "stdout_preview": "",
+      "stderr_tail": ""
+    },
+    {
+      "name": "36_get_deposit_rate_data",
+      "status": "non_json",
+      "seconds": 1.491,
+      "exit_code": 0,
+      "command": [
+        "/tmp/stock-data-qa-venv/bin/python",
+        "/tmp/stock-data-audit/mcp_call.py",
+        "get_deposit_rate_data",
+        "{\"format\": \"json\"}"
+      ],
+      "stdout_preview": "login success!\nlogout success!\n{\"data\": [{\"pubDate\": \"1990-04-15\", \"demandDepositRate\": \"2.880000\", \"fixedDepositRate3Month\": \"6.300000\", \"fixedDepositRate6Month\": \"7.740000\", \"fixedDepositRate1Year\": \"10.080000\", \"fixedDepositRate2Year\": \"10.980000\"",
+      "stderr_tail": ""
+    },
+    {
+      "name": "37_get_loan_rate_data",
+      "status": "non_json",
+      "seconds": 1.893,
+      "exit_code": 0,
+      "command": [
+        "/tmp/stock-data-qa-venv/bin/python",
+        "/tmp/stock-data-audit/mcp_call.py",
+        "get_loan_rate_data",
+        "{\"format\": \"json\"}"
+      ],
+      "stdout_preview": "login success!\nlogout success!\n{\"data\": [{\"pubDate\": \"1990-04-15\", \"loanRate6Month\": \"\", \"loanRate6MonthTo1Year\": \"\", \"loanRate1YearTo3Year\": \"\", \"loanRate3YearTo5Year\": \"\", \"loanRateAbove5Year\": \"\", \"mortgateRateBelow5Year\": \"\", \"mortgateRateAbove5Y",
+      "stderr_tail": ""
+    },
+    {
+      "name": "38_get_required_reserve_ratio_data",
+      "status": "non_json",
+      "seconds": 1.848,
+      "exit_code": 0,
+      "command": [
+        "/tmp/stock-data-qa-venv/bin/python",
+        "/tmp/stock-data-audit/mcp_call.py",
+        "get_required_reserve_ratio_data",
+        "{\"format\": \"json\"}"
+      ],
+      "stdout_preview": "login success!\nlogout success!\n{\"data\": [{\"pubDate\": \"1999-11-18\", \"effectiveDate\": \"1999-11-21\", \"bigInstitutionsRatioPre\": \"8.0\", \"bigInstitutionsRatioAfter\": \"6.0\", \"mediumInstitutionsRatioPre\": \"8.0\", \"mediumInstitutionsRatioAfter\": \"6.0\"}, {\"pub",
+      "stderr_tail": ""
+    },
+    {
+      "name": "40_get_money_supply_data_year",
+      "status": "non_json",
+      "seconds": 1.452,
+      "exit_code": 0,
+      "command": [
+        "/tmp/stock-data-qa-venv/bin/python",
+        "/tmp/stock-data-audit/mcp_call.py",
+        "get_money_supply_data_year",
+        "{\"format\": \"json\"}"
+      ],
+      "stdout_preview": "login success!\nlogout success!\n{\"data\": [{\"statYear\": \"1952\", \"m0Year\": \"\", \"m0YearYOY\": \"\", \"m1Year\": \"\", \"m1YearYOY\": \"\", \"m2Year\": \"101.300000\", \"m2YearYOY\": \"\"}, {\"statYear\": \"1953\", \"m0Year\": \"\", \"m0YearYOY\": \"\", \"m1Year\": \"\", \"m1YearYOY\": \"\", \"",
+      "stderr_tail": ""
+    },
+    {
+      "name": "34_list_industries",
+      "status": "non_json",
+      "seconds": 5.158,
+      "exit_code": 0,
+      "command": [
+        "/tmp/stock-data-qa-venv/bin/python",
+        "/tmp/stock-data-audit/mcp_call.py",
+        "list_industries",
+        "{\"format\": \"json\"}"
+      ],
+      "stdout_preview": "login success!\nlogout failed!\n{\"data\": [{\"industry\": \"\"}, {\"industry\": \"A01农业\"}, {\"industry\": \"A03畜牧业\"}, {\"industry\": \"A04渔业\"}, {\"industry\": \"A05农、林、牧、渔专业及辅助性活动\"}, {\"industry\": \"B06煤炭开采和洗选业\"}, {\"industry\": \"B07石油和天然气开采业\"}, {\"industry\": \"B08黑色金属矿采选业\"}",
+      "stderr_tail": ""
+    },
+    {
+      "name": "39_get_money_supply_data_month",
+      "status": "non_json",
+      "seconds": 3.072,
+      "exit_code": 0,
+      "command": [
+        "/tmp/stock-data-qa-venv/bin/python",
+        "/tmp/stock-data-audit/mcp_call.py",
+        "get_money_supply_data_month",
+        "{\"format\": \"json\"}"
+      ],
+      "stdout_preview": "login success!\nlogout success!\n{\"data\": [{\"statYear\": \"1951\", \"statMonth\": \"12\", \"m0Month\": \"\", \"m0YOY\": \"\", \"m0ChainRelative\": \"\", \"m1Month\": \"\", \"m1YOY\": \"\", \"m1ChainRelative\": \"\", \"m2Month\": \"\", \"m2YOY\": \"\", \"m2ChainRelative\": \"\"}, {\"statYear\": \"1",
+      "stderr_tail": ""
+    },
+    {
+      "name": "41_get_trade_dates",
+      "status": "non_json",
+      "seconds": 1.644,
+      "exit_code": 0,
+      "command": [
+        "/tmp/stock-data-qa-venv/bin/python",
+        "/tmp/stock-data-audit/mcp_call.py",
+        "get_trade_dates",
+        "{\"start_date\": \"2026-01-01\", \"end_date\": \"2026-12-31\", \"format\": \"json\"}"
+      ],
+      "stdout_preview": "login success!\nlogout success!\n{\"data\": [{\"calendar_date\": \"2026-01-01\", \"is_trading_day\": \"0\"}, {\"calendar_date\": \"2026-01-02\", \"is_trading_day\": \"0\"}, {\"calendar_date\": \"2026-01-03\", \"is_trading_day\": \"0\"}, {\"calendar_date\": \"2026-01-04\", \"is_tradi",
+      "stderr_tail": ""
+    },
+    {
+      "name": "42_get_industry_members",
+      "status": "non_json",
+      "seconds": 7.362,
+      "exit_code": 0,
+      "command": [
+        "/tmp/stock-data-qa-venv/bin/python",
+        "/tmp/stock-data-audit/mcp_call.py",
+        "get_industry_members",
+        "{\"industry\": \"\\u767d\\u9152\", \"format\": \"json\"}"
+      ],
+      "stdout_preview": "login success!\nlogout failed!\n{\"data\": [], \"meta\": {\"industry\": \"白酒\", \"as_of\": \"latest\", \"total_rows\": 0, \"returned_rows\": 0, \"truncated\": false, \"columns\": [\"updateDate\", \"code\", \"code_name\", \"industry\", \"industryClassification\"]}}\n",
+      "stderr_tail": ""
+    }
+  ],
+  "after": [
+    {
+      "name": "03_get_realtime_kline",
+      "status": "ok",
+      "seconds": 2.052,
+      "exit_code": 0,
+      "command": [
+        "/tmp/stock-data-qa-venv/bin/python",
+        "/tmp/stock-data-audit/mcp_call.py",
+        "get_realtime_kline",
+        "{\"code\": \"600519\", \"frequency\": \"1d\", \"count\": 10, \"format\": \"json\"}"
+      ],
+      "stdout_preview": "{\"data\": [{\"time\": \"2026-09-18\", \"open\": 1262.99, \"close\": 1257.12, \"high\": 1265.88, \"low\": 1256.1, \"volume\": 2489087.0}, {\"time\": \"2026-09-21\", \"open\": 1259.0, \"close\": 1252.57, \"high\": 1259.95, \"low\": 1250.8, \"volume\": 2501689.0}, {\"time\": \"2026-09",
+      "stderr_tail": ""
+    },
+    {
+      "name": "01_get_realtime_quote",
+      "status": "ok",
+      "seconds": 2.055,
+      "exit_code": 0,
+      "command": [
+        "/tmp/stock-data-qa-venv/bin/python",
+        "/tmp/stock-data-audit/mcp_call.py",
+        "get_realtime_quote",
+        "{\"code\": \"000001\", \"format\": \"json\"}"
+      ],
+      "stdout_preview": "{\"data\": [{\"代码\": \"000001\", \"日期\": \"2026-10-09\", \"最新价\": 11.59, \"今开\": 11.78, \"最高\": 11.89, \"最低\": 11.58, \"昨收\": 11.78, \"涨跌额\": -0.19, \"涨跌幅(%)\": -1.61, \"成交量\": 107810561, \"市场状态\": \"休市\", \"备注\": \"非交易日或休市，显示最近交易日(最近)数据\"}], \"meta\": {\"code\": \"000001\", \"normalized_co",
+      "stderr_tail": ""
+    },
+    {
+      "name": "00_get_realtime_quote",
+      "status": "ok",
+      "seconds": 2.061,
+      "exit_code": 0,
+      "command": [
+        "/tmp/stock-data-qa-venv/bin/python",
+        "/tmp/stock-data-audit/mcp_call.py",
+        "get_realtime_quote",
+        "{\"code\": \"600519\", \"format\": \"json\"}"
+      ],
+      "stdout_preview": "{\"data\": [{\"代码\": \"600519\", \"日期\": \"2026-10-09\", \"最新价\": 1263.0, \"今开\": 1255.42, \"最高\": 1282.0, \"最低\": 1255.42, \"昨收\": 1255.79, \"涨跌额\": 7.21, \"涨跌幅(%)\": 0.57, \"成交量\": 3511051, \"市场状态\": \"休市\", \"备注\": \"非交易日或休市，显示最近交易日(最近)数据\"}], \"meta\": {\"code\": \"600519\", \"normalize",
+      "stderr_tail": ""
+    },
+    {
+      "name": "02_get_realtime_multi_quote",
+      "status": "ok",
+      "seconds": 2.439,
+      "exit_code": 0,
+      "command": [
+        "/tmp/stock-data-qa-venv/bin/python",
+        "/tmp/stock-data-audit/mcp_call.py",
+        "get_realtime_multi_quote",
+        "{\"codes\": [\"600519\", \"000001\", \"300750\"], \"format\": \"json\"}"
+      ],
+      "stdout_preview": "{\"data\": [{\"代码\": \"300750\", \"名称\": \"N/A\", \"最新价\": 297.75, \"涨跌幅(%)\": 3.84, \"昨收\": 286.75, \"状态\": \"成功\"}, {\"代码\": \"600519\", \"名称\": \"N/A\", \"最新价\": 1263.0, \"涨跌幅(%)\": 0.57, \"昨收\": 1255.79, \"状态\": \"成功\"}, {\"代码\": \"000001\", \"名称\": \"N/A\", \"最新价\": 11.59, \"涨跌幅(%)\": -1.61, \"昨",
+      "stderr_tail": ""
+    },
+    {
+      "name": "06_get_realtime_kline",
+      "status": "ok",
+      "seconds": 1.59,
+      "exit_code": 0,
+      "command": [
+        "/tmp/stock-data-qa-venv/bin/python",
+        "/tmp/stock-data-audit/mcp_call.py",
+        "get_realtime_kline",
+        "{\"code\": \"600519\", \"frequency\": \"1M\", \"count\": 10, \"format\": \"json\"}"
+      ],
+      "stdout_preview": "{\"data\": [{\"time\": \"2026-01-30\", \"open\": 1385.0, \"close\": 1401.0, \"high\": 1445.0, \"low\": 1322.01, \"volume\": 117529983.0}, {\"time\": \"2026-02-27\", \"open\": 1425.0, \"close\": 1455.02, \"high\": 1568.0, \"low\": 1411.62, \"volume\": 80526506.0}, {\"time\": \"2026-0",
+      "stderr_tail": ""
+    },
+    {
+      "name": "05_get_realtime_kline",
+      "status": "ok",
+      "seconds": 1.599,
+      "exit_code": 0,
+      "command": [
+        "/tmp/stock-data-qa-venv/bin/python",
+        "/tmp/stock-data-audit/mcp_call.py",
+        "get_realtime_kline",
+        "{\"code\": \"600519\", \"frequency\": \"1w\", \"count\": 10, \"format\": \"json\"}"
+      ],
+      "stdout_preview": "{\"data\": [{\"time\": \"2026-08-07\", \"open\": 1350.6, \"close\": 1309.22, \"high\": 1363.35, \"low\": 1300.01, \"volume\": 16672485.0}, {\"time\": \"2026-08-14\", \"open\": 1325.0, \"close\": 1341.99, \"high\": 1359.97, \"low\": 1318.08, \"volume\": 18702495.0}, {\"time\": \"2026",
+      "stderr_tail": ""
+    },
+    {
+      "name": "04_get_realtime_kline",
+      "status": "ok",
+      "seconds": 1.623,
+      "exit_code": 0,
+      "command": [
+        "/tmp/stock-data-qa-venv/bin/python",
+        "/tmp/stock-data-audit/mcp_call.py",
+        "get_realtime_kline",
+        "{\"code\": \"600519\", \"frequency\": \"5m\", \"count\": 10, \"format\": \"json\"}"
+      ],
+      "stdout_preview": "{\"data\": [{\"time\": \"2026-10-09 14:15:00\", \"open\": 1267.83, \"close\": 1265.36, \"high\": 1268.69, \"low\": 1265.36, \"volume\": 65100.0}, {\"time\": \"2026-10-09 14:20:00\", \"open\": 1265.4, \"close\": 1266.0, \"high\": 1266.0, \"low\": 1264.5, \"volume\": 56750.0}, {\"ti",
+      "stderr_tail": ""
+    },
+    {
+      "name": "07_get_intraday_minute_kline",
+      "status": "non_json",
+      "seconds": 1.545,
+      "exit_code": 0,
+      "command": [
+        "/tmp/stock-data-qa-venv/bin/python",
+        "/tmp/stock-data-audit/mcp_call.py",
+        "get_intraday_minute_kline",
+        "{\"code\": \"600519\", \"format\": \"json\"}"
+      ],
+      "stdout_preview": "股票 600519 今日(2026-10-11)暂无分钟K线数据\n",
+      "stderr_tail": ""
+    },
+    {
+      "name": "08_get_technical_indicators",
+      "status": "ok",
+      "seconds": 1.556,
+      "exit_code": 0,
+      "command": [
+        "/tmp/stock-data-qa-venv/bin/python",
+        "/tmp/stock-data-audit/mcp_call.py",
+        "get_technical_indicators",
+        "{\"code\": \"600519\", \"count\": 120, \"format\": \"json\"}"
+      ],
+      "stdout_preview": "{\"data\": [{\"time\": \"2026-04-13\", \"open\": 1444.0, \"close\": 1443.31, \"high\": 1446.5, \"low\": 1433.0, \"volume\": 2521364.0, \"MA5\": null, \"MA10\": null, \"MA20\": null, \"MACD_DIF\": 0.0, \"MACD_DEA\": 0.0, \"MACD\": 0.0, \"KDJ_K\": null, \"KDJ_D\": null, \"KDJ_J\": null",
+      "stderr_tail": ""
+    },
+    {
+      "name": "10_get_north_money",
+      "status": "ok",
+      "seconds": 1.561,
+      "exit_code": 0,
+      "command": [
+        "/tmp/stock-data-qa-venv/bin/python",
+        "/tmp/stock-data-audit/mcp_call.py",
+        "get_north_money",
+        "{\"format\": \"json\"}"
+      ],
+      "stdout_preview": "{\"data\": [{\"日期\": \"2026-10-09T00:00:00.000\", \"板块\": \"沪股通\", \"成交净买额(亿)\": 0.0, \"资金净流入(亿)\": 0.0, \"相关指数\": \"上证指数\", \"指数涨跌幅(%)\": 0.05}, {\"日期\": \"2026-10-09T00:00:00.000\", \"板块\": \"深股通\", \"成交净买额(亿)\": 0.0, \"资金净流入(亿)\": 0.0, \"相关指数\": \"深证成指\", \"指数涨跌幅(%)\": 0.17}], \"meta\":",
+      "stderr_tail": ""
+    },
+    {
+      "name": "11_get_limit_up_down",
+      "status": "ok",
+      "seconds": 1.67,
+      "exit_code": 0,
+      "command": [
+        "/tmp/stock-data-qa-venv/bin/python",
+        "/tmp/stock-data-audit/mcp_call.py",
+        "get_limit_up_down",
+        "{\"format\": \"json\"}"
+      ],
+      "stdout_preview": "{\"data\": [{\"日期\": \"2026-10-11\", \"涨停数量\": 69, \"跌停数量\": 8}], \"meta\": {\"data_source\": \"东方财富 (Akshare)\", \"fetch_time\": \"2026-10-11 11:04:26\", \"total_rows\": 1, \"returned_rows\": 1, \"truncated\": false, \"columns\": [\"日期\", \"涨停数量\", \"跌停数量\"]}}\n",
+      "stderr_tail": ""
+    },
+    {
+      "name": "09_get_market_index",
+      "status": "ok",
+      "seconds": 2.388,
+      "exit_code": 0,
+      "command": [
+        "/tmp/stock-data-qa-venv/bin/python",
+        "/tmp/stock-data-audit/mcp_call.py",
+        "get_market_index",
+        "{\"format\": \"json\"}"
+      ],
+      "stdout_preview": "{\"data\": [{\"指数名称\": \"上证指数\", \"代码\": \"sh000001\", \"当前点位\": 3804.09, \"最新价\": 3813.79, \"涨跌额\": 1.89, \"涨跌幅(%)\": 0.05}, {\"指数名称\": \"Ａ股指数\", \"代码\": \"sh000002\", \"当前点位\": 3988.3, \"最新价\": 3998.45, \"涨跌额\": 1.94, \"涨跌幅(%)\": 0.05}, {\"指数名称\": \"科创50\", \"代码\": \"sh000688\", \"当前点位\": 14",
+      "stderr_tail": "\n  0%|          | 0/8 [00:00<?, ?it/s]\n 12%|█▎        | 1/8 [00:00<00:00,  8.52it/s]\n 25%|██▌       | 2/8 [00:00<00:00,  8.86it/s]\n 38%|███▊      | 3/8 [00:00<00:00,  9.06it/s]\n 50%|█████     | 4/8 [00:00<00:00,  9.18it/s]\n 62%|██████▎   | 5/8 [00:00<00:00,  9.29it/s]\n 75%|███████▌  | 6/8 [00:00<00:00,  9.25it/s]\n 88%|████████▊ | 7/8 [00:00<00:00,  8.86it/s]\n                                             \n"
+    },
+    {
+      "name": "13_get_limit_up_pool",
+      "status": "ok",
+      "seconds": 1.881,
+      "exit_code": 0,
+      "command": [
+        "/tmp/stock-data-qa-venv/bin/python",
+        "/tmp/stock-data-audit/mcp_call.py",
+        "get_limit_up_pool",
+        "{\"date\": \"20261009\", \"top_n\": 3, \"format\": \"json\"}"
+      ],
+      "stdout_preview": "{\"data\": [{\"序号\": 1, \"代码\": \"002058\", \"名称\": \"紫竹高科\", \"涨跌幅(%)\": 9.99, \"最新价\": 24.44, \"成交额(亿)\": 1.01, \"流通市值(亿)\": 35.04, \"换手率(%)\": 2.88, \"封板资金\": 89302489, \"首次封板\": \"092500\", \"最后封板\": \"092500\", \"炸板次数\": 0, \"连板数\": 4, \"所属行业\": \"电池\"}, {\"序号\": 2, \"代码\": \"600241\", \"名称\"",
+      "stderr_tail": ""
+    },
+    {
+      "name": "14_get_limit_down_pool",
+      "status": "ok",
+      "seconds": 1.895,
+      "exit_code": 0,
+      "command": [
+        "/tmp/stock-data-qa-venv/bin/python",
+        "/tmp/stock-data-audit/mcp_call.py",
+        "get_limit_down_pool",
+        "{\"date\": \"20261009\", \"top_n\": 3, \"format\": \"json\"}"
+      ],
+      "stdout_preview": "{\"data\": [{\"序号\": 1, \"代码\": \"603400\", \"名称\": \"华之杰\", \"涨跌幅(%)\": -10.0, \"最新价\": 42.93, \"成交额(亿)\": 2.87, \"流通市值(亿)\": 15.55, \"换手率(%)\": 18.13}, {\"序号\": 2, \"代码\": \"603823\", \"名称\": \"百合花\", \"涨跌幅(%)\": -10.0, \"最新价\": 41.93, \"成交额(亿)\": 8.55, \"流通市值(亿)\": 174.58, \"换手率(%)\": 4.8",
+      "stderr_tail": ""
+    },
+    {
+      "name": "15_get_consecutive_limit_up",
+      "status": "ok",
+      "seconds": 1.792,
+      "exit_code": 0,
+      "command": [
+        "/tmp/stock-data-qa-venv/bin/python",
+        "/tmp/stock-data-audit/mcp_call.py",
+        "get_consecutive_limit_up",
+        "{\"date\": \"20261009\", \"top_n\": 3, \"format\": \"json\"}"
+      ],
+      "stdout_preview": "{\"data\": [{\"序号\": 1, \"代码\": \"000869\", \"名称\": \"张  裕Ａ\", \"涨跌幅(%)\": 3.3, \"最新价\": 19.38, \"成交额(亿)\": 3.76, \"换手率(%)\": 4.33, \"连板数\": 1, \"涨停统计\": \"2/1\", \"所属行业\": \"非白酒\"}, {\"序号\": 2, \"代码\": \"001300\", \"名称\": \"三柏硕\", \"涨跌幅(%)\": 9.99, \"最新价\": 14.86, \"成交额(亿)\": 1.22, \"换手率(%)\": 3.",
+      "stderr_tail": ""
+    },
+    {
+      "name": "17_get_stock_money_flow",
+      "status": "non_json",
+      "seconds": 1.399,
+      "exit_code": 0,
+      "command": [
+        "/tmp/stock-data-qa-venv/bin/python",
+        "/tmp/stock-data-audit/mcp_call.py",
+        "get_stock_money_flow",
+        "{\"code\": \"600519\", \"format\": \"json\"}"
+      ],
+      "stdout_preview": "获取资金流向失败: HTTPSConnectionPool(host='push2his.eastmoney.com', port=443): Max retries exceeded with url: /api/qt/stock/fflow/daykline/get?lmt=0&klt=101&secid=1.600519&fields1=f1%2Cf2%2Cf3%2Cf7&fields2=f51%2Cf52%2Cf53%2Cf54%2Cf55%2Cf56%2Cf57%2Cf58%2Cf59",
+      "stderr_tail": ""
+    },
+    {
+      "name": "16_get_lhb_detail",
+      "status": "ok",
+      "seconds": 2.015,
+      "exit_code": 0,
+      "command": [
+        "/tmp/stock-data-qa-venv/bin/python",
+        "/tmp/stock-data-audit/mcp_call.py",
+        "get_lhb_detail",
+        "{\"start_date\": \"20260928\", \"end_date\": \"20261009\", \"top_n\": 3, \"format\": \"json\"}"
+      ],
+      "stdout_preview": "{\"data\": [{\"序号\": 1, \"代码\": \"000002\", \"名称\": \"万科A\", \"上榜日期\": \"2026-09-30\", \"收盘价\": 4.26, \"涨跌幅(%)\": 4.41, \"净买额(万)\": 7138.46, \"买入额(万)\": 68896.48, \"卖出额(万)\": 61758.02, \"上榜原因\": \"日振幅值达到15%的前5只证券\", \"解读\": \"2家机构买入，成功率38.36%\", \"换手率(%)\": 13.48, \"流通市值\": 41386382036.0",
+      "stderr_tail": "\n  0%|          | 0/1 [00:00<?, ?it/s]\n100%|██████████| 1/1 [00:00<00:00,  3.11it/s]\n                                             \n"
+    },
+    {
+      "name": "18_get_historical_k_data",
+      "status": "ok",
+      "seconds": 1.487,
+      "exit_code": 0,
+      "command": [
+        "/tmp/stock-data-qa-venv/bin/python",
+        "/tmp/stock-data-audit/mcp_call.py",
+        "get_historical_k_data",
+        "{\"code\": \"sh.600519\", \"start_date\": \"2026-09-01\", \"end_date\": \"2026-10-09\", \"limit\": 10, \"format\": \"json\"}"
+      ],
+      "stdout_preview": "{\"data\": [{\"date\": \"2026-09-01\", \"code\": \"sh.600519\", \"open\": \"1295.0000\", \"high\": \"1307.9900\", \"low\": \"1286.1000\", \"close\": \"1299.5600\", \"preclose\": \"1299.5200\", \"volume\": \"3266402\", \"amount\": \"4242440861.1000\", \"adjustflag\": \"3\", \"turn\": \"0.261300\"",
+      "stderr_tail": "login success!\nlogout success!\n"
+    },
+    {
+      "name": "20_get_dividend_data",
+      "status": "ok",
+      "seconds": 1.435,
+      "exit_code": 0,
+      "command": [
+        "/tmp/stock-data-qa-venv/bin/python",
+        "/tmp/stock-data-audit/mcp_call.py",
+        "get_dividend_data",
+        "{\"code\": \"sh.600519\", \"year\": \"2025\", \"format\": \"json\"}"
+      ],
+      "stdout_preview": "{\"data\": [{\"code\": \"sh.600519\", \"dividPreNoticeDate\": \"\", \"dividAgmPumDate\": \"2025-05-20\", \"dividPlanAnnounceDate\": \"2025-04-03\", \"dividPlanDate\": \"2025-06-20\", \"dividRegistDate\": \"2025-06-25\", \"dividOperateDate\": \"2025-06-26\", \"dividPayDate\": \"2025-",
+      "stderr_tail": "login success!\nlogout success!\n"
+    },
+    {
+      "name": "21_get_profit_data",
+      "status": "ok",
+      "seconds": 2.418,
+      "exit_code": 0,
+      "command": [
+        "/tmp/stock-data-qa-venv/bin/python",
+        "/tmp/stock-data-audit/mcp_call.py",
+        "get_profit_data",
+        "{\"code\": \"sh.600519\", \"year\": \"2026\", \"quarter\": 2, \"format\": \"json\"}"
+      ],
+      "stdout_preview": "{\"data\": [{\"code\": \"sh.600519\", \"pubDate\": \"2026-08-15\", \"statDate\": \"2026-06-30\", \"roeAvg\": \"0.179543\", \"npMargin\": \"0.507516\", \"gpMargin\": \"0.895552\", \"netProfit\": \"46033330566.780000\", \"epsTTM\": \"65.142936\", \"MBRevenue\": \"92278072083.210000\", \"tot",
+      "stderr_tail": "login success!\nlogout success!\n"
+    },
+    {
+      "name": "22_get_operation_data",
+      "status": "ok",
+      "seconds": 1.984,
+      "exit_code": 0,
+      "command": [
+        "/tmp/stock-data-qa-venv/bin/python",
+        "/tmp/stock-data-audit/mcp_call.py",
+        "get_operation_data",
+        "{\"code\": \"sh.600519\", \"year\": \"2026\", \"quarter\": 2, \"format\": \"json\"}"
+      ],
+      "stdout_preview": "{\"data\": [{\"code\": \"sh.600519\", \"pubDate\": \"2026-08-15\", \"statDate\": \"2026-06-30\", \"NRTurnRatio\": \"57047.089113\", \"NRTurnDays\": \"0.003155\", \"INVTurnRatio\": \"0.154365\", \"INVTurnDays\": \"1165.803109\", \"CATurnRatio\": \"0.359588\", \"AssetTurnRatio\": \"0.3011",
+      "stderr_tail": "login success!\nlogout success!\n"
+    },
+    {
+      "name": "19_get_stock_basic_info",
+      "status": "non_json",
+      "seconds": 3.886,
+      "exit_code": 0,
+      "command": [
+        "/tmp/stock-data-qa-venv/bin/python",
+        "/tmp/stock-data-audit/mcp_call.py",
+        "get_stock_basic_info",
+        "{\"code\": \"sh.600519\", \"format\": \"json\"}"
+      ],
+      "stdout_preview": "Error: An error occurred while fetching data. Baostock API error fetching basic info: 用户未登录 (code: 10001001)\n",
+      "stderr_tail": "login success!\nBaostock API error (Basic Info) for sh.600519: 用户未登录 (code: 10001001)\nlogout failed!\nCaught known error fetching basic info for sh.600519: DataSourceError\nget_stock_basic_info:sh.600519: Data source error: Baostock API error fetching basic info: 用户未登录 (code: 10001001)\n"
+    },
+    {
+      "name": "23_get_growth_data",
+      "status": "ok",
+      "seconds": 2.034,
+      "exit_code": 0,
+      "command": [
+        "/tmp/stock-data-qa-venv/bin/python",
+        "/tmp/stock-data-audit/mcp_call.py",
+        "get_growth_data",
+        "{\"code\": \"sh.600519\", \"year\": \"2026\", \"quarter\": 2, \"format\": \"json\"}"
+      ],
+      "stdout_preview": "{\"data\": [{\"code\": \"sh.600519\", \"pubDate\": \"2026-08-15\", \"statDate\": \"2026-06-30\", \"YOYEquity\": \"0.052827\", \"YOYAsset\": \"0.057460\", \"YOYNI\": \"-0.020290\", \"YOYEPSBasic\": \"-0.016860\", \"YOYPNI\": \"-0.019516\"}], \"meta\": {\"code\": \"sh.600519\", \"dataset\": \"G",
+      "stderr_tail": "login success!\nlogout success!\n"
+    },
+    {
+      "name": "25_get_cash_flow_data",
+      "status": "ok",
+      "seconds": 1.372,
+      "exit_code": 0,
+      "command": [
+        "/tmp/stock-data-qa-venv/bin/python",
+        "/tmp/stock-data-audit/mcp_call.py",
+        "get_cash_flow_data",
+        "{\"code\": \"sh.600519\", \"year\": \"2026\", \"quarter\": 2, \"format\": \"json\"}"
+      ],
+      "stdout_preview": "{\"data\": [{\"code\": \"sh.600519\", \"pubDate\": \"2026-08-15\", \"statDate\": \"2026-06-30\", \"CAToAsset\": \"0.843631\", \"NCAToAsset\": \"0.156370\", \"tangibleAssetToAsset\": \"0.763540\", \"ebitToInterest\": \"\", \"CFOToOR\": \"0.779363\", \"CFOToNP\": \"1.535643\", \"CFOToGr\": \"",
+      "stderr_tail": "login success!\nlogout success!\n"
+    },
+    {
+      "name": "24_get_balance_data",
+      "status": "ok",
+      "seconds": 2.347,
+      "exit_code": 0,
+      "command": [
+        "/tmp/stock-data-qa-venv/bin/python",
+        "/tmp/stock-data-audit/mcp_call.py",
+        "get_balance_data",
+        "{\"code\": \"sh.600519\", \"year\": \"2026\", \"quarter\": 2, \"format\": \"json\"}"
+      ],
+      "stdout_preview": "{\"data\": [{\"code\": \"sh.600519\", \"pubDate\": \"2026-08-15\", \"statDate\": \"2026-06-30\", \"currentRatio\": \"5.589543\", \"quickRatio\": \"4.274995\", \"cashRatio\": \"1.147362\", \"YOYLiability\": \"0.088869\", \"liabilityToAsset\": \"0.151931\", \"assetToEquity\": \"1.179150\"}",
+      "stderr_tail": "login success!\nlogout success!\n"
+    },
+    {
+      "name": "26_get_dupont_data",
+      "status": "ok",
+      "seconds": 1.598,
+      "exit_code": 0,
+      "command": [
+        "/tmp/stock-data-qa-venv/bin/python",
+        "/tmp/stock-data-audit/mcp_call.py",
+        "get_dupont_data",
+        "{\"code\": \"sh.600519\", \"year\": \"2026\", \"quarter\": 2, \"format\": \"json\"}"
+      ],
+      "stdout_preview": "{\"data\": [{\"code\": \"sh.600519\", \"pubDate\": \"2026-08-15\", \"statDate\": \"2026-06-30\", \"dupontROE\": \"0.179543\", \"dupontAssetStoEquity\": \"1.235927\", \"dupontAssetTurn\": \"0.301127\", \"dupontPnitoni\": \"0.967058\", \"dupontNitogr\": \"0.498854\", \"dupontTaxBurden\":",
+      "stderr_tail": "login success!\nlogout success!\n"
+    },
+    {
+      "name": "27_get_performance_express_report",
+      "status": "non_json",
+      "seconds": 1.586,
+      "exit_code": 0,
+      "command": [
+        "/tmp/stock-data-qa-venv/bin/python",
+        "/tmp/stock-data-audit/mcp_call.py",
+        "get_performance_express_report",
+        "{\"code\": \"sh.600519\", \"start_date\": \"2026-01-01\", \"end_date\": \"2026-10-09\", \"format\": \"json\"}"
+      ],
+      "stdout_preview": "Error: No performance express report found for sh.600519 in range 2026-01-01-2026-10-09 (empty result set).\n",
+      "stderr_tail": "login success!\nNo performance express report found for sh.600519 in range 2026-01-01-2026-10-09 (empty result set).\nlogout success!\nCaught known error fetching performance express report for sh.600519: NoDataFoundError\nget_performance_express_report:sh.600519:2026-01-01-2026-10-09: No data found: No performance express report found for sh.600519 in range 2026-01-01-2026-10-09 (empty result set).\n"
+    },
+    {
+      "name": "28_get_forecast_report",
+      "status": "non_json",
+      "seconds": 1.356,
+      "exit_code": 0,
+      "command": [
+        "/tmp/stock-data-qa-venv/bin/python",
+        "/tmp/stock-data-audit/mcp_call.py",
+        "get_forecast_report",
+        "{\"code\": \"sh.600519\", \"start_date\": \"2026-01-01\", \"end_date\": \"2026-10-09\", \"format\": \"json\"}"
+      ],
+      "stdout_preview": "Error: No performance forecast report found for sh.600519 in range 2026-01-01-2026-10-09 (empty result set).\n",
+      "stderr_tail": "login success!\nNo performance forecast report found for sh.600519 in range 2026-01-01-2026-10-09 (empty result set).\nlogout success!\nCaught known error fetching performance forecast report for sh.600519: NoDataFoundError\nget_forecast_report:sh.600519:2026-01-01-2026-10-09: No data found: No performance forecast report found for sh.600519 in range 2026-01-01-2026-10-09 (empty result set).\n"
+    },
+    {
+      "name": "30_get_stock_industry",
+      "status": "ok",
+      "seconds": 2.431,
+      "exit_code": 0,
+      "command": [
+        "/tmp/stock-data-qa-venv/bin/python",
+        "/tmp/stock-data-audit/mcp_call.py",
+        "get_stock_industry",
+        "{\"code\": \"sh.600519\", \"format\": \"json\"}"
+      ],
+      "stdout_preview": "{\"data\": [{\"updateDate\": \"2026-10-05\", \"code\": \"sh.600519\", \"code_name\": \"贵州茅台\", \"industry\": \"C15酒、饮料和精制茶制造业\", \"industryClassification\": \"证监会行业分类\"}], \"meta\": {\"code\": \"sh.600519\", \"as_of\": \"latest\", \"total_rows\": 1, \"returned_rows\": 1, \"truncated\": f",
+      "stderr_tail": "login success!\nlogout success!\n"
+    },
+    {
+      "name": "31_get_sz50_stocks",
+      "status": "ok",
+      "seconds": 2.086,
+      "exit_code": 0,
+      "command": [
+        "/tmp/stock-data-qa-venv/bin/python",
+        "/tmp/stock-data-audit/mcp_call.py",
+        "get_sz50_stocks",
+        "{\"format\": \"json\"}"
+      ],
+      "stdout_preview": "{\"data\": [{\"updateDate\": \"2026-10-05\", \"code\": \"sh.600028\", \"code_name\": \"中国石化\"}, {\"updateDate\": \"2026-10-05\", \"code\": \"sh.600030\", \"code_name\": \"中信证券\"}, {\"updateDate\": \"2026-10-05\", \"code\": \"sh.600031\", \"code_name\": \"三一重工\"}, {\"updateDate\": \"2026-10-",
+      "stderr_tail": "login success!\nlogout success!\n"
+    },
+    {
+      "name": "33_get_zz500_stocks",
+      "status": "ok",
+      "seconds": 1.686,
+      "exit_code": 0,
+      "command": [
+        "/tmp/stock-data-qa-venv/bin/python",
+        "/tmp/stock-data-audit/mcp_call.py",
+        "get_zz500_stocks",
+        "{\"format\": \"json\"}"
+      ],
+      "stdout_preview": "{\"data\": [{\"updateDate\": \"2026-10-05\", \"code\": \"sh.600004\", \"code_name\": \"白云机场\"}, {\"updateDate\": \"2026-10-05\", \"code\": \"sh.600008\", \"code_name\": \"首创环保\"}, {\"updateDate\": \"2026-10-05\", \"code\": \"sh.600021\", \"code_name\": \"上海电力\"}, {\"updateDate\": \"2026-10-",
+      "stderr_tail": "login success!\nlogout success!\n"
+    },
+    {
+      "name": "32_get_hs300_stocks",
+      "status": "non_json",
+      "seconds": 1.817,
+      "exit_code": 0,
+      "command": [
+        "/tmp/stock-data-qa-venv/bin/python",
+        "/tmp/stock-data-audit/mcp_call.py",
+        "get_hs300_stocks",
+        "{\"format\": \"json\"}"
+      ],
+      "stdout_preview": "Error: An error occurred while fetching data. Baostock API error fetching CSI 300 constituents: 用户未登录 (code: 10001001)\n",
+      "stderr_tail": "login success!\nBaostock API error (CSI 300 Constituents) for date None: 用户未登录 (code: 10001001)\nlogout failed!\nCaught known error fetching CSI 300 constituents for date None: DataSourceError\nget_hs300_stocks: Data source error: Baostock API error fetching CSI 300 constituents: 用户未登录 (code: 10001001)\n"
+    },
+    {
+      "name": "12_get_hot_sectors",
+      "status": "timeout",
+      "seconds": 15.009,
+      "exit_code": null,
+      "command": [
+        "/tmp/stock-data-qa-venv/bin/python",
+        "/tmp/stock-data-audit/mcp_call.py",
+        "get_hot_sectors",
+        "{\"format\": \"json\"}"
+      ],
+      "stdout_preview": "",
+      "stderr_tail": ""
+    },
+    {
+      "name": "29_get_fina_indicator",
+      "status": "ok",
+      "seconds": 4.917,
+      "exit_code": 0,
+      "command": [
+        "/tmp/stock-data-qa-venv/bin/python",
+        "/tmp/stock-data-audit/mcp_call.py",
+        "get_fina_indicator",
+        "{\"code\": \"sh.600519\", \"start_date\": \"2026-01-01\", \"end_date\": \"2026-10-09\", \"format\": \"json\"}"
+      ],
+      "stdout_preview": "{\"data\": [{\"code\": \"sh.600519\", \"year\": \"2026\", \"quarter\": 1, \"profit_code\": \"sh.600519\", \"profit_pubDate\": \"2026-04-25\", \"profit_statDate\": \"2026-03-31\", \"profit_roeAvg\": \"0.105687\", \"profit_npMargin\": \"0.522245\", \"profit_gpMargin\": \"0.897592\", \"pro",
+      "stderr_tail": "login success!\nlogout failed!\n"
+    },
+    {
+      "name": "35_get_all_stock",
+      "status": "non_json",
+      "seconds": 1.486,
+      "exit_code": 0,
+      "command": [
+        "/tmp/stock-data-qa-venv/bin/python",
+        "/tmp/stock-data-audit/mcp_call.py",
+        "get_all_stock",
+        "{\"format\": \"json\"}"
+      ],
+      "stdout_preview": "Error: No stock list found for date None (empty result set).\n",
+      "stderr_tail": "login success!\nNo stock list returned for date None (empty result set).\nlogout success!\nCaught known error fetching all stock list for date None: NoDataFoundError\nget_all_stock:default: No data found: No stock list found for date None (empty result set).\n"
+    },
+    {
+      "name": "37_get_loan_rate_data",
+      "status": "ok",
+      "seconds": 1.486,
+      "exit_code": 0,
+      "command": [
+        "/tmp/stock-data-qa-venv/bin/python",
+        "/tmp/stock-data-audit/mcp_call.py",
+        "get_loan_rate_data",
+        "{\"format\": \"json\"}"
+      ],
+      "stdout_preview": "{\"data\": [{\"pubDate\": \"1990-04-15\", \"loanRate6Month\": \"\", \"loanRate6MonthTo1Year\": \"\", \"loanRate1YearTo3Year\": \"\", \"loanRate3YearTo5Year\": \"\", \"loanRateAbove5Year\": \"\", \"mortgateRateBelow5Year\": \"\", \"mortgateRateAbove5Year\": \"\"}, {\"pubDate\": \"1990-08",
+      "stderr_tail": "login success!\nlogout success!\n"
+    },
+    {
+      "name": "36_get_deposit_rate_data",
+      "status": "ok",
+      "seconds": 1.95,
+      "exit_code": 0,
+      "command": [
+        "/tmp/stock-data-qa-venv/bin/python",
+        "/tmp/stock-data-audit/mcp_call.py",
+        "get_deposit_rate_data",
+        "{\"format\": \"json\"}"
+      ],
+      "stdout_preview": "{\"data\": [{\"pubDate\": \"1990-04-15\", \"demandDepositRate\": \"2.880000\", \"fixedDepositRate3Month\": \"6.300000\", \"fixedDepositRate6Month\": \"7.740000\", \"fixedDepositRate1Year\": \"10.080000\", \"fixedDepositRate2Year\": \"10.980000\", \"fixedDepositRate3Year\": \"11.",
+      "stderr_tail": "login success!\nlogout failed!\n"
+    },
+    {
+      "name": "38_get_required_reserve_ratio_data",
+      "status": "ok",
+      "seconds": 2.446,
+      "exit_code": 0,
+      "command": [
+        "/tmp/stock-data-qa-venv/bin/python",
+        "/tmp/stock-data-audit/mcp_call.py",
+        "get_required_reserve_ratio_data",
+        "{\"format\": \"json\"}"
+      ],
+      "stdout_preview": "{\"data\": [{\"pubDate\": \"1999-11-18\", \"effectiveDate\": \"1999-11-21\", \"bigInstitutionsRatioPre\": \"8.0\", \"bigInstitutionsRatioAfter\": \"6.0\", \"mediumInstitutionsRatioPre\": \"8.0\", \"mediumInstitutionsRatioAfter\": \"6.0\"}, {\"pubDate\": \"2003-08-23\", \"effective",
+      "stderr_tail": "login success!\nlogout success!\n"
+    },
+    {
+      "name": "40_get_money_supply_data_year",
+      "status": "ok",
+      "seconds": 2.745,
+      "exit_code": 0,
+      "command": [
+        "/tmp/stock-data-qa-venv/bin/python",
+        "/tmp/stock-data-audit/mcp_call.py",
+        "get_money_supply_data_year",
+        "{\"format\": \"json\"}"
+      ],
+      "stdout_preview": "{\"data\": [{\"statYear\": \"1952\", \"m0Year\": \"\", \"m0YearYOY\": \"\", \"m1Year\": \"\", \"m1YearYOY\": \"\", \"m2Year\": \"101.300000\", \"m2YearYOY\": \"\"}, {\"statYear\": \"1953\", \"m0Year\": \"\", \"m0YearYOY\": \"\", \"m1Year\": \"\", \"m1YearYOY\": \"\", \"m2Year\": \"113.700000\", \"m2YearY",
+      "stderr_tail": "login success!\nlogout success!\n"
+    },
+    {
+      "name": "41_get_trade_dates",
+      "status": "ok",
+      "seconds": 2.279,
+      "exit_code": 0,
+      "command": [
+        "/tmp/stock-data-qa-venv/bin/python",
+        "/tmp/stock-data-audit/mcp_call.py",
+        "get_trade_dates",
+        "{\"start_date\": \"2026-01-01\", \"end_date\": \"2026-12-31\", \"format\": \"json\"}"
+      ],
+      "stdout_preview": "{\"data\": [{\"calendar_date\": \"2026-01-01\", \"is_trading_day\": \"0\"}, {\"calendar_date\": \"2026-01-02\", \"is_trading_day\": \"0\"}, {\"calendar_date\": \"2026-01-03\", \"is_trading_day\": \"0\"}, {\"calendar_date\": \"2026-01-04\", \"is_trading_day\": \"0\"}, {\"calendar_date\"",
+      "stderr_tail": "login success!\nlogout success!\n"
+    },
+    {
+      "name": "42_get_industry_members",
+      "status": "non_json",
+      "seconds": 1.363,
+      "exit_code": 0,
+      "command": [
+        "/tmp/stock-data-qa-venv/bin/python",
+        "/tmp/stock-data-audit/mcp_call.py",
+        "get_industry_members",
+        "{\"industry\": \"\\u767d\\u9152\", \"format\": \"json\"}"
+      ],
+      "stdout_preview": "Error: An error occurred while fetching data. Baostock API error fetching industry data: 用户未登录 (code: 10001001)\n",
+      "stderr_tail": "login success!\nBaostock API error (Industry) for None, None: 用户未登录 (code: 10001001)\nlogout failed!\nCaught known error fetching industry data for None, None: DataSourceError\nget_industry_members:白酒: Data source error: Baostock API error fetching industry data: 用户未登录 (code: 10001001)\n"
+    },
+    {
+      "name": "39_get_money_supply_data_month",
+      "status": "ok",
+      "seconds": 4.568,
+      "exit_code": 0,
+      "command": [
+        "/tmp/stock-data-qa-venv/bin/python",
+        "/tmp/stock-data-audit/mcp_call.py",
+        "get_money_supply_data_month",
+        "{\"format\": \"json\"}"
+      ],
+      "stdout_preview": "{\"data\": [{\"statYear\": \"1951\", \"statMonth\": \"12\", \"m0Month\": \"\", \"m0YOY\": \"\", \"m0ChainRelative\": \"\", \"m1Month\": \"\", \"m1YOY\": \"\", \"m1ChainRelative\": \"\", \"m2Month\": \"\", \"m2YOY\": \"\", \"m2ChainRelative\": \"\"}, {\"statYear\": \"1952\", \"statMonth\": \"12\", \"m0Mon",
+      "stderr_tail": "login success!\nlogout success!\n"
+    },
+    {
+      "name": "34_list_industries",
+      "status": "ok",
+      "seconds": 7.633,
+      "exit_code": 0,
+      "command": [
+        "/tmp/stock-data-qa-venv/bin/python",
+        "/tmp/stock-data-audit/mcp_call.py",
+        "list_industries",
+        "{\"format\": \"json\"}"
+      ],
+      "stdout_preview": "{\"data\": [{\"industry\": \"\"}, {\"industry\": \"A01农业\"}, {\"industry\": \"A03畜牧业\"}, {\"industry\": \"A04渔业\"}, {\"industry\": \"A05农、林、牧、渔专业及辅助性活动\"}, {\"industry\": \"B06煤炭开采和洗选业\"}, {\"industry\": \"B07石油和天然气开采业\"}, {\"industry\": \"B08黑色金属矿采选业\"}, {\"industry\": \"B09有色金属矿采选业\"},",
+      "stderr_tail": "login success!\nlogout failed!\n"
+    }
+  ],
+  "final_full_run": [
+    {
+      "name": "03_get_realtime_kline",
+      "status": "ok",
+      "seconds": 1.923,
+      "exit_code": 0,
+      "command": [
+        "/tmp/stock-data-qa-venv/bin/python",
+        "/tmp/stock-data-audit/mcp_call.py",
+        "get_realtime_kline",
+        "{\"code\": \"600519\", \"frequency\": \"1d\", \"count\": 10, \"format\": \"json\"}"
+      ],
+      "stdout_preview": "{\"data\": [{\"time\": \"2026-09-18\", \"open\": 1262.99, \"close\": 1257.12, \"high\": 1265.88, \"low\": 1256.1, \"volume\": 2489087.0}, {\"time\": \"2026-09-21\", \"open\": 1259.0, \"close\": 1252.57, \"high\": 1259.95, \"low\": 1250.8, \"volume\": 2501689.0}, {\"time\": \"2026-09",
+      "stderr_tail": ""
+    },
+    {
+      "name": "01_get_realtime_quote",
+      "status": "ok",
+      "seconds": 1.939,
+      "exit_code": 0,
+      "command": [
+        "/tmp/stock-data-qa-venv/bin/python",
+        "/tmp/stock-data-audit/mcp_call.py",
+        "get_realtime_quote",
+        "{\"code\": \"000001\", \"format\": \"json\"}"
+      ],
+      "stdout_preview": "{\"data\": [{\"代码\": \"000001\", \"日期\": \"2026-10-09\", \"最新价\": 11.59, \"今开\": 11.78, \"最高\": 11.89, \"最低\": 11.58, \"昨收\": 11.78, \"涨跌额\": -0.19, \"涨跌幅(%)\": -1.61, \"成交量\": 107810561, \"市场状态\": \"休市\", \"备注\": \"非交易日或休市，显示最近交易日(最近)数据\"}], \"meta\": {\"code\": \"000001\", \"normalized_co",
+      "stderr_tail": ""
+    },
+    {
+      "name": "00_get_realtime_quote",
+      "status": "ok",
+      "seconds": 1.941,
+      "exit_code": 0,
+      "command": [
+        "/tmp/stock-data-qa-venv/bin/python",
+        "/tmp/stock-data-audit/mcp_call.py",
+        "get_realtime_quote",
+        "{\"code\": \"600519\", \"format\": \"json\"}"
+      ],
+      "stdout_preview": "{\"data\": [{\"代码\": \"600519\", \"日期\": \"2026-10-09\", \"最新价\": 1263.0, \"今开\": 1255.42, \"最高\": 1282.0, \"最低\": 1255.42, \"昨收\": 1255.79, \"涨跌额\": 7.21, \"涨跌幅(%)\": 0.57, \"成交量\": 3511051, \"市场状态\": \"休市\", \"备注\": \"非交易日或休市，显示最近交易日(最近)数据\"}], \"meta\": {\"code\": \"600519\", \"normalize",
+      "stderr_tail": ""
+    },
+    {
+      "name": "02_get_realtime_multi_quote",
+      "status": "ok",
+      "seconds": 2.219,
+      "exit_code": 0,
+      "command": [
+        "/tmp/stock-data-qa-venv/bin/python",
+        "/tmp/stock-data-audit/mcp_call.py",
+        "get_realtime_multi_quote",
+        "{\"codes\": [\"600519\", \"000001\", \"300750\"], \"format\": \"json\"}"
+      ],
+      "stdout_preview": "{\"data\": [{\"代码\": \"300750\", \"名称\": \"N/A\", \"最新价\": 297.75, \"涨跌幅(%)\": 3.84, \"昨收\": 286.75, \"状态\": \"成功\"}, {\"代码\": \"600519\", \"名称\": \"N/A\", \"最新价\": 1263.0, \"涨跌幅(%)\": 0.57, \"昨收\": 1255.79, \"状态\": \"成功\"}, {\"代码\": \"000001\", \"名称\": \"N/A\", \"最新价\": 11.59, \"涨跌幅(%)\": -1.61, \"昨",
+      "stderr_tail": ""
+    },
+    {
+      "name": "06_get_realtime_kline",
+      "status": "ok",
+      "seconds": 1.606,
+      "exit_code": 0,
+      "command": [
+        "/tmp/stock-data-qa-venv/bin/python",
+        "/tmp/stock-data-audit/mcp_call.py",
+        "get_realtime_kline",
+        "{\"code\": \"600519\", \"frequency\": \"1M\", \"count\": 10, \"format\": \"json\"}"
+      ],
+      "stdout_preview": "{\"data\": [{\"time\": \"2026-01-30\", \"open\": 1385.0, \"close\": 1401.0, \"high\": 1445.0, \"low\": 1322.01, \"volume\": 117529983.0}, {\"time\": \"2026-02-27\", \"open\": 1425.0, \"close\": 1455.02, \"high\": 1568.0, \"low\": 1411.62, \"volume\": 80526506.0}, {\"time\": \"2026-0",
+      "stderr_tail": ""
+    },
+    {
+      "name": "05_get_realtime_kline",
+      "status": "ok",
+      "seconds": 1.615,
+      "exit_code": 0,
+      "command": [
+        "/tmp/stock-data-qa-venv/bin/python",
+        "/tmp/stock-data-audit/mcp_call.py",
+        "get_realtime_kline",
+        "{\"code\": \"600519\", \"frequency\": \"1w\", \"count\": 10, \"format\": \"json\"}"
+      ],
+      "stdout_preview": "{\"data\": [{\"time\": \"2026-08-07\", \"open\": 1350.6, \"close\": 1309.22, \"high\": 1363.35, \"low\": 1300.01, \"volume\": 16672485.0}, {\"time\": \"2026-08-14\", \"open\": 1325.0, \"close\": 1341.99, \"high\": 1359.97, \"low\": 1318.08, \"volume\": 18702495.0}, {\"time\": \"2026",
+      "stderr_tail": ""
+    },
+    {
+      "name": "04_get_realtime_kline",
+      "status": "ok",
+      "seconds": 1.629,
+      "exit_code": 0,
+      "command": [
+        "/tmp/stock-data-qa-venv/bin/python",
+        "/tmp/stock-data-audit/mcp_call.py",
+        "get_realtime_kline",
+        "{\"code\": \"600519\", \"frequency\": \"5m\", \"count\": 10, \"format\": \"json\"}"
+      ],
+      "stdout_preview": "{\"data\": [{\"time\": \"2026-10-09 14:15:00\", \"open\": 1267.83, \"close\": 1265.36, \"high\": 1268.69, \"low\": 1265.36, \"volume\": 65100.0}, {\"time\": \"2026-10-09 14:20:00\", \"open\": 1265.4, \"close\": 1266.0, \"high\": 1266.0, \"low\": 1264.5, \"volume\": 56750.0}, {\"ti",
+      "stderr_tail": ""
+    },
+    {
+      "name": "07_get_intraday_minute_kline",
+      "status": "error",
+      "seconds": 1.593,
+      "exit_code": 0,
+      "command": [
+        "/tmp/stock-data-qa-venv/bin/python",
+        "/tmp/stock-data-audit/mcp_call.py",
+        "get_intraday_minute_kline",
+        "{\"code\": \"600519\", \"format\": \"json\"}"
+      ],
+      "stdout_preview": "{\"status\": \"error\", \"error\": \"股票 600519 今日(2026-10-11)暂无分钟K线数据\", \"data\": []}\n",
+      "stderr_tail": ""
+    },
+    {
+      "name": "08_get_technical_indicators",
+      "status": "ok",
+      "seconds": 1.622,
+      "exit_code": 0,
+      "command": [
+        "/tmp/stock-data-qa-venv/bin/python",
+        "/tmp/stock-data-audit/mcp_call.py",
+        "get_technical_indicators",
+        "{\"code\": \"600519\", \"count\": 120, \"format\": \"json\"}"
+      ],
+      "stdout_preview": "{\"data\": [{\"time\": \"2026-04-13\", \"open\": 1444.0, \"close\": 1443.31, \"high\": 1446.5, \"low\": 1433.0, \"volume\": 2521364.0, \"MA5\": null, \"MA10\": null, \"MA20\": null, \"MACD_DIF\": 0.0, \"MACD_DEA\": 0.0, \"MACD\": 0.0, \"KDJ_K\": null, \"KDJ_D\": null, \"KDJ_J\": null",
+      "stderr_tail": ""
+    },
+    {
+      "name": "10_get_north_money",
+      "status": "ok",
+      "seconds": 1.633,
+      "exit_code": 0,
+      "command": [
+        "/tmp/stock-data-qa-venv/bin/python",
+        "/tmp/stock-data-audit/mcp_call.py",
+        "get_north_money",
+        "{\"format\": \"json\"}"
+      ],
+      "stdout_preview": "{\"data\": [{\"日期\": \"2026-10-09T00:00:00.000\", \"板块\": \"沪股通\", \"成交净买额(亿)\": 0.0, \"资金净流入(亿)\": 0.0, \"相关指数\": \"上证指数\", \"指数涨跌幅(%)\": 0.05}, {\"日期\": \"2026-10-09T00:00:00.000\", \"板块\": \"深股通\", \"成交净买额(亿)\": 0.0, \"资金净流入(亿)\": 0.0, \"相关指数\": \"深证成指\", \"指数涨跌幅(%)\": 0.17}], \"meta\":",
+      "stderr_tail": ""
+    },
+    {
+      "name": "11_get_limit_up_down",
+      "status": "ok",
+      "seconds": 1.797,
+      "exit_code": 0,
+      "command": [
+        "/tmp/stock-data-qa-venv/bin/python",
+        "/tmp/stock-data-audit/mcp_call.py",
+        "get_limit_up_down",
+        "{\"format\": \"json\"}"
+      ],
+      "stdout_preview": "{\"data\": [{\"日期\": \"2026-10-11\", \"涨停数量\": 69, \"跌停数量\": 8}], \"meta\": {\"data_source\": \"东方财富 (Akshare)\", \"fetch_time\": \"2026-10-11 11:12:13\", \"total_rows\": 1, \"returned_rows\": 1, \"truncated\": false, \"columns\": [\"日期\", \"涨停数量\", \"跌停数量\"]}}\n",
+      "stderr_tail": ""
+    },
+    {
+      "name": "09_get_market_index",
+      "status": "ok",
+      "seconds": 2.519,
+      "exit_code": 0,
+      "command": [
+        "/tmp/stock-data-qa-venv/bin/python",
+        "/tmp/stock-data-audit/mcp_call.py",
+        "get_market_index",
+        "{\"format\": \"json\"}"
+      ],
+      "stdout_preview": "{\"data\": [{\"指数名称\": \"上证指数\", \"代码\": \"sh000001\", \"当前点位\": 3804.09, \"最新价\": 3813.79, \"涨跌额\": 1.89, \"涨跌幅(%)\": 0.05}, {\"指数名称\": \"Ａ股指数\", \"代码\": \"sh000002\", \"当前点位\": 3988.3, \"最新价\": 3998.45, \"涨跌额\": 1.94, \"涨跌幅(%)\": 0.05}, {\"指数名称\": \"科创50\", \"代码\": \"sh000688\", \"当前点位\": 14",
+      "stderr_tail": "\n  0%|          | 0/8 [00:00<?, ?it/s]\n 12%|█▎        | 1/8 [00:00<00:00,  9.61it/s]\n 25%|██▌       | 2/8 [00:00<00:00,  7.57it/s]\n 38%|███▊      | 3/8 [00:00<00:00,  6.81it/s]\n 50%|█████     | 4/8 [00:00<00:00,  7.70it/s]\n 75%|███████▌  | 6/8 [00:00<00:00,  9.12it/s]\n 88%|████████▊ | 7/8 [00:00<00:00,  8.92it/s]\n                                             \n"
+    },
+    {
+      "name": "13_get_limit_up_pool",
+      "status": "ok",
+      "seconds": 1.533,
+      "exit_code": 0,
+      "command": [
+        "/tmp/stock-data-qa-venv/bin/python",
+        "/tmp/stock-data-audit/mcp_call.py",
+        "get_limit_up_pool",
+        "{\"date\": \"20261009\", \"top_n\": 3, \"format\": \"json\"}"
+      ],
+      "stdout_preview": "{\"data\": [{\"序号\": 1, \"代码\": \"002058\", \"名称\": \"紫竹高科\", \"涨跌幅(%)\": 9.99, \"最新价\": 24.44, \"成交额(亿)\": 1.01, \"流通市值(亿)\": 35.04, \"换手率(%)\": 2.88, \"封板资金\": 89302489, \"首次封板\": \"092500\", \"最后封板\": \"092500\", \"炸板次数\": 0, \"连板数\": 4, \"所属行业\": \"电池\"}, {\"序号\": 2, \"代码\": \"600241\", \"名称\"",
+      "stderr_tail": ""
+    },
+    {
+      "name": "14_get_limit_down_pool",
+      "status": "ok",
+      "seconds": 1.551,
+      "exit_code": 0,
+      "command": [
+        "/tmp/stock-data-qa-venv/bin/python",
+        "/tmp/stock-data-audit/mcp_call.py",
+        "get_limit_down_pool",
+        "{\"date\": \"20261009\", \"top_n\": 3, \"format\": \"json\"}"
+      ],
+      "stdout_preview": "{\"data\": [{\"序号\": 1, \"代码\": \"603400\", \"名称\": \"华之杰\", \"涨跌幅(%)\": -10.0, \"最新价\": 42.93, \"成交额(亿)\": 2.87, \"流通市值(亿)\": 15.55, \"换手率(%)\": 18.13}, {\"序号\": 2, \"代码\": \"603823\", \"名称\": \"百合花\", \"涨跌幅(%)\": -10.0, \"最新价\": 41.93, \"成交额(亿)\": 8.55, \"流通市值(亿)\": 174.58, \"换手率(%)\": 4.8",
+      "stderr_tail": ""
+    },
+    {
+      "name": "15_get_consecutive_limit_up",
+      "status": "ok",
+      "seconds": 1.492,
+      "exit_code": 0,
+      "command": [
+        "/tmp/stock-data-qa-venv/bin/python",
+        "/tmp/stock-data-audit/mcp_call.py",
+        "get_consecutive_limit_up",
+        "{\"date\": \"20261009\", \"top_n\": 3, \"format\": \"json\"}"
+      ],
+      "stdout_preview": "{\"data\": [{\"序号\": 1, \"代码\": \"000869\", \"名称\": \"张  裕Ａ\", \"涨跌幅(%)\": 3.3, \"最新价\": 19.38, \"成交额(亿)\": 3.76, \"换手率(%)\": 4.33, \"连板数\": 1, \"涨停统计\": \"2/1\", \"所属行业\": \"非白酒\"}, {\"序号\": 2, \"代码\": \"001300\", \"名称\": \"三柏硕\", \"涨跌幅(%)\": 9.99, \"最新价\": 14.86, \"成交额(亿)\": 1.22, \"换手率(%)\": 3.",
+      "stderr_tail": ""
+    },
+    {
+      "name": "17_get_stock_money_flow",
+      "status": "error",
+      "seconds": 1.379,
+      "exit_code": 0,
+      "command": [
+        "/tmp/stock-data-qa-venv/bin/python",
+        "/tmp/stock-data-audit/mcp_call.py",
+        "get_stock_money_flow",
+        "{\"code\": \"600519\", \"format\": \"json\"}"
+      ],
+      "stdout_preview": "{\"status\": \"error\", \"error\": \"获取资金流向失败: HTTPSConnectionPool(host='push2his.eastmoney.com', port=443): Max retries exceeded with url: /api/qt/stock/fflow/daykline/get?lmt=0&klt=101&secid=1.600519&fields1=f1%2Cf2%2Cf3%2Cf7&fields2=f51%2Cf52%2Cf53%2Cf54",
+      "stderr_tail": ""
+    },
+    {
+      "name": "16_get_lhb_detail",
+      "status": "ok",
+      "seconds": 1.883,
+      "exit_code": 0,
+      "command": [
+        "/tmp/stock-data-qa-venv/bin/python",
+        "/tmp/stock-data-audit/mcp_call.py",
+        "get_lhb_detail",
+        "{\"start_date\": \"20260928\", \"end_date\": \"20261009\", \"top_n\": 3, \"format\": \"json\"}"
+      ],
+      "stdout_preview": "{\"data\": [{\"序号\": 1, \"代码\": \"000002\", \"名称\": \"万科A\", \"上榜日期\": \"2026-09-30\", \"收盘价\": 4.26, \"涨跌幅(%)\": 4.41, \"净买额(万)\": 7138.46, \"买入额(万)\": 68896.48, \"卖出额(万)\": 61758.02, \"上榜原因\": \"日振幅值达到15%的前5只证券\", \"解读\": \"2家机构买入，成功率38.36%\", \"换手率(%)\": 13.48, \"流通市值\": 41386382036.0",
+      "stderr_tail": "\n  0%|          | 0/1 [00:00<?, ?it/s]\n100%|██████████| 1/1 [00:00<00:00,  3.91it/s]\n                                             \n"
+    },
+    {
+      "name": "18_get_historical_k_data",
+      "status": "ok",
+      "seconds": 1.406,
+      "exit_code": 0,
+      "command": [
+        "/tmp/stock-data-qa-venv/bin/python",
+        "/tmp/stock-data-audit/mcp_call.py",
+        "get_historical_k_data",
+        "{\"code\": \"sh.600519\", \"start_date\": \"2026-09-01\", \"end_date\": \"2026-10-09\", \"limit\": 10, \"format\": \"json\"}"
+      ],
+      "stdout_preview": "{\"data\": [{\"date\": \"2026-09-01\", \"code\": \"sh.600519\", \"open\": \"1295.0000\", \"high\": \"1307.9900\", \"low\": \"1286.1000\", \"close\": \"1299.5600\", \"preclose\": \"1299.5200\", \"volume\": \"3266402\", \"amount\": \"4242440861.1000\", \"adjustflag\": \"3\", \"turn\": \"0.261300\"",
+      "stderr_tail": "login success!\nlogout success!\n"
+    },
+    {
+      "name": "19_get_stock_basic_info",
+      "status": "ok",
+      "seconds": 1.421,
+      "exit_code": 0,
+      "command": [
+        "/tmp/stock-data-qa-venv/bin/python",
+        "/tmp/stock-data-audit/mcp_call.py",
+        "get_stock_basic_info",
+        "{\"code\": \"sh.600519\", \"format\": \"json\"}"
+      ],
+      "stdout_preview": "{\"data\": [{\"code\": \"sh.600519\", \"code_name\": \"贵州茅台\", \"ipoDate\": \"2001-08-27\", \"outDate\": \"\", \"type\": \"1\", \"status\": \"1\"}], \"meta\": {\"code\": \"sh.600519\", \"total_rows\": 1, \"returned_rows\": 1, \"truncated\": false, \"columns\": [\"code\", \"code_name\", \"ipoDat",
+      "stderr_tail": "login success!\nlogout success!\n"
+    },
+    {
+      "name": "20_get_dividend_data",
+      "status": "ok",
+      "seconds": 1.685,
+      "exit_code": 0,
+      "command": [
+        "/tmp/stock-data-qa-venv/bin/python",
+        "/tmp/stock-data-audit/mcp_call.py",
+        "get_dividend_data",
+        "{\"code\": \"sh.600519\", \"year\": \"2025\", \"format\": \"json\"}"
+      ],
+      "stdout_preview": "{\"data\": [{\"code\": \"sh.600519\", \"dividPreNoticeDate\": \"\", \"dividAgmPumDate\": \"2025-05-20\", \"dividPlanAnnounceDate\": \"2025-04-03\", \"dividPlanDate\": \"2025-06-20\", \"dividRegistDate\": \"2025-06-25\", \"dividOperateDate\": \"2025-06-26\", \"dividPayDate\": \"2025-",
+      "stderr_tail": "login success!\nlogout success!\n"
+    },
+    {
+      "name": "21_get_profit_data",
+      "status": "ok",
+      "seconds": 1.444,
+      "exit_code": 0,
+      "command": [
+        "/tmp/stock-data-qa-venv/bin/python",
+        "/tmp/stock-data-audit/mcp_call.py",
+        "get_profit_data",
+        "{\"code\": \"sh.600519\", \"year\": \"2026\", \"quarter\": 2, \"format\": \"json\"}"
+      ],
+      "stdout_preview": "{\"data\": [{\"code\": \"sh.600519\", \"pubDate\": \"2026-08-15\", \"statDate\": \"2026-06-30\", \"roeAvg\": \"0.179543\", \"npMargin\": \"0.507516\", \"gpMargin\": \"0.895552\", \"netProfit\": \"46033330566.780000\", \"epsTTM\": \"65.142936\", \"MBRevenue\": \"92278072083.210000\", \"tot",
+      "stderr_tail": "login success!\nlogout success!\n"
+    },
+    {
+      "name": "24_get_balance_data",
+      "status": "ok",
+      "seconds": 1.419,
+      "exit_code": 0,
+      "command": [
+        "/tmp/stock-data-qa-venv/bin/python",
+        "/tmp/stock-data-audit/mcp_call.py",
+        "get_balance_data",
+        "{\"code\": \"sh.600519\", \"year\": \"2026\", \"quarter\": 2, \"format\": \"json\"}"
+      ],
+      "stdout_preview": "{\"data\": [{\"code\": \"sh.600519\", \"pubDate\": \"2026-08-15\", \"statDate\": \"2026-06-30\", \"currentRatio\": \"5.589543\", \"quickRatio\": \"4.274995\", \"cashRatio\": \"1.147362\", \"YOYLiability\": \"0.088869\", \"liabilityToAsset\": \"0.151931\", \"assetToEquity\": \"1.179150\"}",
+      "stderr_tail": "login success!\nlogout success!\n"
+    },
+    {
+      "name": "23_get_growth_data",
+      "status": "ok",
+      "seconds": 1.792,
+      "exit_code": 0,
+      "command": [
+        "/tmp/stock-data-qa-venv/bin/python",
+        "/tmp/stock-data-audit/mcp_call.py",
+        "get_growth_data",
+        "{\"code\": \"sh.600519\", \"year\": \"2026\", \"quarter\": 2, \"format\": \"json\"}"
+      ],
+      "stdout_preview": "{\"data\": [{\"code\": \"sh.600519\", \"pubDate\": \"2026-08-15\", \"statDate\": \"2026-06-30\", \"YOYEquity\": \"0.052827\", \"YOYAsset\": \"0.057460\", \"YOYNI\": \"-0.020290\", \"YOYEPSBasic\": \"-0.016860\", \"YOYPNI\": \"-0.019516\"}], \"meta\": {\"code\": \"sh.600519\", \"dataset\": \"G",
+      "stderr_tail": "login success!\nlogout failed!\n"
+    },
+    {
+      "name": "22_get_operation_data",
+      "status": "ok",
+      "seconds": 2.436,
+      "exit_code": 0,
+      "command": [
+        "/tmp/stock-data-qa-venv/bin/python",
+        "/tmp/stock-data-audit/mcp_call.py",
+        "get_operation_data",
+        "{\"code\": \"sh.600519\", \"year\": \"2026\", \"quarter\": 2, \"format\": \"json\"}"
+      ],
+      "stdout_preview": "{\"data\": [{\"code\": \"sh.600519\", \"pubDate\": \"2026-08-15\", \"statDate\": \"2026-06-30\", \"NRTurnRatio\": \"57047.089113\", \"NRTurnDays\": \"0.003155\", \"INVTurnRatio\": \"0.154365\", \"INVTurnDays\": \"1165.803109\", \"CATurnRatio\": \"0.359588\", \"AssetTurnRatio\": \"0.3011",
+      "stderr_tail": "login success!\nlogout success!\n"
+    },
+    {
+      "name": "25_get_cash_flow_data",
+      "status": "ok",
+      "seconds": 1.395,
+      "exit_code": 0,
+      "command": [
+        "/tmp/stock-data-qa-venv/bin/python",
+        "/tmp/stock-data-audit/mcp_call.py",
+        "get_cash_flow_data",
+        "{\"code\": \"sh.600519\", \"year\": \"2026\", \"quarter\": 2, \"format\": \"json\"}"
+      ],
+      "stdout_preview": "{\"data\": [{\"code\": \"sh.600519\", \"pubDate\": \"2026-08-15\", \"statDate\": \"2026-06-30\", \"CAToAsset\": \"0.843631\", \"NCAToAsset\": \"0.156370\", \"tangibleAssetToAsset\": \"0.763540\", \"ebitToInterest\": \"\", \"CFOToOR\": \"0.779363\", \"CFOToNP\": \"1.535643\", \"CFOToGr\": \"",
+      "stderr_tail": "login success!\nlogout success!\n"
+    },
+    {
+      "name": "26_get_dupont_data",
+      "status": "ok",
+      "seconds": 1.413,
+      "exit_code": 0,
+      "command": [
+        "/tmp/stock-data-qa-venv/bin/python",
+        "/tmp/stock-data-audit/mcp_call.py",
+        "get_dupont_data",
+        "{\"code\": \"sh.600519\", \"year\": \"2026\", \"quarter\": 2, \"format\": \"json\"}"
+      ],
+      "stdout_preview": "{\"data\": [{\"code\": \"sh.600519\", \"pubDate\": \"2026-08-15\", \"statDate\": \"2026-06-30\", \"dupontROE\": \"0.179543\", \"dupontAssetStoEquity\": \"1.235927\", \"dupontAssetTurn\": \"0.301127\", \"dupontPnitoni\": \"0.967058\", \"dupontNitogr\": \"0.498854\", \"dupontTaxBurden\":",
+      "stderr_tail": "login success!\nlogout success!\n"
+    },
+    {
+      "name": "27_get_performance_express_report",
+      "status": "empty",
+      "seconds": 1.43,
+      "exit_code": 0,
+      "command": [
+        "/tmp/stock-data-qa-venv/bin/python",
+        "/tmp/stock-data-audit/mcp_call.py",
+        "get_performance_express_report",
+        "{\"code\": \"sh.600519\", \"start_date\": \"2026-01-01\", \"end_date\": \"2026-10-09\", \"format\": \"json\"}"
+      ],
+      "stdout_preview": "{\"status\": \"empty\", \"message\": \"No performance express report found for sh.600519 in range 2026-01-01-2026-10-09 (empty result set).\", \"data\": []}\n",
+      "stderr_tail": "login success!\nNo performance express report found for sh.600519 in range 2026-01-01-2026-10-09 (empty result set).\nlogout success!\nCaught known error fetching performance express report for sh.600519: NoDataFoundError\nget_performance_express_report:sh.600519:2026-01-01-2026-10-09: No data found: No performance express report found for sh.600519 in range 2026-01-01-2026-10-09 (empty result set).\n"
+    },
+    {
+      "name": "28_get_forecast_report",
+      "status": "empty",
+      "seconds": 1.443,
+      "exit_code": 0,
+      "command": [
+        "/tmp/stock-data-qa-venv/bin/python",
+        "/tmp/stock-data-audit/mcp_call.py",
+        "get_forecast_report",
+        "{\"code\": \"sh.600519\", \"start_date\": \"2026-01-01\", \"end_date\": \"2026-10-09\", \"format\": \"json\"}"
+      ],
+      "stdout_preview": "{\"status\": \"empty\", \"message\": \"No performance forecast report found for sh.600519 in range 2026-01-01-2026-10-09 (empty result set).\", \"data\": []}\n",
+      "stderr_tail": "login success!\nNo performance forecast report found for sh.600519 in range 2026-01-01-2026-10-09 (empty result set).\nlogout success!\nCaught known error fetching performance forecast report for sh.600519: NoDataFoundError\nget_forecast_report:sh.600519:2026-01-01-2026-10-09: No data found: No performance forecast report found for sh.600519 in range 2026-01-01-2026-10-09 (empty result set).\n"
+    },
+    {
+      "name": "30_get_stock_industry",
+      "status": "ok",
+      "seconds": 2.112,
+      "exit_code": 0,
+      "command": [
+        "/tmp/stock-data-qa-venv/bin/python",
+        "/tmp/stock-data-audit/mcp_call.py",
+        "get_stock_industry",
+        "{\"code\": \"sh.600519\", \"format\": \"json\"}"
+      ],
+      "stdout_preview": "{\"data\": [{\"updateDate\": \"2026-10-05\", \"code\": \"sh.600519\", \"code_name\": \"贵州茅台\", \"industry\": \"C15酒、饮料和精制茶制造业\", \"industryClassification\": \"证监会行业分类\"}], \"meta\": {\"code\": \"sh.600519\", \"as_of\": \"latest\", \"total_rows\": 1, \"returned_rows\": 1, \"truncated\": f",
+      "stderr_tail": "login success!\nlogout success!\n"
+    },
+    {
+      "name": "31_get_sz50_stocks",
+      "status": "ok",
+      "seconds": 1.49,
+      "exit_code": 0,
+      "command": [
+        "/tmp/stock-data-qa-venv/bin/python",
+        "/tmp/stock-data-audit/mcp_call.py",
+        "get_sz50_stocks",
+        "{\"format\": \"json\"}"
+      ],
+      "stdout_preview": "{\"data\": [{\"updateDate\": \"2026-10-05\", \"code\": \"sh.600028\", \"code_name\": \"中国石化\"}, {\"updateDate\": \"2026-10-05\", \"code\": \"sh.600030\", \"code_name\": \"中信证券\"}, {\"updateDate\": \"2026-10-05\", \"code\": \"sh.600031\", \"code_name\": \"三一重工\"}, {\"updateDate\": \"2026-10-",
+      "stderr_tail": "login success!\nlogout success!\n"
+    },
+    {
+      "name": "32_get_hs300_stocks",
+      "status": "ok",
+      "seconds": 1.769,
+      "exit_code": 0,
+      "command": [
+        "/tmp/stock-data-qa-venv/bin/python",
+        "/tmp/stock-data-audit/mcp_call.py",
+        "get_hs300_stocks",
+        "{\"format\": \"json\"}"
+      ],
+      "stdout_preview": "{\"data\": [{\"updateDate\": \"2026-10-05\", \"code\": \"sh.600000\", \"code_name\": \"浦发银行\"}, {\"updateDate\": \"2026-10-05\", \"code\": \"sh.600009\", \"code_name\": \"上海机场\"}, {\"updateDate\": \"2026-10-05\", \"code\": \"sh.600010\", \"code_name\": \"包钢股份\"}, {\"updateDate\": \"2026-10-",
+      "stderr_tail": "login success!\nlogout success!\n"
+    },
+    {
+      "name": "29_get_fina_indicator",
+      "status": "ok",
+      "seconds": 4.558,
+      "exit_code": 0,
+      "command": [
+        "/tmp/stock-data-qa-venv/bin/python",
+        "/tmp/stock-data-audit/mcp_call.py",
+        "get_fina_indicator",
+        "{\"code\": \"sh.600519\", \"start_date\": \"2026-01-01\", \"end_date\": \"2026-10-09\", \"format\": \"json\"}"
+      ],
+      "stdout_preview": "{\"data\": [{\"code\": \"sh.600519\", \"year\": \"2026\", \"quarter\": 1, \"profit_code\": \"sh.600519\", \"profit_pubDate\": \"2026-04-25\", \"profit_statDate\": \"2026-03-31\", \"profit_roeAvg\": \"0.105687\", \"profit_npMargin\": \"0.522245\", \"profit_gpMargin\": \"0.897592\", \"pro",
+      "stderr_tail": "login success!\nlogout failed!\n"
+    },
+    {
+      "name": "33_get_zz500_stocks",
+      "status": "ok",
+      "seconds": 3.004,
+      "exit_code": 0,
+      "command": [
+        "/tmp/stock-data-qa-venv/bin/python",
+        "/tmp/stock-data-audit/mcp_call.py",
+        "get_zz500_stocks",
+        "{\"format\": \"json\"}"
+      ],
+      "stdout_preview": "{\"data\": [{\"updateDate\": \"2026-10-05\", \"code\": \"sh.600004\", \"code_name\": \"白云机场\"}, {\"updateDate\": \"2026-10-05\", \"code\": \"sh.600008\", \"code_name\": \"首创环保\"}, {\"updateDate\": \"2026-10-05\", \"code\": \"sh.600021\", \"code_name\": \"上海电力\"}, {\"updateDate\": \"2026-10-",
+      "stderr_tail": "login success!\nlogout failed!\n"
+    },
+    {
+      "name": "12_get_hot_sectors",
+      "status": "timeout",
+      "seconds": 15.007,
+      "exit_code": null,
+      "command": [
+        "/tmp/stock-data-qa-venv/bin/python",
+        "/tmp/stock-data-audit/mcp_call.py",
+        "get_hot_sectors",
+        "{\"format\": \"json\"}"
+      ],
+      "stdout_preview": "",
+      "stderr_tail": ""
+    },
+    {
+      "name": "37_get_loan_rate_data",
+      "status": "ok",
+      "seconds": 1.558,
+      "exit_code": 0,
+      "command": [
+        "/tmp/stock-data-qa-venv/bin/python",
+        "/tmp/stock-data-audit/mcp_call.py",
+        "get_loan_rate_data",
+        "{\"format\": \"json\"}"
+      ],
+      "stdout_preview": "{\"data\": [{\"pubDate\": \"1990-04-15\", \"loanRate6Month\": \"\", \"loanRate6MonthTo1Year\": \"\", \"loanRate1YearTo3Year\": \"\", \"loanRate3YearTo5Year\": \"\", \"loanRateAbove5Year\": \"\", \"mortgateRateBelow5Year\": \"\", \"mortgateRateAbove5Year\": \"\"}, {\"pubDate\": \"1990-08",
+      "stderr_tail": "login success!\nlogout success!\n"
+    },
+    {
+      "name": "36_get_deposit_rate_data",
+      "status": "ok",
+      "seconds": 2.815,
+      "exit_code": 0,
+      "command": [
+        "/tmp/stock-data-qa-venv/bin/python",
+        "/tmp/stock-data-audit/mcp_call.py",
+        "get_deposit_rate_data",
+        "{\"format\": \"json\"}"
+      ],
+      "stdout_preview": "{\"data\": [{\"pubDate\": \"1990-04-15\", \"demandDepositRate\": \"2.880000\", \"fixedDepositRate3Month\": \"6.300000\", \"fixedDepositRate6Month\": \"7.740000\", \"fixedDepositRate1Year\": \"10.080000\", \"fixedDepositRate2Year\": \"10.980000\", \"fixedDepositRate3Year\": \"11.",
+      "stderr_tail": "login success!\nlogout success!\n"
+    },
+    {
+      "name": "34_list_industries",
+      "status": "ok",
+      "seconds": 5.285,
+      "exit_code": 0,
+      "command": [
+        "/tmp/stock-data-qa-venv/bin/python",
+        "/tmp/stock-data-audit/mcp_call.py",
+        "list_industries",
+        "{\"format\": \"json\"}"
+      ],
+      "stdout_preview": "{\"data\": [{\"industry\": \"\"}, {\"industry\": \"A01农业\"}, {\"industry\": \"A03畜牧业\"}, {\"industry\": \"A04渔业\"}, {\"industry\": \"A05农、林、牧、渔专业及辅助性活动\"}, {\"industry\": \"B06煤炭开采和洗选业\"}, {\"industry\": \"B07石油和天然气开采业\"}, {\"industry\": \"B08黑色金属矿采选业\"}, {\"industry\": \"B09有色金属矿采选业\"},",
+      "stderr_tail": "login success!\nlogout failed!\n"
+    },
+    {
+      "name": "35_get_all_stock",
+      "status": "ok",
+      "seconds": 5.072,
+      "exit_code": 0,
+      "command": [
+        "/tmp/stock-data-qa-venv/bin/python",
+        "/tmp/stock-data-audit/mcp_call.py",
+        "get_all_stock",
+        "{\"format\": \"json\"}"
+      ],
+      "stdout_preview": "{\"data\": [{\"code\": \"sh.000001\", \"tradeStatus\": \"1\", \"code_name\": \"上证综合指数\"}, {\"code\": \"sh.000002\", \"tradeStatus\": \"1\", \"code_name\": \"上证A股指数\"}, {\"code\": \"sh.000003\", \"tradeStatus\": \"1\", \"code_name\": \"上证B股指数\"}, {\"code\": \"sh.000004\", \"tradeStatus\": \"1\", ",
+      "stderr_tail": "login success!\nlogout success!\n"
+    },
+    {
+      "name": "38_get_required_reserve_ratio_data",
+      "status": "error",
+      "seconds": 1.425,
+      "exit_code": 0,
+      "command": [
+        "/tmp/stock-data-qa-venv/bin/python",
+        "/tmp/stock-data-audit/mcp_call.py",
+        "get_required_reserve_ratio_data",
+        "{\"format\": \"json\"}"
+      ],
+      "stdout_preview": "{\"status\": \"error\", \"error\": \"Baostock API error fetching Required Reserve Ratio data: 用户未登录 (code: 10001001)\", \"data\": []}\n",
+      "stderr_tail": "login success!\nBaostock API error (Required Reserve Ratio): 用户未登录 (code: 10001001)\nlogout failed!\nCaught known error fetching Required Reserve Ratio data: DataSourceError\nget_required_reserve_ratio_data: Data source error: Baostock API error fetching Required Reserve Ratio data: 用户未登录 (code: 10001001)\n"
+    },
+    {
+      "name": "39_get_money_supply_data_month",
+      "status": "ok",
+      "seconds": 2.456,
+      "exit_code": 0,
+      "command": [
+        "/tmp/stock-data-qa-venv/bin/python",
+        "/tmp/stock-data-audit/mcp_call.py",
+        "get_money_supply_data_month",
+        "{\"format\": \"json\"}"
+      ],
+      "stdout_preview": "{\"data\": [{\"statYear\": \"1951\", \"statMonth\": \"12\", \"m0Month\": \"\", \"m0YOY\": \"\", \"m0ChainRelative\": \"\", \"m1Month\": \"\", \"m1YOY\": \"\", \"m1ChainRelative\": \"\", \"m2Month\": \"\", \"m2YOY\": \"\", \"m2ChainRelative\": \"\"}, {\"statYear\": \"1952\", \"statMonth\": \"12\", \"m0Mon",
+      "stderr_tail": "login success!\nlogout success!\n"
+    },
+    {
+      "name": "40_get_money_supply_data_year",
+      "status": "ok",
+      "seconds": 1.5,
+      "exit_code": 0,
+      "command": [
+        "/tmp/stock-data-qa-venv/bin/python",
+        "/tmp/stock-data-audit/mcp_call.py",
+        "get_money_supply_data_year",
+        "{\"format\": \"json\"}"
+      ],
+      "stdout_preview": "{\"data\": [{\"statYear\": \"1952\", \"m0Year\": \"\", \"m0YearYOY\": \"\", \"m1Year\": \"\", \"m1YearYOY\": \"\", \"m2Year\": \"101.300000\", \"m2YearYOY\": \"\"}, {\"statYear\": \"1953\", \"m0Year\": \"\", \"m0YearYOY\": \"\", \"m1Year\": \"\", \"m1YearYOY\": \"\", \"m2Year\": \"113.700000\", \"m2YearY",
+      "stderr_tail": "login success!\nlogout success!\n"
+    },
+    {
+      "name": "41_get_trade_dates",
+      "status": "ok",
+      "seconds": 2.568,
+      "exit_code": 0,
+      "command": [
+        "/tmp/stock-data-qa-venv/bin/python",
+        "/tmp/stock-data-audit/mcp_call.py",
+        "get_trade_dates",
+        "{\"start_date\": \"2026-01-01\", \"end_date\": \"2026-12-31\", \"format\": \"json\"}"
+      ],
+      "stdout_preview": "{\"data\": [{\"calendar_date\": \"2026-01-01\", \"is_trading_day\": \"0\"}, {\"calendar_date\": \"2026-01-02\", \"is_trading_day\": \"0\"}, {\"calendar_date\": \"2026-01-03\", \"is_trading_day\": \"0\"}, {\"calendar_date\": \"2026-01-04\", \"is_trading_day\": \"0\"}, {\"calendar_date\"",
+      "stderr_tail": "login success!\nlogout success!\n"
+    },
+    {
+      "name": "42_get_industry_members",
+      "status": "timeout",
+      "seconds": 15.017,
+      "exit_code": null,
+      "command": [
+        "/tmp/stock-data-qa-venv/bin/python",
+        "/tmp/stock-data-audit/mcp_call.py",
+        "get_industry_members",
+        "{\"industry\": \"\\u767d\\u9152\", \"format\": \"json\"}"
+      ],
+      "stdout_preview": "",
+      "stderr_tail": "login success!\n"
+    }
+  ],
+  "protocol": {
+    "tool_count": 56,
+    "calls": [
+      {
+        "tool": "get_realtime_quote",
+        "seconds": 0.167,
+        "isError": false,
+        "result": [
+          {
+            "data": [
+              {
+                "代码": "600519",
+                "日期": "2026-10-09",
+                "最新价": 1263.0,
+                "今开": 1255.42,
+                "最高": 1282.0,
+                "最低": 1255.42,
+                "昨收": 1255.79,
+                "涨跌额": 7.21,
+                "涨跌幅(%)": 0.57,
+                "成交量": 3511051,
+                "市场状态": "休市",
+                "备注": "非交易日或休市，显示最近交易日(最近)数据"
+              }
+            ],
+            "meta": {
+              "code": "600519",
+              "normalized_code": "sh600519",
+              "data_source": "Sina/Tencent (AshareDataSource)",
+              "update_time": "2026-10-11 11:10:34",
+              "minute_freq": "N/A",
+              "total_rows": 1,
+              "returned_rows": 1,
+              "truncated": false,
+              "columns": [
+                "代码",
+                "日期",
+                "最新价",
+                "今开",
+                "最高",
+                "最低",
+                "昨收",
+                "涨跌额",
+                "涨跌幅(%)",
+                "成交量",
+                "市场状态",
+                "备注"
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "tool": "get_profit_data",
+        "seconds": 0.769,
+        "isError": false,
+        "result": [
+          {
+            "data": [
+              {
+                "code": "sh.600519",
+                "pubDate": "2026-08-15",
+                "statDate": "2026-06-30",
+                "roeAvg": "0.179543",
+                "npMargin": "0.507516",
+                "gpMargin": "0.895552",
+                "netProfit": "46033330566.780000",
+                "epsTTM": "65.142936",
+                "MBRevenue": "92278072083.210000",
+                "totalShare": "1250081601.00",
+                "liqaShare": "1250081601.00"
+              }
+            ],
+            "meta": {
+              "code": "sh.600519",
+              "dataset": "Profitability",
+              "year": "2026",
+              "quarter": 2,
+              "total_rows": 1,
+              "returned_rows": 1,
+              "truncated": false,
+              "columns": [
+                "code",
+                "pubDate",
+                "statDate",
+                "roeAvg",
+                "npMargin",
+                "gpMargin",
+                "netProfit",
+                "epsTTM",
+                "MBRevenue",
+                "totalShare",
+                "liqaShare"
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "tool": "get_stock_industry",
+        "seconds": 1.305,
+        "isError": false,
+        "result": [
+          {
+            "data": [
+              {
+                "updateDate": "2026-10-05",
+                "code": "sh.600519",
+                "code_name": "贵州茅台",
+                "industry": "C15酒、饮料和精制茶制造业",
+                "industryClassification": "证监会行业分类"
+              }
+            ],
+            "meta": {
+              "code": "sh.600519",
+              "as_of": "latest",
+              "total_rows": 1,
+              "returned_rows": 1,
+              "truncated": false,
+              "columns": [
+                "updateDate",
+                "code",
+                "code_name",
+                "industry",
+                "industryClassification"
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "tool": "get_company_news",
+        "seconds": 0.477,
+        "isError": false,
+        "result": [
+          {
+            "status": "ok",
+            "code": "601899",
+            "name": "紫金矿业",
+            "meta": {
+              "queried_at": "2026-10-11T11:10:36.930184+08:00",
+              "fetched_at": "2026-10-11T11:10:37.034238+08:00",
+              "window_start": "2026-10-05T00:00:00+08:00",
+              "window_end": "2026-10-11T11:10:36.930184+08:00",
+              "cache_hit": false,
+              "count": 75,
+              "matched_before_limit": 75,
+              "latest_news_at": "2026-10-11T10:00:00+08:00",
+              "latest_announcement_at": null,
+              "sources": [
+                {
+                  "source": "cninfo",
+                  "status": "empty",
+                  "fetched": 0,
+                  "truncated": false,
+                  "network_requests": 2,
+                  "cache_hits": 0,
+                  "fetched_at": "2026-10-11T11:10:37.261942+08:00",
+                  "elapsed_sec": 0.47
+                },
+                {
+                  "source": "eastmoney_announcements",
+                  "status": "ok",
+                  "fetched": 100,
+                  "truncated": false,
+                  "network_requests": 1,
+                  "cache_hits": 0,
+                  "fetched_at": "2026-10-11T11:10:37.034238+08:00",
+                  "elapsed_sec": 0.1
+                },
+                {
+                  "source": "eastmoney_news:601899",
+                  "status": "ok",
+                  "fetched": 50,
+                  "truncated": false,
+                  "network_requests": 1,
+                  "cache_hits": 0,
+                  "fetched_at": "2026-10-11T11:10:37.053218+08:00",
+                  "elapsed_sec": 0.12
+                },
+                {
+                  "source": "eastmoney_news:紫金矿业",
+                  "status": "ok",
+                  "fetched": 100,
+                  "truncated": false,
+                  "network_requests": 2,
+                  "cache_hits": 0,
+                  "fetched_at": "2026-10-11T11:10:37.041067+08:00",
+                  "elapsed_sec": 0.17
+                }
+              ],
+              "coverage_limited": false,
+              "notes": [
+                "新闻 summary 为检索摘要，公告仅提供标题与原文链接；不自动推断事件类别或情绪。",
+                "matched_in 仅记录精确文本出现位置，不是相关性评分；source_categories 仅保留上游原始分类。",
+                "empty 表示已查询页在窗口内无匹配；分页受限、partial/unavailable 都不能证明公司没有事件。"
+              ]
+            },
+            "data": [
+              {
+                "kind": "news",
+                "title": "本周农业、锂电板块获主力资金加仓，长鑫科技再遭主力大额出逃",
+                "summary": "本周主力资金关注锂电、农业、贵金属等方向，宁德时代以23.02亿元主力净流入高居全市场榜首，本周累计上涨2.28%；锂电材料龙头天赐材料紧随其后，获主力净流入14.46亿元，本周大涨14.36%；农业人气股金健米业也收获9.27亿元资金布局，本周累计涨幅达15.53%；此外，紫金矿业",
+                "published_at": "2026-10-11T10:00:00+08:00",
+                "publisher": "21世纪经济报道",
+                "provider": "eastmoney_news",
+                "url": "http://finance.eastmoney.com/a/202610113892028629.html",
+                "matched_in": "summary",
+                "source_categories": []
+              },
+              {
+                "kind": "news",
+                "title": "46亿元分红入账，藏格矿业陷入“铜依赖”",
+                "summary": "天眼查数据显示，巨龙铜业由西藏紫金实业有限公司控股约57%，而西藏紫金实业有限公司的实际控制方是紫金矿业，该公司也承担着紫金矿业在西藏区域的大部分矿产投资。这也意味着，巨龙铜业由紫金矿业主导。 紫金矿业还握着藏格矿业的控制权。",
+                "published_at": "2026-10-10T20:50:27+08:00",
+                "publisher": "华夏时报网",
+                "provider": "eastmoney_news",
+                "url": "http://finance.eastmoney.com/a/202610103891971662.html",
+                "matched_in": "summary",
+                "source_categories": []
+              },
+              {
+                "kind": "news",
+                "title": "节后两天，电子行业遭主力资金大幅抛售，净流出超255亿；29亿出逃长鑫科技，东山精密、兆易创新净流出规模靠前，“易中天”净流出近44亿",
+                "summary": "金健米业、紫金矿业、东岳硅材、宏昌电子净流入超5亿元。 来源：同花顺iFinD，下同 两个交易日中，3只个股主力资金净流出超20亿元，分别为长鑫科技（29.18亿元），东山精密（22.39亿元），中际旭创（20.12亿元）。",
+                "published_at": "2026-10-10T15:34:00+08:00",
+                "publisher": "中新经纬",
+                "provider": "eastmoney_news",
+                "url": "http://finance.eastmoney.com/a/202610103891916238.html",
+                "matched_in": "summary",
+                "source_categories": []
+              },
+              {
+                "kind": "news",
+                "title": "山东黄金资产证券化 优质黄金资源将注入上市公司",
+                "summary": "邱晨阳表示，目前山东黄金、紫金矿业、中国黄金三家头部企业矿产金产量全国占比超50%，行业“一超多强”格局已然固化。",
+                "published_at": "2026-10-10T04:37:47+08:00",
+                "publisher": "中国经营网",
+                "provider": "eastmoney_news",
+                "url": "http://finance.eastmoney.com/a/202610103891629679.html",
+                "matched_in": "summary",
+                "source_categories": []
+              },
+              {
+                "kind": "news",
+                "title": "再走长征路｜从“卖原矿”到“造材料” 湖南道县激活锂电新能源产业新引擎",
+                "summary": "紫金矿业集团也将在道县进一步增资扩能。据刘华中介绍，一方面，提速650万吨/年选矿系统技改。",
+                "published_at": "2026-10-10T03:01:30+08:00",
+                "publisher": "中国经营网",
+                "provider": "eastmoney_news",
+                "url": "http://finance.eastmoney.com/a/202610103891619320.html",
+                "matched_in": "summary",
+                "source_categories": []
+              },
+              {
+                "kind": "news",
+                "title": "20股特大单净流入超2亿元",
+                "summary": "天赐材料特大单净流入资金12.13亿元，位列第二；净流入资金居前的还有东岳硅材、紫金矿业、金健米业等。特大单净流出股中，新易盛特大单净流出资金6.44亿元，净流出资金最多；香农芯创、蓝思科技特大单净流出资金分别为5.53亿元、5.10亿元，净流出资金规模位列第二、第三。",
+                "published_at": "2026-10-09T22:27:58+08:00",
+                "publisher": "第一财经",
+                "provider": "eastmoney_news",
+                "url": "http://finance.eastmoney.com/a/202610093891553522.html",
+                "matched_in": "summary",
+                "source_categories": []
+              },
+              {
+                "kind": "news",
+                "title": "券商10月金股出炉：电子、医药和银行增配居前，药明康德最热",
+                "summary": "紫金矿业（601899）、深信服（300454）、宁德时代（300750）、牧原股份（002714）、安克创新（300866）、安井食品（603345）、中远海能（600026）、春风动力（603129）、海信视像（600060）等，均被推荐了3次。",
+                "published_at": "2026-10-09T18:11:00+08:00",
+                "publisher": "澎湃新闻",
+                "provider": "eastmoney_news",
+                "url": "http://finance.eastmoney.com/a/202610093891371865.html",
+                "matched_in": "summary",
+                "source_categories": []
+              },
+              {
+                "kind": "news",
+                "title": "小米集团狂飙近10%！黄金珠宝概念股集体大涨！",
+                "summary": "小米集团涨9.72%，小米澎程上市单月锁单破7万辆；快手-W大涨5.47%，可灵AI计划最早于明年赴港上市，Kling4.0即将上线；紫金矿业大涨5.3%，金价拉升，刺激黄金股走强。",
+                "published_at": "2026-10-09T18:10:06+08:00",
+                "publisher": "中国基金报",
+                "provider": "eastmoney_news",
+                "url": "http://finance.eastmoney.com/a/202610093891371145.html",
+                "matched_in": "summary",
+                "source_categories": []
+              },
+              {
+                "kind": "news",
+                "title": "高管动向｜马矿股份董事长李祖伟因工作调整辞任，公司上市仅一个多月即换帅",
+                "summary": "公开资料显示，福建马坑矿业股份有限公司成立于1995年，现由福建省稀有稀土（集团）有限公司（占股本45.9%）、紫金矿业集团股份有限公司（占股本37.35%）、龙岩矿业发展有限公司（占股本10%）、福建省龙岩地质大队（占股本6.75%）四家股东组成，属国有控股大型铁矿山企业。",
+                "published_at": "2026-10-09T18:00:42+08:00",
+                "publisher": "深圳商报·读创",
+                "provider": "eastmoney_news",
+                "url": "http://finance.eastmoney.com/a/202610093891364379.html",
+                "matched_in": "summary",
+                "source_categories": []
+              },
+              {
+                "kind": "news",
+                "title": "今日主力复盘，26.1亿抢筹宁德时代，8.83亿流出新易盛",
+                "summary": "净流入前10行业，电池板块居首（宁德时代），工业金属 / 贵金属（紫金矿业、洛阳钼业、赤峰黄金）走强，有机硅化工（东岳硅材、振华股份）及 AI 影视传媒（中文在线）获资金追捧。",
+                "published_at": "2026-10-09T17:42:00+08:00",
+                "publisher": "21世纪经济报道",
+                "provider": "eastmoney_news",
+                "url": "http://finance.eastmoney.com/a/202610093891585660.html",
+                "matched_in": "summary",
+                "source_categories": []
+              },
+              {
+                "kind": "news",
+                "title": "应收压顶、现金流背离：东方测控最大供应商仅3人参保",
+                "summary": "其中，江铜集团既是2025年第三大客户，也是2022年12月入股的股东；紫金矿业（601899/02899）旗下的紫金紫地同样于2022年12月入股，而此前紫金系在2021年签约西藏巨龙项目并在2023年验收，贡献收入4591万元（占比8.87%）。",
+                "published_at": "2026-10-09T17:14:00+08:00",
+                "publisher": "财中社",
+                "provider": "eastmoney_news",
+                "url": "http://finance.eastmoney.com/a/202610093891522841.html",
+                "matched_in": "summary",
+                "source_categories": []
+              },
+              {
+                "kind": "news",
+                "title": "【10.9 ETF综述】大奇迹日！AI应用与港股科技领涨，小盘重启吸金模式！",
+                "summary": "紫金矿业涨4.87%、赤峰黄金涨超6%带动有色矿业ETF成分股集体走强。 港股科技大放异彩，科网股全面反弹。 恒生科技指数大涨3.06%，港科技方向全线活跃。",
+                "published_at": "2026-10-09T17:03:47+08:00",
+                "publisher": "界面新闻",
+                "provider": "eastmoney_news",
+                "url": "http://finance.eastmoney.com/a/202610093891571230.html",
+                "matched_in": "summary",
+                "source_categories": []
+              },
+              {
+                "kind": "news",
+                "title": "有色金属行业资金流入榜：紫金矿业、洛阳钼业等净流入资金居前",
+                "summary": "（数据宝） 有色金属行业资金流入榜 代码 简称 今日涨跌幅（%） 今日换手率（%） 主力资金流量（万元） 601899 紫金矿业 4.87 1.16 81105.62 603993 洛阳钼业 3.67 0.86 34620.65 600988 赤峰黄金 5.91 4.58 29434.32",
+                "published_at": "2026-10-09T16:58:00+08:00",
+                "publisher": "证券时报网",
+                "provider": "eastmoney_news",
+                "url": "http://finance.eastmoney.com/a/202610093891309442.html",
+                "matched_in": "title",
+                "source_categories": []
+              },
+              {
+                "kind": "news",
+                "title": "主力动向：10月9日特大单净流出68.84亿元",
+                "summary": "特大单净流入资金排名 代码 简称 收盘价（元） 涨跌幅（%） 特大单净流入（亿元） 行业 300750 宁德时代 297.75 3.84 15.98 电力设备 002709 天赐材料 35.68 9.15 12.13 电力设备 300821 东岳硅材 17.15 20.01 7.01 基础化工 601899",
+                "published_at": "2026-10-09T16:57:00+08:00",
+                "publisher": "证券时报网",
+                "provider": "eastmoney_news",
+                "url": "http://finance.eastmoney.com/a/202610093891303156.html",
+                "matched_in": "upstream_query",
+                "source_categories": []
+              },
+              {
+                "kind": "news",
+                "title": "10月9日主力资金流向日报",
+                "summary": "-133.40 石油石化 -0.20 -1.05 - - - 个股方面，全天资金净流入的个股共有2232只，净流入在1000万元以上的有644只，其中，净流入资金超亿元的有93只，净流入资金最多的是宁德时代，今日上涨3.84%，全天资金净流入25.52亿元，其次是天赐材料、紫金矿业等",
+                "published_at": "2026-10-09T16:57:00+08:00",
+                "publisher": "证券时报网",
+                "provider": "eastmoney_news",
+                "url": "http://stock.eastmoney.com/a/202610093891304351.html",
+                "matched_in": "summary",
+                "source_categories": []
+              },
+              {
+                "kind": "news",
+                "title": "四点半观市 | 沪指V形反转收涨0.05% 影视传媒板块掀涨停潮",
+                "summary": "【资金风向标】 宁德时代获资金净流入26.10亿元 Choice数据显示，10月9日，资金净流入额排名前十的个股依次是宁德时代、天赐材料、紫金矿业、东岳硅材、金健米业、赤峰黄金、中文在线、洛阳钼业、比亚迪、振华股份。其中，宁德时代获净流入26.10亿元。",
+                "published_at": "2026-10-09T16:36:46+08:00",
+                "publisher": "上海证券报·中国证券网",
+                "provider": "eastmoney_news",
+                "url": "http://stock.eastmoney.com/a/202610093891299440.html",
+                "matched_in": "summary",
+                "source_categories": []
+              },
+              {
+                "kind": "news",
+                "title": "券商9月金股最高上涨22%！10月金股重磅出炉",
+                "summary": "此外，中际旭创被6家券商推荐，兖矿能源、紫金矿业、建设银行等被4家券商推荐。 数据来源：Choice智能金融终端 10月投资展望 东方财富证券：我们认为A股节前消化部分风险因素，优质资产性价比逐步显现，假期海外因素整体偏正面，建议积极挖掘投资机会，精选结构。",
+                "published_at": "2026-10-09T16:15:00+08:00",
+                "publisher": "东方财富Choice数据",
+                "provider": "eastmoney_news",
+                "url": "http://finance.eastmoney.com/a/202610093891274697.html",
+                "matched_in": "summary",
+                "source_categories": []
+              },
+              {
+                "kind": "news",
+                "title": "A股又一赛道爆发！芒果超媒尾盘20%涨停！新华传媒9连板！",
+                "summary": "个股方面，宁德时代、天赐材料均获得超17亿元主力资金净流入，紫金矿业、金健米业、九阳股份等也获得超10亿元净流入，东岳硅材、比亚迪、芒果超媒、中文在线等亦获得超6亿元净流入。 娱乐传媒概念股爆发，数字媒体概念午后开盘集体快速拉升。",
+                "published_at": "2026-10-09T16:08:57+08:00",
+                "publisher": "证券时报·e公司",
+                "provider": "eastmoney_news",
+                "url": "http://finance.eastmoney.com/a/202610093891265683.html",
+                "matched_in": "summary",
+                "source_categories": []
+              },
+              {
+                "kind": "news",
+                "title": "尾盘异动！300413，直线20%涨停！",
+                "summary": "宁德时代、天赐材料均获得超17亿元主力资金净流入，紫金矿业、金健米业、九阳股份等也获得超10亿元净流入，东岳硅材、比亚迪、芒果超媒、中文在线等亦获得超亿元净流入。",
+                "published_at": "2026-10-09T15:46:25+08:00",
+                "publisher": "证券时报",
+                "provider": "eastmoney_news",
+                "url": "http://finance.eastmoney.com/a/202610093891248671.html",
+                "matched_in": "summary",
+                "source_categories": []
+              },
+              {
+                "kind": "news",
+                "title": "资金风向标 | 宁德时代获资金净流入26.10亿元",
+                "summary": "Choice数据显示，10月9日，资金净流入额排名前十的个股依次是宁德时代、天赐材料、紫金矿业、东岳硅材、金健米业、赤峰黄金、中文在线、洛阳钼业、比亚迪、振华股份。其中，宁德时代获净流入26.10亿元。",
+                "published_at": "2026-10-09T15:27:00+08:00",
+                "publisher": "上海证券报·中国证券网",
+                "provider": "eastmoney_news",
+                "url": "http://finance.eastmoney.com/a/202610093891235195.html",
+                "matched_in": "summary",
+                "source_categories": []
+              },
+              {
+                "kind": "news",
+                "title": "机会速递 | 马士基上调紧急燃油附加费至20%，节后运价企稳预期升温；现货黄金重返4200美元，央行购金提供支撑；东岳集团附属东岳硅材净利预增超190倍，小米澎程上市单月锁单破7万辆",
+                "summary": "相关概念股：赤峰黄金(06693)、紫金黄金国际(02259)、山东黄金(01787)、招金矿业(01818)、紫金矿业(02899)等。",
+                "published_at": "2026-10-09T15:03:53+08:00",
+                "publisher": "哈富证券",
+                "provider": "eastmoney_news",
+                "url": "http://hk.eastmoney.com/a/202610093891228182.html",
+                "matched_in": "summary",
+                "source_categories": []
+              },
+              {
+                "kind": "news",
+                "title": "美联储放鸽，黄金股集体大涨！机构：关注贵金属板块的高配置价值",
+                "summary": "山金国际、赤峰黄金涨超7%，中金黄金涨超6%，紫金矿业、湖南黄金、洛阳钼业多股拉升，有色矿业ETF招商（159690）标的指数拉升涨2.77%。 板块内部多个方向共振，截至发稿，现货黄金盘中拉涨超1%，报4193美元/盎司；LME铜涨幅扩大至1%，报14461.5美元/吨。",
+                "published_at": "2026-10-09T14:57:49+08:00",
+                "publisher": "21世纪经济报道",
+                "provider": "eastmoney_news",
+                "url": "http://stock.eastmoney.com/a/202610093891225797.html",
+                "matched_in": "summary",
+                "source_categories": []
+              },
+              {
+                "kind": "news",
+                "title": "贵金属概念盘中走强，央行连续23个月增持黄金|异动情报",
+                "summary": "10月9日，贵金属盘中上涨3.31%，相关成分股中，西部黄金（601069）上涨6.59%，山金国际（000975）上涨5.10%，中金黄金（600489）上涨4.89%，赤峰黄金（600988）上涨4.15%，紫金矿业（601899）上涨3.75%。",
+                "published_at": "2026-10-09T14:54:48+08:00",
+                "publisher": "21世纪经济报道",
+                "provider": "eastmoney_news",
+                "url": "http://finance.eastmoney.com/a/202610093891224346.html",
+                "matched_in": "summary",
+                "source_categories": []
+              },
+              {
+                "kind": "news",
+                "title": "有色金属多空胶着，如何布局更为稳健？有色ETF景顺(560290)全面布局，横跨四类有色资产",
+                "summary": "前十大权重股合计占比约55.63%，聚焦紫金矿业、洛阳钼业、北方稀土、中金黄金、赤峰黄金等矿业企业，覆盖铜、锂、稀土、钴、铝等工业金属及黄金、白银等贵金属。（数据来源：Wind 截至：2025.12.31） Q3：与其他有色主题产品有哪些差异？",
+                "published_at": "2026-10-09T14:51:15+08:00",
+                "publisher": "界面新闻",
+                "provider": "eastmoney_news",
+                "url": "http://stock.eastmoney.com/a/202610093891222280.html",
+                "matched_in": "summary",
+                "source_categories": []
+              },
+              {
+                "kind": "news",
+                "title": "金铜大涨！现货黄金站上4200美元，有色板块冲高！紫金矿业涨超5%，西部黄金涨停，有色ETF汇添富(159652)标的指数大涨近3%",
+                "summary": "10月9日午后，黄金强势拉升，COMEX黄金升破4200美元/盎司，A股亦强势反攻，有色ETF汇添富(159652)标的指数（中证细分有色金属产业主题指数）强势上涨2.77%，成分股中，西部黄金涨停，赤峰黄金涨超7%，中金黄金涨超6%，紫金矿业、湖南黄金涨超5%，洛阳钼业涨超3%，",
+                "published_at": "2026-10-09T14:51:06+08:00",
+                "publisher": "界面新闻",
+                "provider": "eastmoney_news",
+                "url": "http://stock.eastmoney.com/a/202610093891222434.html",
+                "matched_in": "title",
+                "source_categories": []
+              },
+              {
+                "kind": "news",
+                "title": "全线飘红！黄金概念震荡反弹，西部黄金强势涨停",
+                "summary": "西部黄金（601069.SH）涨停，中金黄金（600489.SH）、山金国际、赤峰黄金、紫金矿业、四川黄金等个股跟涨。 消息面上，美伊冲突出现边际缓和信号。",
+                "published_at": "2026-10-09T14:37:55+08:00",
+                "publisher": "21世纪经济报道",
+                "provider": "eastmoney_news",
+                "url": "http://finance.eastmoney.com/a/202610093891210468.html",
+                "matched_in": "summary",
+                "source_categories": []
+              },
+              {
+                "kind": "news",
+                "title": "【异动解读】现货黄金、LME铜齐涨，有色矿业ETF招商(159690)标的指数午后涨近3%！",
+                "summary": "山金国际、赤峰黄金涨超7%，中金黄金涨超6%，紫金矿业、湖南黄金、洛阳钼业多股拉升，有色矿业ETF招商（159690）标的指数拉升涨2.78%。 板块内部多个方向共振，截至发文，现货黄金盘中拉涨超1%，报4193美元/盎司；LME铜涨幅扩大至1%，报14461.5美元/吨。",
+                "published_at": "2026-10-09T14:35:27+08:00",
+                "publisher": "界面新闻",
+                "provider": "eastmoney_news",
+                "url": "http://stock.eastmoney.com/a/202610093891215869.html",
+                "matched_in": "summary",
+                "source_categories": []
+              },
+              {
+                "kind": "news",
+                "title": "有色ETF鹏华(159880)标的指数涨2.40%、工业有色ETF鹏华(159162)标的指数涨近2%，黄金长期逻辑未变+AI金属共振有色板块",
+                "summary": "数据显示，截至2026年9月30日，国证有色金属行业指数(399395)前十大权重股分别为紫金矿业、洛阳钼业、北方稀土、中国铝业、西部矿业、中金黄金、赤峰黄金、云铝股份、华友钴业、中钨高新，前十大权重股合计占比47.35%。",
+                "published_at": "2026-10-09T14:35:09+08:00",
+                "publisher": "界面新闻",
+                "provider": "eastmoney_news",
+                "url": "http://stock.eastmoney.com/a/202610093891209094.html",
+                "matched_in": "summary",
+                "source_categories": []
+              },
+              {
+                "kind": "news",
+                "title": "主力资金监控：电子板块净流出超168亿",
+                "summary": "个股方面，宁德时代资金净买入24.59亿元位居首位，天赐材料、紫金矿业、东岳硅材主力资金净流入居前；新易盛遭净卖出10.39亿元位居首位，中际旭创、东山精密、风华高科主力资金净流出额居前。",
+                "published_at": "2026-10-09T14:29:51+08:00",
+                "publisher": "财联社",
+                "provider": "eastmoney_news",
+                "url": "http://finance.eastmoney.com/a/202610093891196889.html",
+                "matched_in": "summary",
+                "source_categories": []
+              },
+              {
+                "kind": "news",
+                "title": "黄金长期逻辑未变+AI金属共振有色板块，有色ETF鹏华涨超2%",
+                "summary": "数据显示，截至2026年9月30日，国证有色金属行业指数(399395)前十大权重股分别为紫金矿业、洛阳钼业、北方稀土、中国铝业、西部矿业、中金黄金、赤峰黄金、云铝股份、华友钴业、中钨高新，前十大权重股合计占比47.35%。",
+                "published_at": "2026-10-09T14:22:11+08:00",
+                "publisher": "东方财富证券",
+                "provider": "eastmoney_news",
+                "url": "http://finance.eastmoney.com/a/202610093891183770.html",
+                "matched_in": "summary",
+                "source_categories": []
+              },
+              {
+                "kind": "news",
+                "title": "工业有色ETF易方达(159032)跟踪指数中证工业有色金属主题指数上涨1.93%，跟踪指数已处近1年估值低位",
+                "summary": "截至2026年10月9日 14:06，中证工业有色金属主题指数(H11059)强势上涨1.93%，成分股中金黄金上涨6.56%，紫金矿业上涨5.48%，兴业银锡上涨4.56%，金诚信，洛阳钼业等个股跟涨。",
+                "published_at": "2026-10-09T14:16:15+08:00",
+                "publisher": "界面新闻",
+                "provider": "eastmoney_news",
+                "url": "http://stock.eastmoney.com/a/202610093891186213.html",
+                "matched_in": "summary",
+                "source_categories": []
+              },
+              {
+                "kind": "news",
+                "title": "有色ETF富国(159168)跟踪指数中证工业有色金属主题指数上涨1.93%，跟踪指数已处近1年估值低位",
+                "summary": "截至2026年10月9日 14:06，中证工业有色金属主题指数(H11059)强势上涨1.93%，成分股中金黄金上涨6.56%，紫金矿业上涨5.48%，兴业银锡上涨4.56%，金诚信，洛阳钼业等个股跟涨。",
+                "published_at": "2026-10-09T14:15:58+08:00",
+                "publisher": "界面新闻",
+                "provider": "eastmoney_news",
+                "url": "http://stock.eastmoney.com/a/202610093891185756.html",
+                "matched_in": "summary",
+                "source_categories": []
+              },
+              {
+                "kind": "news",
+                "title": "深“V”，翻红",
+                "summary": "黄金概念震荡反弹，西部黄金涨停，中金黄金、山金国际、赤峰黄金、紫金矿业、四川黄金跟涨。 乳业奶粉概念震荡反弹，妙可蓝多涨停，骑士乳业、阳光乳业、一鸣食品、新乳业、熊猫乳品、光明乳业等跟涨。",
+                "published_at": "2026-10-09T14:13:58+08:00",
+                "publisher": "大河财立方",
+                "provider": "eastmoney_news",
+                "url": "http://stock.eastmoney.com/a/202610093891182280.html",
+                "matched_in": "summary",
+                "source_categories": []
+              },
+              {
+                "kind": "news",
+                "title": "有色金属ETF天弘（159157）标的指数逆市涨超1%，获申购300万份为深市同标的第一",
+                "summary": "成分股中，中金黄金、紫金矿业涨超5%，兴业银锡、金诚信、洛阳钼业等多股跟涨。 有色金属ETF天弘（159157）最近30个交易日累计获资金净流入1.09亿元。截至2026年10月8日，该基金最新规模为61.46亿元，为深市同标的第一。",
+                "published_at": "2026-10-09T14:10:44+08:00",
+                "publisher": "每日经济新闻",
+                "provider": "eastmoney_news",
+                "url": "http://stock.eastmoney.com/a/202610093891187850.html",
+                "matched_in": "summary",
+                "source_categories": []
+              },
+              {
+                "kind": "news",
+                "title": "有色午后强势拉升！西部黄金涨停，有色ETF华宝（159876）标的指数冲高逾2.5%",
+                "summary": "此外，有研新材涨超7%，紫金矿业、华峰铝业涨逾4%，洛阳钼业等个股大幅跟涨。",
+                "published_at": "2026-10-09T14:03:55+08:00",
+                "publisher": "每日经济新闻",
+                "provider": "eastmoney_news",
+                "url": "http://stock.eastmoney.com/a/202610093891144150.html",
+                "matched_in": "summary",
+                "source_categories": []
+              },
+              {
+                "kind": "news",
+                "title": "国际金价飙升、贵金属概念领涨有色板块，南方基金旗下有色金属ETF南方(512400)标的指数强势涨超2%",
+                "summary": "有色金属ETF南方(512400)紧密跟踪中证申万有色金属指数，指数前三大权重股分别为紫金矿业、洛阳钼业、北方稀土，场外联接(A：004432；C：004433)。",
+                "published_at": "2026-10-09T14:00:36+08:00",
+                "publisher": "界面新闻",
+                "provider": "eastmoney_news",
+                "url": "http://stock.eastmoney.com/a/202610093891192197.html",
+                "matched_in": "summary",
+                "source_categories": []
+              },
+              {
+                "kind": "news",
+                "title": "午后大反攻！抄底资金进场！券商股、黄金股集体异动",
+                "summary": "西部黄金涨停，中金黄金、山金国际、赤峰黄金、紫金矿业、四川黄金跟涨。此外，白酒、农业、商业连锁、食品饮料、有色等板块均大幅拉升。 值得注意的是，今日上午，多只宽基ETF的成交量显著放大。",
+                "published_at": "2026-10-09T13:52:55+08:00",
+                "publisher": "券商中国",
+                "provider": "eastmoney_news",
+                "url": "http://finance.eastmoney.com/a/202610093891114958.html",
+                "matched_in": "summary",
+                "source_categories": []
+              },
+              {
+                "kind": "news",
+                "title": "三大指数探底回升，上证50ETF华夏（510050）盘中翻红，持仓股紫金矿业领涨4.80%",
+                "summary": "截至13:30，上证50ETF华夏（510050）成交额16.75亿元，稳居同类第一，成分股涨跌互现，紫金矿业领涨4.80%，洛阳钼业上涨3.49%，华泰证券上涨2.27%，金山办公上涨2.20%，中信证券上涨2.13%；生益科技领跌6.64%，赛力斯下跌4.84%，药明康德下跌3.60%",
+                "published_at": "2026-10-09T13:41:08+08:00",
+                "publisher": "每日经济新闻",
+                "provider": "eastmoney_news",
+                "url": "http://stock.eastmoney.com/a/202610093891101131.html",
+                "matched_in": "title",
+                "source_categories": []
+              },
+              {
+                "kind": "news",
+                "title": "有色ETF易方达(560470)跟踪指数已处近1年估值低位",
+                "summary": "数据显示，截至2026年9月30日，中证细分有色金属产业主题指数(000811)前十大权重股分别为紫金矿业、洛阳钼业、北方稀土、中国铝业、赤峰黄金、中金黄金、西部矿业、云铝股份、华友钴业、山东黄金，前十大权重股合计占比49.51%。",
+                "published_at": "2026-10-09T13:28:14+08:00",
+                "publisher": "界面新闻",
+                "provider": "eastmoney_news",
+                "url": "http://stock.eastmoney.com/a/202610093891103097.html",
+                "matched_in": "summary",
+                "source_categories": []
+              },
+              {
+                "kind": "news",
+                "title": "中证工业有色金属指数逆市上行，低估值下如何把握板块机遇？",
+                "summary": "中证工业有色金属主题指数逆市上涨1.06%，成分股涨跌互现，中金黄金领涨5.87%，紫金矿业上涨4.09%，金诚信上涨3.58%，兴业银锡上涨3.26%，洛阳钼业上涨3.19%；东阳光领跌4.91%，中钨高新下跌3.53%，厦门钨业下跌0.93%，锡业股份下跌0.90%，南山铝业下跌",
+                "published_at": "2026-10-09T13:22:19+08:00",
+                "publisher": "每日经济新闻",
+                "provider": "eastmoney_news",
+                "url": "http://stock.eastmoney.com/a/202610093891087279.html",
+                "matched_in": "summary",
+                "source_categories": []
+              },
+              {
+                "kind": "news",
+                "title": "美伊释放会谈利好，金价收复4200美元整数关口，黄金股ETF华夏（159562）持仓股西部黄金领涨6.59%",
+                "summary": "截至13:10，SGE黄金9999价格涨1.38%，黄金—沪深港板块强势上涨，黄金股ETF华夏（159562）盘中表现强势，成交额2.03亿元，成分股涨跌互现，西部黄金领涨6.59%，紫金黄金国际上涨6.02%，赤峰黄金上涨5.61%，山金国际上涨5.47%，紫金矿业上涨4.99%",
+                "published_at": "2026-10-09T13:20:20+08:00",
+                "publisher": "每日经济新闻",
+                "provider": "eastmoney_news",
+                "url": "http://stock.eastmoney.com/a/202610093891087360.html",
+                "matched_in": "summary",
+                "source_categories": []
+              },
+              {
+                "kind": "news",
+                "title": "黄金概念震荡反弹 西部黄金涨停",
+                "summary": "午后黄金概念震荡反弹，西部黄金涨停，中金黄金、山金国际、赤峰黄金、紫金矿业、四川黄金跟涨。消息面上，现货黄金日内扩大涨幅至1.2%，站上4180美元/盎司。",
+                "published_at": "2026-10-09T13:15:18+08:00",
+                "publisher": "东方财富Choice数据",
+                "provider": "eastmoney_news",
+                "url": "http://finance.eastmoney.com/a/202610093891073994.html",
+                "matched_in": "summary",
+                "source_categories": []
+              },
+              {
+                "kind": "news",
+                "title": "黄金股逆势大涨，“金价放大器”黄金股ETF华安(159321)标的指数冲高涨近3%",
+                "summary": "相关产品： “金价放大器”黄金股ETF华安(159321)聚焦黄金产业链龙头个股，前十大权重包含山东黄金、紫金矿业、赤峰黄金等国内头部金矿企业，合计占比超61%，黄金业务纯度显著高于泛有色指数。指数具备\"放大器\"效应，金价上行周期板块盈利弹性突出。",
+                "published_at": "2026-10-09T12:06:34+08:00",
+                "publisher": "界面新闻",
+                "provider": "eastmoney_news",
+                "url": "http://stock.eastmoney.com/a/202610093891105230.html",
+                "matched_in": "summary",
+                "source_categories": []
+              },
+              {
+                "kind": "news",
+                "title": "聚焦优质龙头企业的中证A500ETF泰康(560510)获资金逆势布局，机构：A股10月或迎修复行情",
+                "summary": "数据显示，截至2026年9月30日，中证A500指数(000510)前十大权重股分别为中际旭创、贵州茅台、宁德时代、中国平安、新易盛、招商银行、紫金矿业、药明康德、美的集团、长江电力，前十大权重股合计占比20.29%。",
+                "published_at": "2026-10-09T11:59:09+08:00",
+                "publisher": "界面新闻",
+                "provider": "eastmoney_news",
+                "url": "http://stock.eastmoney.com/a/202610093891106066.html",
+                "matched_in": "summary",
+                "source_categories": []
+              },
+              {
+                "kind": "news",
+                "title": "制造业PMI时隔数月重返扩张区间，现在适合买有色ETF吗？有色ETF景顺(560290)聚焦有色金属价值重估机会",
+                "summary": "数据显示，截至2026年8月31日，中证有色金属矿业主题指数(931892)前十大权重股分别为紫金矿业、洛阳钼业、北方稀土、赤峰黄金、中国铝业、中金黄金、山东黄金、西部矿业、赣锋锂业、华友钴业，前十大权重股合计占比50.4%。",
+                "published_at": "2026-10-09T11:58:16+08:00",
+                "publisher": "界面新闻",
+                "provider": "eastmoney_news",
+                "url": "http://stock.eastmoney.com/a/202610093891109163.html",
+                "matched_in": "summary",
+                "source_categories": []
+              },
+              {
+                "kind": "news",
+                "title": "黄金中长期逻辑稳固，黄金股ETF国泰（517400）标的指数涨超1.7%，近10日“吸金”逾1亿元",
+                "summary": "指数前十大成分股为紫金矿业、中金黄金、赤峰黄金、山东黄金、山金国际、湖南黄金、招金矿业、紫金矿业、铜陵有色、中国黄金国际。相较于直接投资实物黄金或黄金现货ETF，黄金股ETF覆盖了黄金全产业链，在黄金价格上行周期中，相关企业的盈利弹性有望放大，或具备更高的业绩放大属性。",
+                "published_at": "2026-10-09T11:43:41+08:00",
+                "publisher": "每日经济新闻",
+                "provider": "eastmoney_news",
+                "url": "http://stock.eastmoney.com/a/202610093891119278.html",
+                "matched_in": "summary",
+                "source_categories": []
+              },
+              {
+                "kind": "news",
+                "title": "有色ETF泰康(159163)标的指数一度拉升反弹涨超1%，机构研判工业金属供需逻辑仍有支撑，配置价值凸显",
+                "summary": "数据显示，截至2026年9月30日，中证有色金属矿业主题指数(931892)前十大权重股分别为紫金矿业、洛阳钼业、北方稀土、中国铝业、赤峰黄金、中金黄金、西部矿业、云铝股份、华友钴业、山东黄金，前十大权重股合计占比51.01%。",
+                "published_at": "2026-10-09T11:30:06+08:00",
+                "publisher": "界面新闻",
+                "provider": "eastmoney_news",
+                "url": "http://stock.eastmoney.com/a/202610093891127533.html",
+                "matched_in": "summary",
+                "source_categories": []
+              },
+              {
+                "kind": "news",
+                "title": "美债收益率冲高回落！机构认为黄金有望开启新一轮上涨趋势，黄金股ETF永赢(517520)全市场同类规模最大，流动性佳",
+                "summary": "黄金股ETF永赢(517520)跟踪中证沪深港黄金产业股票指数，指数前十大成分股为紫金矿业（A+H）、赤峰黄金、中金黄金、山东黄金、山金国际、中国黄金国际、招金矿业、湖南黄金、紫金黄金国际、万国黄金集团，合计占比64.11%（涉及个股仅作为指数权重股举例，不构成投资建议）。",
+                "published_at": "2026-10-09T11:15:44+08:00",
+                "publisher": "21世纪经济报道",
+                "provider": "eastmoney_news",
+                "url": "http://stock.eastmoney.com/a/202610093891008662.html",
+                "matched_in": "summary",
+                "source_categories": []
+              },
+              {
+                "kind": "news",
+                "title": "黄金产业中长期配置价值凸显，黄金股ETF国泰（517400）近10日资金净流入超1亿元",
+                "summary": "作为跟踪中证沪深港黄金产业股票指数的ETF，其前十大成分股分别为：紫金矿业、中金黄金、赤峰黄金、山东黄金、山金国际、湖南黄金、招金矿业、紫金矿业、铜陵有色、中国黄金国际。这些成分股覆盖了黄金产业的核心资产，为投资者提供了一键配置黄金产业链龙头企业的便捷工具。",
+                "published_at": "2026-10-09T10:40:45+08:00",
+                "publisher": "每日经济新闻",
+                "provider": "eastmoney_news",
+                "url": "http://stock.eastmoney.com/a/202610093891201748.html",
+                "matched_in": "summary",
+                "source_categories": []
+              },
+              {
+                "kind": "news",
+                "title": "中证A500ETF国泰（159338）连续4日“吸金”近5亿元，市场震荡资金抢筹核心大宽基",
+                "summary": "作为一键布局A股核心资产的便捷工具，中证A500ETF国泰紧密跟踪中证A500指数，前十大成分股涵盖了中际旭创、宁德时代、新易盛、贵州茅台、兆易创新、中国平安、寒武纪、招商银行、紫金矿业、北方华创等各行业龙头。",
+                "published_at": "2026-10-09T10:25:08+08:00",
+                "publisher": "每日经济新闻",
+                "provider": "eastmoney_news",
+                "url": "http://stock.eastmoney.com/a/202610093891203087.html",
+                "matched_in": "summary",
+                "source_categories": []
+              },
+              {
+                "kind": "news",
+                "title": "沪深300指数下跌1.09%，沪深300ETF平安(510390)交投活跃",
+                "summary": "数据显示，截至2026年9月30日，沪深300指数(000300)前十大权重股分别为中际旭创、贵州茅台、宁德时代、中国平安、新易盛、招商银行、紫金矿业、药明康德、美的集团、长江电力，前十大权重股合计占比23.12%。",
+                "published_at": "2026-10-09T10:12:05+08:00",
+                "publisher": "界面新闻",
+                "provider": "eastmoney_news",
+                "url": "http://stock.eastmoney.com/a/202610093891205097.html",
+                "matched_in": "summary",
+                "source_categories": []
+              },
+              {
+                "kind": "news",
+                "title": "上证180指数下跌0.72%，上证180ETF平安(530280)盘中蓄势",
+                "summary": "数据显示，截至2026年9月30日，上证180指数(000010)前十大权重股分别为药明康德、贵州茅台、紫金矿业、中国平安、寒武纪、长江电力、恒瑞医药、招商银行、中国船舶、中微公司，前十大权重股合计占比25.43%。",
+                "published_at": "2026-10-09T10:11:56+08:00",
+                "publisher": "界面新闻",
+                "provider": "eastmoney_news",
+                "url": "http://stock.eastmoney.com/a/202610093891205491.html",
+                "matched_in": "summary",
+                "source_categories": []
+              },
+              {
+                "kind": "news",
+                "title": "港股速报 | 港股小幅高开 CPO龙头跌破招股价",
+                "summary": "黄金股多数上涨，紫金矿业涨超2%。半导体板块部分下跌，天数智芯跌超3%。汽车股活跃，比亚迪股份涨超2%。 后市展望： 浙商国际认为，港股基本面正在筑底企稳，但内需和融资需求仍待改善。",
+                "published_at": "2026-10-09T10:07:31+08:00",
+                "publisher": "每日经济新闻",
+                "provider": "eastmoney_news",
+                "url": "http://finance.eastmoney.com/a/202610093890791036.html",
+                "matched_in": "summary",
+                "source_categories": []
+              },
+              {
+                "kind": "news",
+                "title": "央行连续23个月增持黄金！高弹性黄金股ETF永赢(517520)跟踪指数早盘涨超2%",
+                "summary": "成分股山金国际上涨4.56%，赤峰黄金上涨3.35%，中金黄金上涨2.75%，招金矿业、万国黄金集团、紫金矿业、山东黄金、菜百股份等个股跟涨。",
+                "published_at": "2026-10-09T10:05:01+08:00",
+                "publisher": "界面新闻",
+                "provider": "eastmoney_news",
+                "url": "http://stock.eastmoney.com/a/202610093890743061.html",
+                "matched_in": "summary",
+                "source_categories": []
+              },
+              {
+                "kind": "news",
+                "title": "央行连续23个月增持黄金！黄金股ETF永赢早盘涨近2%，全球黄金ETF三季度净流入创纪录",
+                "summary": "成分股山金国际上涨4.56%，赤峰黄金上涨3.35%，中金黄金上涨2.75%，招金矿业、万国黄金集团、紫金矿业、山东黄金、菜百股份等个股跟涨。",
+                "published_at": "2026-10-09T09:39:49+08:00",
+                "publisher": "东方财富证券",
+                "provider": "eastmoney_news",
+                "url": "http://finance.eastmoney.com/a/202610093890621784.html",
+                "matched_in": "summary",
+                "source_categories": []
+              },
+              {
+                "kind": "news",
+                "title": "4只个股大宗交易超5000万元",
+                "summary": "11.99 89.25 21.00 1874.25 1 89.25 0.00 300750 宁德时代 -1.50 286.75 5.50 1577.13 3 286.75 0.00 002826 易明医药 -1.14 17.39 77.00 1339.03 1 17.39 0.00 601899",
+                "published_at": "2026-10-08T22:52:00+08:00",
+                "publisher": "证券时报网",
+                "provider": "eastmoney_news",
+                "url": "http://finance.eastmoney.com/a/202610083889998262.html",
+                "matched_in": "upstream_query",
+                "source_categories": []
+              },
+              {
+                "kind": "news",
+                "title": "藏格矿业年内已获巨龙铜业分红46.17亿元",
+                "summary": "该矿山由紫金矿业旗下平台控股运营，藏格矿业作为兼具财务与产业属性的参股股东，依托固定持股比例分享矿山经营收益。 藏格矿业主业聚焦氯化钾、碳酸锂，由于锂盐价格近年波动明显，造成主业盈利起伏较大。而巨龙铜业持续兑现的投资收益，有效平滑了藏格矿业的业务周期波动。",
+                "published_at": "2026-10-08T22:26:21+08:00",
+                "publisher": "中国经营报",
+                "provider": "eastmoney_news",
+                "url": "http://finance.eastmoney.com/a/202610083889970294.html",
+                "matched_in": "summary",
+                "source_categories": []
+              },
+              {
+                "kind": "news",
+                "title": "紫金矿业现3笔大宗交易 总成交金额1301.98万元",
+                "summary": "紫金矿业10月8日大宗交易平台共发生3笔成交，合计成交量44.33万股，成交金额1301.98万元。成交价格均为29.37元。 进一步统计，近3个月内该股累计发生29笔大宗交易，合计成交金额为6.51亿元。",
+                "published_at": "2026-10-08T20:37:00+08:00",
+                "publisher": "证券时报网",
+                "provider": "eastmoney_news",
+                "url": "http://finance.eastmoney.com/a/202610083889866969.html",
+                "matched_in": "title",
+                "source_categories": []
+              },
+              {
+                "kind": "news",
+                "title": "药明康德领衔！券商10月金股出炉 这些股最受青睐",
+                "summary": "此外，兖矿能源、紫金矿业、建设银行、中国巨石、长白山、桐昆股份、海信视像及港股汇聚科技，均获3家券商推荐，上述个股除了具备电子布概念的中国巨石以及数据中心服务器相关业务的汇聚科技外，均属传统行业。",
+                "published_at": "2026-10-08T18:03:50+08:00",
+                "publisher": "东方财富研究中心",
+                "provider": "eastmoney_news",
+                "url": "http://finance.eastmoney.com/a/202610083889745364.html",
+                "matched_in": "summary",
+                "source_categories": []
+              },
+              {
+                "kind": "news",
+                "title": "“逆风期”中离任！广发基金又一“价值派”资深基金经理辞职",
+                "summary": "根据基金2026年中报，广发逆向策略混合A的前十大重仓股仓位合计达58.00%，第一大重仓股为美的集团，持仓占比9.07%，紫金矿业以8.13%的占比位居第二。",
+                "published_at": "2026-10-08T17:36:00+08:00",
+                "publisher": "南方都市报",
+                "provider": "eastmoney_news",
+                "url": "http://stock.eastmoney.com/a/202610083889896130.html",
+                "matched_in": "summary",
+                "source_categories": []
+              },
+              {
+                "kind": "news",
+                "title": "大宗交易：紫金矿业成交1301.98万元（10-8）",
+                "summary": "2026年10月8日，紫金矿业发生3笔大宗交易，共成交44.33万股，成交金额1301.98万元。 3笔大宗交易成交均价29.37元，较该股当日收盘价29.37元持平。 免责声明：本文基于AI生产，仅供参考，不构成任何投资建议，据此操作风险自担。",
+                "published_at": "2026-10-08T17:22:43+08:00",
+                "publisher": "东方财富Choice数据",
+                "provider": "eastmoney_news",
+                "url": "http://stock.eastmoney.com/a/202610083889706082.html",
+                "matched_in": "title",
+                "source_categories": []
+              },
+              {
+                "kind": "news",
+                "title": "港股收盘 | 科技指数跌近3%创年内新低 煤炭和石油股逆势走强",
+                "summary": "美联储紧缩预期压制贵金属灵宝黄金跌超4% 截至收盘，灵宝黄金(03330.HK)跌4.01%、紫金矿业(02899.HK)跌3.34%、山东黄金(01787.HK)跌2.80%。",
+                "published_at": "2026-10-08T16:41:00+08:00",
+                "publisher": "财联社",
+                "provider": "eastmoney_news",
+                "url": "http://finance.eastmoney.com/a/202610083889687129.html",
+                "matched_in": "summary",
+                "source_categories": []
+              },
+              {
+                "kind": "news",
+                "title": "利润大增71.8%，有色金属矿采业领跑！有色ETF景顺(560290)成分股直指资源涨价核心资产",
+                "summary": "前十大权重股合计占比约55.63%，聚焦紫金矿业、洛阳钼业、北方稀土、中金黄金、赤峰黄金等矿业企业，覆盖铜、锂、稀土、钴、铝等工业金属及黄金、白银等贵金属。（数据来源：Wind 截至：2025.12.31） Q3：与其他有色主题产品有哪些差异？",
+                "published_at": "2026-10-08T15:03:13+08:00",
+                "publisher": "界面新闻",
+                "provider": "eastmoney_news",
+                "url": "http://stock.eastmoney.com/a/202610083889581924.html",
+                "matched_in": "summary",
+                "source_categories": []
+              },
+              {
+                "kind": "news",
+                "title": "黄金股板块逆势吸金，黄金股ETF国泰（517400）近30日“吸金”超8700万元",
+                "summary": "指数前十大成分股为紫金矿业、中金黄金、赤峰黄金、山东黄金、山金国际、湖南黄金、招金矿业、紫金矿业、铜陵有色、中国黄金国际。从估值水平来看，当前中证沪深港黄金产业股票指数PE为13.70，处于近1年20%分位（历史区间：11.69~30.25）。",
+                "published_at": "2026-10-08T14:57:38+08:00",
+                "publisher": "每日经济新闻",
+                "provider": "eastmoney_news",
+                "url": "http://stock.eastmoney.com/a/202610083889600360.html",
+                "matched_in": "summary",
+                "source_categories": []
+              },
+              {
+                "kind": "news",
+                "title": "沪深300ETF华安（515390）成交额盘中破亿元，已连续8日获得资金净流入",
+                "summary": "公开信息显示，沪深300ETF华安（515390）紧密跟踪沪深300指数，该指数涵盖了各行业龙头，其中前十大成分股包括中际旭创、宁德时代、新易盛、贵州茅台、兆易创新、中国平安、寒武纪、招商银行、紫金矿业、北方华创等，对整体市场表现具有较强的代表性。",
+                "published_at": "2026-10-08T13:57:34+08:00",
+                "publisher": "每日经济新闻",
+                "provider": "eastmoney_news",
+                "url": "http://stock.eastmoney.com/a/202610083889515686.html",
+                "matched_in": "summary",
+                "source_categories": []
+              },
+              {
+                "kind": "news",
+                "title": "9月全球黄金ETF流入超100亿美元，持有量创新高，黄金ETF华夏（518850）份额规模首超20亿份",
+                "summary": "截至13:35，SGE黄金9999价格跌1.52%，中证沪深港黄金产业股票指数跌1.58%，成分股灵宝黄金领跌3.65%，山东黄金跌2.86%，紫金矿业跌2.78%，中国黄金国际跌2.42%，山金国际、晓程科技等股纷纷回调。",
+                "published_at": "2026-10-08T13:44:46+08:00",
+                "publisher": "每日经济新闻",
+                "provider": "eastmoney_news",
+                "url": "http://stock.eastmoney.com/a/202610083889497471.html",
+                "matched_in": "summary",
+                "source_categories": []
+              },
+              {
+                "kind": "news",
+                "title": "沪深300指数上涨0.29%，沪深300ETF平安(510390)成分股智飞生物上涨6.88%",
+                "summary": "数据显示，截至2026年9月30日，沪深300指数(000300)前十大权重股分别为中际旭创、贵州茅台、宁德时代、中国平安、新易盛、招商银行、紫金矿业、药明康德、美的集团、长江电力，前十大权重股合计占比23.12%。",
+                "published_at": "2026-10-08T10:23:14+08:00",
+                "publisher": "界面新闻",
+                "provider": "eastmoney_news",
+                "url": "http://stock.eastmoney.com/a/202610083889350738.html",
+                "matched_in": "summary",
+                "source_categories": []
+              },
+              {
+                "kind": "news",
+                "title": "市场震荡资金抢筹大宽基，中证A500ETF国泰（159338）连续3日获资金净流入",
+                "summary": "此外，中证A500指数前十大成分股为中际旭创、宁德时代、新易盛、贵州茅台、兆易创新、中国平安、寒武纪、招商银行、紫金矿业、北方华创，汇聚了各细分领域的优质龙头企业，盈利韧性较强，能够较好地平抑单一行业周期波动带来的冲击。",
+                "published_at": "2026-10-08T09:30:14+08:00",
+                "publisher": "每日经济新闻",
+                "provider": "eastmoney_news",
+                "url": "http://stock.eastmoney.com/a/202610083889530645.html",
+                "matched_in": "summary",
+                "source_categories": []
+              },
+              {
+                "kind": "news",
+                "title": "港股假期偏弱 A股节后怎么走？",
+                "summary": "10月7日，3只个股均现回调，中芯国际跌1.06%、紫金矿业跌0.68%、洛阳钼业跌0.65%。",
+                "published_at": "2026-10-07T22:07:00+08:00",
+                "publisher": "证券日报",
+                "provider": "eastmoney_news",
+                "url": "http://stock.eastmoney.com/a/202610073888975753.html",
+                "matched_in": "summary",
+                "source_categories": []
+              },
+              {
+                "kind": "news",
+                "title": "年内累计已达46.17亿元！藏格矿业再收巨龙铜业现金分红",
+                "summary": "藏格矿业（000408.SZ）今年第四次收到巨龙铜业现金分红，后者这座国内最大超级铜矿山现由“矿茅”紫金矿业（601899.SH/2899.HK）主导开采。",
+                "published_at": "2026-10-07T21:52:00+08:00",
+                "publisher": "澎湃新闻",
+                "provider": "eastmoney_news",
+                "url": "http://finance.eastmoney.com/a/202610073888955698.html",
+                "matched_in": "summary",
+                "source_categories": []
+              },
+              {
+                "kind": "news",
+                "title": "花旗集团在紫金矿业的H股好仓比例下降0.29%至6.13%",
+                "summary": "（花旗集团）在紫金矿业的H股好仓（L）比例于9月30日从6.42%下降至6.13%。同时淡仓（S）比例从1.67%升至1.68%。",
+                "published_at": "2026-10-07T17:20:00+08:00",
+                "publisher": "南方财经网",
+                "provider": "eastmoney_news",
+                "url": "http://finance.eastmoney.com/a/202610073888903111.html",
+                "matched_in": "title",
+                "source_categories": []
+              },
+              {
+                "kind": "news",
+                "title": "聚焦四大行业 券商10月“金股”来了",
+                "summary": "此外，中国巨石、海信视像均获3家券商推荐，瑞芯微、海光信息、紫金矿业、天孚通信、宁波银行、建设银行等个股均获得2家及以上券商共同推荐。 数据来源：券商公开研报、Wind 9月金股涨幅榜出炉 医药股表现亮眼 9月市场震荡调整，券商金股分化显著。",
+                "published_at": "2026-10-07T12:16:00+08:00",
+                "publisher": "中国基金报",
+                "provider": "eastmoney_news",
+                "url": "http://finance.eastmoney.com/a/202610073888866361.html",
+                "matched_in": "summary",
+                "source_categories": []
+              },
+              {
+                "kind": "news",
+                "title": "抢先看！超170只获推荐 券商10月“金股”来了",
+                "summary": "海信视像、中国巨石均获得3家券商联合推荐，紫金矿业、恺英网络、海光信息、杰瑞股份、联想集团、中国宏桥等标的也出现在券商10月“金股”名单中，投资价值受到重视。 9月18日，联想集团盘中股价创出历史新高，此后股价震荡调整。",
+                "published_at": "2026-10-07T00:09:09+08:00",
+                "publisher": "中国证券报",
+                "provider": "eastmoney_news",
+                "url": "http://finance.eastmoney.com/a/202610063888791564.html",
+                "matched_in": "summary",
+                "source_categories": []
+              },
+              {
+                "kind": "news",
+                "title": "花旗集团在紫金矿业的H股好仓比例下降0.09%至6.42%",
+                "summary": "（花旗集团）在紫金矿业的H股好仓（L）比例于9月29日从6.51%下降至6.42%。同时淡仓（S）比例从2.08%降至1.67%。",
+                "published_at": "2026-10-06T17:48:00+08:00",
+                "publisher": "南方财经网",
+                "provider": "eastmoney_news",
+                "url": "http://hk.eastmoney.com/a/202610063888776277.html",
+                "matched_in": "title",
+                "source_categories": []
+              },
+              {
+                "kind": "news",
+                "title": "今天，全线收涨！",
+                "summary": "资源股方面，紫金矿业H股涨1.31%，中国铝业H股涨1.12%；多只汽车股小幅上涨，小鹏集团-W涨2.54%，零跑汽车涨2.22%。 国信证券认为，展望四季度，原油需求处于传统淡季，油价有交易回落的预期，这可能使得美债利率走平或阶段性回落。",
+                "published_at": "2026-10-06T17:35:21+08:00",
+                "publisher": "上海证券报",
+                "provider": "eastmoney_news",
+                "url": "http://hk.eastmoney.com/a/202610063888775927.html",
+                "matched_in": "summary",
+                "source_categories": []
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "raw_directory": "/Users/calm/dev/git_repo/ai-stock/stock-data/a-share-mcp/reports/raw/data-health-2026-10-11",
+  "targeted_rechecks": {
+    "mcp-hot-sectors-final.stdout": {
+      "status": "error",
+      "error": "data source timeout after 10.0s",
+      "data": []
+    },
+    "mcp-industry-members-final.stdout": {
+      "data": [
+        {
+          "updateDate": "2026-10-05",
+          "code": "sh.600059",
+          "code_name": "古越龙山",
+          "industry": "C15酒、饮料和精制茶制造业",
+          "industryClassification": "证监会行业分类"
+        },
+        {
+          "updateDate": "2026-10-05",
+          "code": "sh.600084",
+          "code_name": "*ST尼雅",
+          "industry": "C15酒、饮料和精制茶制造业",
+          "industryClassification": "证监会行业分类"
+        },
+        {
+          "updateDate": "2026-10-05",
+          "code": "sh.600132",
+          "code_name": "重庆啤酒",
+          "industry": "C15酒、饮料和精制茶制造业",
+          "industryClassification": "证监会行业分类"
+        },
+        {
+          "updateDate": "2026-10-05",
+          "code": "sh.600189",
+          "code_name": "泉阳泉",
+          "industry": "C15酒、饮料和精制茶制造业",
+          "industryClassification": "证监会行业分类"
+        },
+        {
+          "updateDate": "2026-10-05",
+          "code": "sh.600197",
+          "code_name": "伊力特",
+          "industry": "C15酒、饮料和精制茶制造业",
+          "industryClassification": "证监会行业分类"
+        },
+        {
+          "updateDate": "2026-10-05",
+          "code": "sh.600199",
+          "code_name": "金种子酒",
+          "industry": "C15酒、饮料和精制茶制造业",
+          "industryClassification": "证监会行业分类"
+        },
+        {
+          "updateDate": "2026-10-05",
+          "code": "sh.600238",
+          "code_name": "ST椰岛",
+          "industry": "C15酒、饮料和精制茶制造业",
+          "industryClassification": "证监会行业分类"
+        },
+        {
+          "updateDate": "2026-10-05",
+          "code": "sh.600300",
+          "code_name": "维维股份",
+          "industry": "C15酒、饮料和精制茶制造业",
+          "industryClassification": "证监会行业分类"
+        },
+        {
+          "updateDate": "2026-10-05",
+          "code": "sh.600519",
+          "code_name": "贵州茅台",
+          "industry": "C15酒、饮料和精制茶制造业",
+          "industryClassification": "证监会行业分类"
+        },
+        {
+          "updateDate": "2026-10-05",
+          "code": "sh.600543",
+          "code_name": "*ST莫高",
+          "industry": "C15酒、饮料和精制茶制造业",
+          "industryClassification": "证监会行业分类"
+        },
+        {
+          "updateDate": "2026-10-05",
+          "code": "sh.600559",
+          "code_name": "老白干酒",
+          "industry": "C15酒、饮料和精制茶制造业",
+          "industryClassification": "证监会行业分类"
+        },
+        {
+          "updateDate": "2026-10-05",
+          "code": "sh.600573",
+          "code_name": "惠泉啤酒",
+          "industry": "C15酒、饮料和精制茶制造业",
+          "industryClassification": "证监会行业分类"
+        },
+        {
+          "updateDate": "2026-10-05",
+          "code": "sh.600600",
+          "code_name": "青岛啤酒",
+          "industry": "C15酒、饮料和精制茶制造业",
+          "industryClassification": "证监会行业分类"
+        },
+        {
+          "updateDate": "2026-10-05",
+          "code": "sh.600616",
+          "code_name": "金枫酒业",
+          "industry": "C15酒、饮料和精制茶制造业",
+          "industryClassification": "证监会行业分类"
+        },
+        {
+          "updateDate": "2026-10-05",
+          "code": "sh.600702",
+          "code_name": "舍得酒业",
+          "industry": "C15酒、饮料和精制茶制造业",
+          "industryClassification": "证监会行业分类"
+        },
+        {
+          "updateDate": "2026-10-05",
+          "code": "sh.600779",
+          "code_name": "水井坊",
+          "industry": "C15酒、饮料和精制茶制造业",
+          "industryClassification": "证监会行业分类"
+        },
+        {
+          "updateDate": "2026-10-05",
+          "code": "sh.600809",
+          "code_name": "山西汾酒",
+          "industry": "C15酒、饮料和精制茶制造业",
+          "industryClassification": "证监会行业分类"
+        },
+        {
+          "updateDate": "2026-10-05",
+          "code": "sh.600962",
+          "code_name": "国投中鲁",
+          "industry": "C15酒、饮料和精制茶制造业",
+          "industryClassification": "证监会行业分类"
+        },
+        {
+          "updateDate": "2026-10-05",
+          "code": "sh.601579",
+          "code_name": "会稽山",
+          "industry": "C15酒、饮料和精制茶制造业",
+          "industryClassification": "证监会行业分类"
+        },
+        {
+          "updateDate": "2026-10-05",
+          "code": "sh.603156",
+          "code_name": "养元饮品",
+          "industry": "C15酒、饮料和精制茶制造业",
+          "industryClassification": "证监会行业分类"
+        },
+        {
+          "updateDate": "2026-10-05",
+          "code": "sh.603198",
+          "code_name": "迎驾贡酒",
+          "industry": "C15酒、饮料和精制茶制造业",
+          "industryClassification": "证监会行业分类"
+        },
+        {
+          "updateDate": "2026-10-05",
+          "code": "sh.603369",
+          "code_name": "今世缘",
+          "industry": "C15酒、饮料和精制茶制造业",
+          "industryClassification": "证监会行业分类"
+        },
+        {
+          "updateDate": "2026-10-05",
+          "code": "sh.603589",
+          "code_name": "口子窖",
+          "industry": "C15酒、饮料和精制茶制造业",
+          "industryClassification": "证监会行业分类"
+        },
+        {
+          "updateDate": "2026-10-05",
+          "code": "sh.603711",
+          "code_name": "香飘飘",
+          "industry": "C15酒、饮料和精制茶制造业",
+          "industryClassification": "证监会行业分类"
+        },
+        {
+          "updateDate": "2026-10-05",
+          "code": "sh.603779",
+          "code_name": "威龙股份",
+          "industry": "C15酒、饮料和精制茶制造业",
+          "industryClassification": "证监会行业分类"
+        },
+        {
+          "updateDate": "2026-10-05",
+          "code": "sh.603919",
+          "code_name": "金徽酒",
+          "industry": "C15酒、饮料和精制茶制造业",
+          "industryClassification": "证监会行业分类"
+        },
+        {
+          "updateDate": "2026-10-05",
+          "code": "sh.605198",
+          "code_name": "安德利",
+          "industry": "C15酒、饮料和精制茶制造业",
+          "industryClassification": "证监会行业分类"
+        },
+        {
+          "updateDate": "2026-10-05",
+          "code": "sh.605337",
+          "code_name": "李子园",
+          "industry": "C15酒、饮料和精制茶制造业",
+          "industryClassification": "证监会行业分类"
+        },
+        {
+          "updateDate": "2026-10-05",
+          "code": "sh.605388",
+          "code_name": "均瑶健康",
+          "industry": "C15酒、饮料和精制茶制造业",
+          "industryClassification": "证监会行业分类"
+        },
+        {
+          "updateDate": "2026-10-05",
+          "code": "sh.605499",
+          "code_name": "东鹏饮料",
+          "industry": "C15酒、饮料和精制茶制造业",
+          "industryClassification": "证监会行业分类"
+        },
+        {
+          "updateDate": "2026-10-05",
+          "code": "sz.000568",
+          "code_name": "泸州老窖",
+          "industry": "C15酒、饮料和精制茶制造业",
+          "industryClassification": "证监会行业分类"
+        },
+        {
+          "updateDate": "2026-10-05",
+          "code": "sz.000596",
+          "code_name": "古井贡酒",
+          "industry": "C15酒、饮料和精制茶制造业",
+          "industryClassification": "证监会行业分类"
+        },
+        {
+          "updateDate": "2026-10-05",
+          "code": "sz.000729",
+          "code_name": "燕京啤酒",
+          "industry": "C15酒、饮料和精制茶制造业",
+          "industryClassification": "证监会行业分类"
+        },
+        {
+          "updateDate": "2026-10-05",
+          "code": "sz.000752",
+          "code_name": "*ST西发",
+          "industry": "C15酒、饮料和精制茶制造业",
+          "industryClassification": "证监会行业分类"
+        },
+        {
+          "updateDate": "2026-10-05",
+          "code": "sz.000799",
+          "code_name": "酒鬼酒",
+          "industry": "C15酒、饮料和精制茶制造业",
+          "industryClassification": "证监会行业分类"
+        },
+        {
+          "updateDate": "2026-10-05",
+          "code": "sz.000848",
+          "code_name": "承德露露",
+          "industry": "C15酒、饮料和精制茶制造业",
+          "industryClassification": "证监会行业分类"
+        },
+        {
+          "updateDate": "2026-10-05",
+          "code": "sz.000858",
+          "code_name": "五粮液",
+          "industry": "C15酒、饮料和精制茶制造业",
+          "industryClassification": "证监会行业分类"
+        },
+        {
+          "updateDate": "2026-10-05",
+          "code": "sz.000860",
+          "code_name": "顺鑫农业",
+          "industry": "C15酒、饮料和精制茶制造业",
+          "industryClassification": "证监会行业分类"
+        },
+        {
+          "updateDate": "2026-10-05",
+          "code": "sz.000869",
+          "code_name": "张裕A",
+          "industry": "C15酒、饮料和精制茶制造业",
+          "industryClassification": "证监会行业分类"
+        },
+        {
+          "updateDate": "2026-10-05",
+          "code": "sz.000929",
+          "code_name": "兰州黄河",
+          "industry": "C15酒、饮料和精制茶制造业",
+          "industryClassification": "证监会行业分类"
+        },
+        {
+          "updateDate": "2026-10-05",
+          "code": "sz.000995",
+          "code_name": "皇台酒业",
+          "industry": "C15酒、饮料和精制茶制造业",
+          "industryClassification": "证监会行业分类"
+        },
+        {
+          "updateDate": "2026-10-05",
+          "code": "sz.001338",
+          "code_name": "永顺泰",
+          "industry": "C15酒、饮料和精制茶制造业",
+          "industryClassification": "证监会行业分类"
+        },
+        {
+          "updateDate": "2026-10-05",
+          "code": "sz.002304",
+          "code_name": "洋河股份",
+          "industry": "C15酒、饮料和精制茶制造业",
+          "industryClassification": "证监会行业分类"
+        },
+        {
+          "updateDate": "2026-10-05",
+          "code": "sz.002461",
+          "code_name": "珠江啤酒",
+          "industry": "C15酒、饮料和精制茶制造业",
+          "industryClassification": "证监会行业分类"
+        },
+        {
+          "updateDate": "2026-10-05",
+          "code": "sz.002568",
+          "code_name": "百润股份",
+          "industry": "C15酒、饮料和精制茶制造业",
+          "industryClassification": "证监会行业分类"
+        },
+        {
+          "updateDate": "2026-10-05",
+          "code": "sz.002646",
+          "code_name": "天佑德酒",
+          "industry": "C15酒、饮料和精制茶制造业",
+          "industryClassification": "证监会行业分类"
+        },
+        {
+          "updateDate": "2026-10-05",
+          "code": "sz.300997",
+          "code_name": "欢乐家",
+          "industry": "C15酒、饮料和精制茶制造业",
+          "industryClassification": "证监会行业分类"
+        }
+      ],
+      "meta": {
+        "industry": "C15酒、饮料和精制茶制造业",
+        "as_of": "latest",
+        "total_rows": 47,
+        "returned_rows": 47,
+        "truncated": false,
+        "columns": [
+          "updateDate",
+          "code",
+          "code_name",
+          "industry",
+          "industryClassification"
+        ]
+      }
+    }
+  },
+  "skill_alignment": {
+    "source_commit": "914ee8492e27ec49d4506cf7fc6810def6bee7bd",
+    "comparison": {
+      "tool_count": 62,
+      "cases": [
+        {
+          "tool": "get_price_history",
+          "skill_seconds": 0.37,
+          "mcp_seconds": 0.145,
+          "isError": false,
+          "skill_exit_code": 0,
+          "data_equal": true,
+          "mcp_status": null,
+          "stale": null
+        },
+        {
+          "tool": "get_financials",
+          "skill_seconds": 0.48,
+          "mcp_seconds": 0.189,
+          "isError": false,
+          "skill_exit_code": 0,
+          "data_equal": true,
+          "mcp_status": null,
+          "stale": null
+        },
+        {
+          "tool": "get_industry_info",
+          "skill_seconds": 0.342,
+          "mcp_seconds": 0.079,
+          "isError": false,
+          "skill_exit_code": 0,
+          "data_equal": true,
+          "mcp_status": null,
+          "stale": null
+        },
+        {
+          "tool": "get_boards_summary",
+          "skill_seconds": 1.262,
+          "mcp_seconds": 2.388,
+          "isError": false,
+          "skill_exit_code": 0,
+          "data_equal": true,
+          "mcp_status": null,
+          "stale": true
+        },
+        {
+          "tool": "get_board_members",
+          "skill_seconds": 0.706,
+          "mcp_seconds": 1.013,
+          "isError": false,
+          "skill_exit_code": 0,
+          "data_equal": true,
+          "mcp_status": null,
+          "stale": true
+        },
+        {
+          "tool": "get_market_news",
+          "skill_seconds": 12.649,
+          "mcp_seconds": 0.31,
+          "isError": false,
+          "skill_exit_code": 0,
+          "data_equal": true,
+          "mcp_status": null,
+          "stale": true
+        }
+      ]
+    },
+    "manifest": {
+      "source_repo": "https://github.com/shouldnotappearcalm/a-share-skill",
+      "source_commit": "914ee8492e27ec49d4506cf7fc6810def6bee7bd",
+      "modules": {
+        "history": {
+          "source": "fetch_history_fallback.py",
+          "source_sha256": "3e7a8f9f2a0ad71b66565326829ac324b0c6f5f94c3f8d7850765bef74457181",
+          "functions": [
+            "_build_session",
+            "_code_digits",
+            "_estimate_fetch_count",
+            "_fetch_kline_with_fallback",
+            "_filter_financial_periods",
+            "_financial_single_from_akshare",
+            "_financials_from_akshare",
+            "_format_kline_output",
+            "_get_boards_from_akshare",
+            "_get_json",
+            "_get_text",
+            "_industry_from_eastmoney",
+            "_scan_boards_for_code",
+            "_to_secid",
+            "cmd_industry",
+            "get_kline_eastmoney",
+            "get_kline_sina",
+            "get_kline_tencent",
+            "get_kline_xueqiu",
+            "normalize_code"
+          ],
+          "generated_sha256": "22936e077c04b271fb6534e2a349a3cbdc52f29fd0acc33078a6a2c9eea96711"
+        },
+        "danginvest": {
+          "source": "fetch_danginvest.py",
+          "source_sha256": "21df8f5390bdd0b8d1ade54d67576639adbf5a3dbdd4ff122df4954eb136b29c",
+          "functions": [
+            "_build_session",
+            "_get_json",
+            "_now_meta",
+            "cmd_detail",
+            "cmd_news",
+            "cmd_summary",
+            "normalize_mode",
+            "normalize_sort"
+          ],
+          "generated_sha256": "807e0ca51a62e3f6d1ac778991bc9f11087f31dab0af3652fc3c318005691cbd"
+        }
+      },
+      "realtime_helpers": {
+        "source": "fetch_realtime.py",
+        "functions": [
+          "_aggregate_intraday_data",
+          "_drop_forming_minute_bars",
+          "_get_market_status",
+          "_is_forming_minute_bar",
+          "_is_trading_session",
+          "normalize_code"
+        ],
+        "source_sha256": "1f632b1d9d6c4ce8aa2688331eaf169bcce9edde2156c596dbd7be88eb71aebc"
+      },
+      "company_news": {
+        "source": "fetch_company_news.py",
+        "source_sha256": "8016b0743ada18d122467ede4a48546bd61ca51a5904a613bfc8098023c42026",
+        "note": "src/company_news.py keeps the source module through build_payload; CLI main removed"
+      }
+    },
+    "verification": {
+      "tests_passed_latest_env": 35,
+      "tests_passed_uv_lock_env": 35,
+      "locked_versions": {
+        "python": "3.12.13",
+        "mcp": "1.6.0",
+        "akshare": "1.18.40",
+        "pandas": "2.2.3"
+      },
+      "latest_tested_versions": {
+        "mcp": "1.30.0",
+        "akshare": "1.19.1",
+        "pandas": "3.0.6"
+      },
+      "standalone_tools": 62
+    }
+  }
+}

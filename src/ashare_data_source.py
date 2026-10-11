@@ -4,6 +4,7 @@ Encapsulates Sina and Tencent HTTP APIs for fetching stock data.
 Based on Ashare library (https://github.com/mpquant/Ashare)
 """
 import json
+import threading
 from datetime import datetime, date
 from typing import Optional, List
 
@@ -20,9 +21,9 @@ class AshareDataSource(FinancialDataSource):
     """
 
     # API endpoints (matching Ashare library)
-    SINA_KLINE_URL = "http://money.finance.sina.com.cn/quotes_service/api/json_v2.php/CN_MarketData.getKLineData"
-    TENCENT_DAY_URL = "http://web.ifzq.gtimg.cn/appstock/app/fqkline/get"
-    TENCENT_MIN_URL = "http://ifzq.gtimg.cn/appstock/app/kline/mkline"
+    SINA_KLINE_URL = "https://money.finance.sina.com.cn/quotes_service/api/json_v2.php/CN_MarketData.getKLineData"
+    TENCENT_DAY_URL = "https://web.ifzq.gtimg.cn/appstock/app/fqkline/get"
+    TENCENT_MIN_URL = "https://ifzq.gtimg.cn/appstock/app/kline/mkline"
 
     # Request timeout
     TIMEOUT = 10
@@ -46,50 +47,37 @@ class AshareDataSource(FinancialDataSource):
     }
 
     def __init__(self):
-        self._session = requests.Session()
-        self._session.headers.update({
-            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-        })
+        self._sessions = threading.local()
+
+    @property
+    def _session(self):
+        if not hasattr(self._sessions, "value"):
+            session = requests.Session()
+            session.headers.update({"User-Agent": "Mozilla/5.0"})
+            self._sessions.value = session
+        return self._sessions.value
 
     @staticmethod
     def normalize_code(code: str) -> str:
-        """
-        Normalize stock code to Ashare format (e.g., 'sh600000', 'sz000001').
-
-        Supports formats:
-        - sh600000, sz000001 (Tongdaxin format)
-        - 600000, 000001 (pure number)
-        - sh.600000, sz.000001 (Baostock format)
-        - 600519.XSHG, 000001.XSHE (JoinQuant format)
-        """
         code = code.strip()
-
-        # JoinQuant format: 600519.XSHG or 000001.XSHE
         if '.XSHG' in code:
             return 'sh' + code.replace('.XSHG', '')
         if '.XSHE' in code:
             return 'sz' + code.replace('.XSHE', '')
-
-        # Baostock format: sh.600000 -> sh600000
         if '.' in code:
             parts = code.split('.')
             if len(parts) == 2:
                 prefix, suffix = parts[0].lower(), parts[1]
-                # Baostock: sh.600000 or sz.000001
                 if prefix in ('sh', 'sz') and suffix.isdigit():
                     return f"{prefix}{suffix}"
-
-        # Already in correct format
-        if code.startswith('sh') or code.startswith('sz'):
+        if code.lower().startswith(('sh', 'sz')):
             return code.lower()
-
-        # Pure number: determine exchange
         if code.isdigit():
+            # Bare six-digit codes are stocks; indices must use an explicit market.
             if code.startswith('6'):
                 return f"sh{code}"
             elif code.startswith(('0', '2', '3')):
                 return f"sz{code}"
-
         return code.lower()
 
     def get_historical_k_data(
@@ -100,6 +88,7 @@ class AshareDataSource(FinancialDataSource):
         frequency: str = "d",
         adjust_flag: str = "3",
         fields: Optional[List[str]] = None,
+        count: Optional[int] = None,
     ) -> pd.DataFrame:
         """
         Fetch historical K-line data.
@@ -109,7 +98,7 @@ class AshareDataSource(FinancialDataSource):
             start_date: Start date (not used for Sina/Tencent, data is count-based)
             end_date: End date (used as reference point)
             frequency: '1m', '5m', '15m', '30m', '60m', '1d', '1w', '1M'
-            adjust_flag: '1' qfq, '2' hfq, '3' no adjust (default)
+            adjust_flag: only '3' raw prices supported; adjusted history uses Baostock
             fields: Not used, returns standard OHLCV columns
 
         Returns:
@@ -117,25 +106,41 @@ class AshareDataSource(FinancialDataSource):
         """
         normalized_code = self.normalize_code(code)
 
-        # Determine count
-        if frequency in ('1m', '5m', '15m', '30m', '60m'):
-            count = 320  # More minute bars
-        else:
-            count = 500  # About 2 years of daily data
+        frequency = {"d": "1d", "w": "1w", "m": "1M"}.get(frequency, frequency)
+        if frequency not in self.SINA_FREQ_MAP and frequency != "1m":
+            raise ValueError(f"Unsupported frequency: {frequency}")
+        if adjust_flag != "3":
+            raise ValueError("AshareDataSource currently supports raw prices only (adjust_flag=3); use Baostock for adjusted history")
+        count = int(count) if count is not None else (320 if frequency.endswith("m") else 500)
+        if not 1 <= count <= 2000:
+            raise ValueError("count must be between 1 and 2000")
+
+        def selected(df):
+            if df is None or df.empty:
+                return df
+            result = df.sort_index()
+            if start_date:
+                result = result[result.index >= pd.Timestamp(start_date)]
+            if end_date:
+                end = pd.Timestamp(end_date)
+                if len(str(end_date)) == 10:
+                    end += pd.Timedelta(days=1) - pd.Timedelta(nanoseconds=1)
+                result = result[result.index <= end]
+            return result.tail(count)
 
         # Daily/Weekly/Monthly: Try Sina first, then Tencent
         if frequency in ('1d', '1w', '1M'):
             try:
                 df = self._get_price_sina(normalized_code, end_date, count, frequency)
                 if df is not None and not df.empty:
-                    return df
+                    return selected(df)
             except Exception:
                 pass
 
             try:
                 df = self._get_price_day_tx(normalized_code, end_date, count, frequency)
                 if df is not None and not df.empty:
-                    return df
+                    return selected(df)
             except Exception:
                 pass
 
@@ -144,7 +149,7 @@ class AshareDataSource(FinancialDataSource):
             try:
                 df = self._get_price_min_tx(normalized_code, end_date, count, frequency)
                 if df is not None and not df.empty:
-                    return df
+                    return selected(df)
             except Exception:
                 pass
         else:
@@ -152,14 +157,14 @@ class AshareDataSource(FinancialDataSource):
             try:
                 df = self._get_price_sina(normalized_code, end_date, count, frequency)
                 if df is not None and not df.empty:
-                    return df
+                    return selected(df)
             except Exception:
                 pass
 
             try:
                 df = self._get_price_min_tx(normalized_code, end_date, count, frequency)
                 if df is not None and not df.empty:
-                    return df
+                    return selected(df)
             except Exception:
                 pass
 
@@ -229,7 +234,7 @@ class AshareDataSource(FinancialDataSource):
                 end_date = ''
 
         # Build URL (matching Ashare format)
-        url = f"{self.TENCENT_DAY_URL}?param={code},{unit},,{end_date},{count},qfq"
+        url = f"{self.TENCENT_DAY_URL}?param={code},{unit},,{end_date},{count}"
 
         try:
             resp = self._session.get(url, timeout=self.TIMEOUT)
@@ -239,13 +244,14 @@ class AshareDataSource(FinancialDataSource):
                 return None
 
             stk = st['data'][code]
-            ms = 'qfq' + unit
-            buf = stk[ms] if ms in stk else stk.get(unit)
+            buf = stk.get(unit)
 
             if not buf:
                 return None
 
-            df = pd.DataFrame(buf, columns=['time', 'open', 'close', 'high', 'low', 'volume'], dtype='float')
+            df = pd.DataFrame([row[:6] for row in buf], columns=['time', 'open', 'close', 'high', 'low', 'volume'])
+            for column in ['open', 'close', 'high', 'low', 'volume']:
+                df[column] = pd.to_numeric(df[column], errors='coerce')
             df['time'] = pd.to_datetime(df['time'])
             df = df.set_index('time')
             df.index.name = ''

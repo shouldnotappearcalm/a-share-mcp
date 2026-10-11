@@ -28,6 +28,7 @@ def register_index_tools(app: FastMCP, active_data_source: FinancialDataSource):
         return run_tool_with_handling(
             lambda: fetch_stock_industry(active_data_source, code=code, date=date, limit=limit, format=format),
             context=f"get_stock_industry:{code or 'all'}",
+            format=format,
         )
 
     @app.tool()
@@ -36,6 +37,7 @@ def register_index_tools(app: FastMCP, active_data_source: FinancialDataSource):
         return run_tool_with_handling(
             lambda: fetch_index_constituents(active_data_source, index="sz50", date=date, limit=limit, format=format),
             context="get_sz50_stocks",
+            format=format,
         )
 
     @app.tool()
@@ -44,6 +46,7 @@ def register_index_tools(app: FastMCP, active_data_source: FinancialDataSource):
         return run_tool_with_handling(
             lambda: fetch_index_constituents(active_data_source, index="hs300", date=date, limit=limit, format=format),
             context="get_hs300_stocks",
+            format=format,
         )
 
     @app.tool()
@@ -52,6 +55,7 @@ def register_index_tools(app: FastMCP, active_data_source: FinancialDataSource):
         return run_tool_with_handling(
             lambda: fetch_index_constituents(active_data_source, index="zz500", date=date, limit=limit, format=format),
             context="get_zz500_stocks",
+            format=format,
         )
 
     @app.tool()
@@ -60,6 +64,7 @@ def register_index_tools(app: FastMCP, active_data_source: FinancialDataSource):
         return run_tool_with_handling(
             lambda: fetch_index_constituents(active_data_source, index=index, date=date, limit=limit, format=format),
             context=f"get_index_constituents:{index}",
+            format=format,
         )
 
     @app.tool()
@@ -69,6 +74,7 @@ def register_index_tools(app: FastMCP, active_data_source: FinancialDataSource):
         return run_tool_with_handling(
             lambda: fetch_list_industries(active_data_source, date=date, format=format),
             context="list_industries",
+            format=format,
         )
 
     @app.tool()
@@ -78,4 +84,5 @@ def register_index_tools(app: FastMCP, active_data_source: FinancialDataSource):
         return run_tool_with_handling(
             lambda: fetch_industry_members(active_data_source, industry=industry, date=date, limit=limit, format=format),
             context=f"get_industry_members:{industry}",
+            format=format,
         )

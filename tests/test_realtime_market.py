@@ -8,13 +8,20 @@ import os
 # Add project root to path
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-from src.use_cases.realtime_market import (
+from src.use_cases.market_data import (
     normalize_code,
     fetch_realtime_kline,
     fetch_technical_indicators,
-    fetch_realtime_quote,
     FREQUENCY_MAP,
 )
+
+from src.use_cases.realtime_market import fetch_realtime_quote as _fetch_quote
+from src.ashare_data_source import AshareDataSource
+
+def fetch_realtime_quote(code, format="markdown"):
+    return _fetch_quote(AshareDataSource(), code, format)
+
+network = pytest.mark.skipif(os.environ.get("RUN_LIVE_TESTS") != "1", reason="network tests require RUN_LIVE_TESTS=1")
 
 
 class TestNormalizeCode:
@@ -52,6 +59,7 @@ class TestNormalizeCode:
         assert normalize_code('300750') == 'sz300750'
 
 
+@network
 class TestFetchRealtimeKline:
     """Test realtime K-line fetching."""
 
@@ -101,6 +109,7 @@ class TestFetchRealtimeKline:
         assert 'open' in result.lower() or 'close' in result.lower()
 
 
+@network
 class TestFetchTechnicalIndicators:
     """Test technical indicators calculation."""
 
@@ -152,6 +161,7 @@ class TestFetchTechnicalIndicators:
         assert result is not None
 
 
+@network
 class TestFetchRealtimeQuote:
     """Test realtime quote fetching."""
 
@@ -162,7 +172,7 @@ class TestFetchRealtimeQuote:
         assert result is not None
         assert 'sh600519' in result
         # Check for key fields
-        assert '收盘价' in result or 'close' in result.lower()
+        assert '最新价' in result and '昨收' in result
 
     def test_quote_with_different_codes(self):
         """Test quote with different code formats."""

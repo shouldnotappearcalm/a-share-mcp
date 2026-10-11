@@ -21,6 +21,8 @@ from src.tools.analysis import register_analysis_tools
 from src.tools.helpers import register_helpers_tools
 from src.tools.realtime_market import register_realtime_market_tools
 from src.tools.market_data import register_market_data_tools
+from src.tools.company_news import register_company_news_tools
+from src.tools.skill_data import register_skill_data_tools
 
 # --- Logging Setup ---
 # Call the setup function from utils
@@ -38,8 +40,8 @@ current_date = datetime.now().strftime("%Y-%m-%d")
 
 # --- FastMCP App Initialization ---
 app = FastMCP(
-    server_name="a_share_data_provider",
-    description=f"""今天是{current_date}。提供中国A股市场数据分析工具。此服务提供客观数据分析，用户需自行做出投资决策。数据分析基于公开市场信息，不构成投资建议，仅供参考。
+    name="a_share_data_provider",
+    instructions=f"""今天是{current_date}。提供中国A股市场数据分析工具。此服务提供客观数据分析，用户需自行做出投资决策。数据分析基于公开市场信息，不构成投资建议，仅供参考。
 
 ⚠️ 重要说明:
 1. 最新交易日不一定是今天，需要从 get_latest_trading_date() 获取
@@ -55,6 +57,13 @@ app = FastMCP(
 📈 技术分析工具:
 - get_realtime_kline: 获取K线数据（支持分钟/日线/周线/月线）
 - get_technical_indicators: 计算技术指标（MA/MACD/KDJ/BOLL/RSI等）
+
+📊 与a-share-data技能对齐的默认数据路径:
+- 历史价格优先get_price_history；get_historical_k_data保留Baostock复权兼容
+- 财务指标优先get_financials；Baostock的完整财务维度工具仍可单独调用
+- 个股东财行业get_industry_info；get_stock_industry是证监会分类，不能混为同一标准
+- 行业/概念热力图get_boards_summary、成分get_board_members；必须检查stale和交易日
+- 原始公司资讯get_company_news；市场快讯get_market_news；不做业务分类
 
 📊 市场数据工具:
 - get_hot_sectors: 热点板块
@@ -82,6 +91,8 @@ register_analysis_tools(app, active_data_source)
 register_helpers_tools(app)
 register_realtime_market_tools(app, ashare_data_source)
 register_market_data_tools(app)
+register_company_news_tools(app)
+register_skill_data_tools(app)
 
 # --- Main Execution Block ---
 if __name__ == "__main__":

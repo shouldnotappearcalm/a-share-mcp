@@ -22,6 +22,7 @@ dependencies = [
     { name = "markdown-it-py" },
     { name = "mcp", extra = ["cli"] },
     { name = "mdurl" },
+    { name = "mytt" },
     { name = "numpy" },
     { name = "pandas" },
     { name = "pydantic" },
@@ -66,8 +67,9 @@ requires-dist = [
     { name = "httpx-sse", specifier = ">=0.4.0" },
     { name = "idna", specifier = ">=3.10" },
     { name = "markdown-it-py", specifier = ">=3.0.0" },
-    { name = "mcp", extras = ["cli"], specifier = ">=1.2.0" },
+    { name = "mcp", extras = ["cli"], specifier = ">=1.2.0,<2" },
     { name = "mdurl", specifier = ">=0.1.2" },
+    { name = "mytt", specifier = ">=2.9.3" },
     { name = "numpy", specifier = ">=2.2.5" },
     { name = "pandas", specifier = ">=2.2.3" },
     { name = "pydantic", specifier = ">=2.11.3" },
@@ -600,6 +602,17 @@ wheels = [
     { url = "https://files.pythonhosted.org/packages/78/60/e0708ea8533e928f10f985be35af4c02dd2b61f4a7501dc88e8c927d85e5/mini_racer-0.14.1-py3-none-win_amd64.whl", hash = "sha256:4abd58c62c9955988dbc0cbf5a798914334fe570d2b192f8890bec20135ab6d1", size = 15515732, upload-time = "2026-02-01T05:53:22.276Z" },
     { url = "https://files.pythonhosted.org/packages/99/fd/7fb43e269c44e5d44ef02fbd164fc11833d8293b47ddcd48e4fb1649f4d2/mini_racer-0.14.1-py3-none-win_arm64.whl", hash = "sha256:440bef1269655b1da94b550612b50669de9881c3d88b805c139f7f1b5ec8ae7b", size = 14829128, upload-time = "2026-02-01T05:53:24.983Z" },
 ]
+
+[[package]]
+name = "mytt"
+version = "2.9.3"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "numpy" },
+    { name = "pandas" },
+    { name = "requests" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/0d/6f/b44045a021430d28addecc61059fb1a63a12f77b2826ca5c5c20b0b47988/MyTT-2.9.3.tar.gz", hash = "sha256:df627a1f8abe66bc75eceb577279db22451bef1c1fe30aa68e5e2e3c4690815b", size = 13075, upload-time = "2021-12-01T06:11:22.6Z" }
 
 [[package]]
 name = "numpy"

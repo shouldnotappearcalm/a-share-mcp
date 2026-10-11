@@ -84,6 +84,7 @@ def register_stock_market_tools(app: FastMCP, active_data_source: FinancialDataS
                 format=format,
             ),
             context=f"get_historical_k_data:{code}",
+            format=format,
         )
 
     @app.tool()
@@ -106,6 +107,7 @@ def register_stock_market_tools(app: FastMCP, active_data_source: FinancialDataS
                 active_data_source, code=code, fields=fields, format=format
             ),
             context=f"get_stock_basic_info:{code}",
+            format=format,
         )
 
     @app.tool()
@@ -135,6 +137,7 @@ def register_stock_market_tools(app: FastMCP, active_data_source: FinancialDataS
                 format=format,
             ),
             context=f"get_dividend_data:{code}:{year}",
+            format=format,
         )
 
     @app.tool()
@@ -162,4 +165,5 @@ def register_stock_market_tools(app: FastMCP, active_data_source: FinancialDataS
                 format=format,
             ),
             context=f"get_adjust_factor_data:{code}",
+            format=format,
         )

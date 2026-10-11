@@ -624,7 +624,18 @@ class BaostockDataSource(FinancialDataSource):
         logger.info(f"Fetching all stock list for date={date or 'default'}")
         try:
             with baostock_login_context():
-                rs = bs.query_all_stock(day=date)
+                query_date = date
+                if not query_date:
+                    calendar = bs.query_trade_dates(start_date=(pd.Timestamp.today()-pd.Timedelta(days=31)).strftime("%Y-%m-%d"), end_date=pd.Timestamp.today().strftime("%Y-%m-%d"))
+                    trading_days = []
+                    while calendar.error_code == "0" and calendar.next():
+                        row = dict(zip(calendar.fields, calendar.get_row_data()))
+                        if row.get("is_trading_day") == "1" and row.get("calendar_date", "") <= pd.Timestamp.today().strftime("%Y-%m-%d"):
+                            trading_days.append(row["calendar_date"])
+                    if not trading_days:
+                        raise NoDataFoundError("No latest trading date available")
+                    query_date = max(trading_days)
+                rs = bs.query_all_stock(day=query_date)
 
                 if rs.error_code != '0':
                     logger.error(

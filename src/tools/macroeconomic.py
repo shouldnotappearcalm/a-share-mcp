@@ -28,6 +28,7 @@ def register_macroeconomic_tools(app: FastMCP, active_data_source: FinancialData
         return run_tool_with_handling(
             lambda: fetch_deposit_rate_data(active_data_source, start_date=start_date, end_date=end_date, limit=limit, format=format),
             context="get_deposit_rate_data",
+            format=format,
         )
 
     @app.tool()
@@ -36,6 +37,7 @@ def register_macroeconomic_tools(app: FastMCP, active_data_source: FinancialData
         return run_tool_with_handling(
             lambda: fetch_loan_rate_data(active_data_source, start_date=start_date, end_date=end_date, limit=limit, format=format),
             context="get_loan_rate_data",
+            format=format,
         )
 
     @app.tool()
@@ -46,6 +48,7 @@ def register_macroeconomic_tools(app: FastMCP, active_data_source: FinancialData
                 active_data_source, start_date=start_date, end_date=end_date, year_type=year_type, limit=limit, format=format
             ),
             context="get_required_reserve_ratio_data",
+            format=format,
         )
 
     @app.tool()
@@ -56,6 +59,7 @@ def register_macroeconomic_tools(app: FastMCP, active_data_source: FinancialData
                 active_data_source, start_date=start_date, end_date=end_date, limit=limit, format=format
             ),
             context="get_money_supply_data_month",
+            format=format,
         )
 
     @app.tool()
@@ -66,4 +70,5 @@ def register_macroeconomic_tools(app: FastMCP, active_data_source: FinancialData
                 active_data_source, start_date=start_date, end_date=end_date, limit=limit, format=format
             ),
             context="get_money_supply_data_year",
+            format=format,
         )

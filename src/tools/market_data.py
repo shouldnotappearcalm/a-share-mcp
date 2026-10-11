@@ -6,6 +6,7 @@ import logging
 from typing import List, Optional
 
 from mcp.server.fastmcp import FastMCP
+from src.services.tool_runner import json_tool_output
 
 from src.use_cases.market_data import (
     fetch_realtime_kline,
@@ -36,6 +37,7 @@ def register_market_data_tools(app: FastMCP):
     """
 
     @app.tool()
+    @json_tool_output
     def get_realtime_kline(
         code: str,
         frequency: str = "1d",
@@ -82,6 +84,7 @@ def register_market_data_tools(app: FastMCP):
             return f"获取实时K线数据失败: {str(e)}"
 
     @app.tool()
+    @json_tool_output
     def get_technical_indicators(
         code: str,
         frequency: str = "1d",
@@ -134,6 +137,7 @@ def register_market_data_tools(app: FastMCP):
             return f"计算技术指标失败: {str(e)}"
 
     @app.tool()
+    @json_tool_output
     def get_hot_sectors(
         top_n: int = 20,
         format: str = "markdown",
@@ -162,6 +166,7 @@ def register_market_data_tools(app: FastMCP):
             return f"获取热点板块数据失败: {str(e)}"
 
     @app.tool()
+    @json_tool_output
     def get_market_index(
         format: str = "markdown",
     ) -> str:
@@ -185,6 +190,7 @@ def register_market_data_tools(app: FastMCP):
             return f"获取大盘指数数据失败: {str(e)}"
 
     @app.tool()
+    @json_tool_output
     def get_lhb_detail(
         start_date: Optional[str] = None,
         end_date: Optional[str] = None,
@@ -219,6 +225,7 @@ def register_market_data_tools(app: FastMCP):
             return f"获取龙虎榜数据失败: {str(e)}"
 
     @app.tool()
+    @json_tool_output
     def get_north_money(
         format: str = "markdown",
     ) -> str:
@@ -242,6 +249,7 @@ def register_market_data_tools(app: FastMCP):
             return f"获取北向资金数据失败: {str(e)}"
 
     @app.tool()
+    @json_tool_output
     def get_limit_up_down(
         format: str = "markdown",
     ) -> str:
@@ -265,6 +273,7 @@ def register_market_data_tools(app: FastMCP):
             return f"获取涨跌停统计失败: {str(e)}"
 
     @app.tool()
+    @json_tool_output
     def get_limit_up_pool(
         date: Optional[str] = None,
         top_n: int = 30,
@@ -296,6 +305,7 @@ def register_market_data_tools(app: FastMCP):
             return f"获取涨停股池失败: {str(e)}"
 
     @app.tool()
+    @json_tool_output
     def get_limit_down_pool(
         date: Optional[str] = None,
         top_n: int = 30,
@@ -327,6 +337,7 @@ def register_market_data_tools(app: FastMCP):
             return f"获取跌停股池失败: {str(e)}"
 
     @app.tool()
+    @json_tool_output
     def get_stock_money_flow(
         code: str,
         top_n: int = 10,
@@ -358,6 +369,7 @@ def register_market_data_tools(app: FastMCP):
             return f"获取资金流向失败: {str(e)}"
 
     @app.tool()
+    @json_tool_output
     def get_consecutive_limit_up(
         date: Optional[str] = None,
         top_n: int = 30,

@@ -4,6 +4,7 @@ Markdown formatting utilities for A-Share MCP Server.
 import pandas as pd
 import logging
 import json
+from datetime import date, datetime
 
 logger = logging.getLogger(__name__)
 
@@ -100,7 +101,7 @@ def format_table_output(
                     df_copy[col] = df_copy[col].astype(str)
             
             payload = {
-                "data": [] if df_copy is None else df_copy.to_dict(orient="records"),
+                "data": json.loads(df_copy.to_json(orient="records", date_format="iso", force_ascii=False)),
                 "meta": {
                     **(meta or {}),
                     "total_rows": total_rows,
@@ -109,7 +110,7 @@ def format_table_output(
                     "columns": [] if df_copy is None else list(df_copy.columns),
                 },
             }
-            return json.dumps(payload, ensure_ascii=False)
+            return json.dumps(payload, ensure_ascii=False, allow_nan=False, default=lambda value: value.isoformat() if isinstance(value, (date, datetime)) else value.item())
         except Exception as e:
             logger.error("Error converting DataFrame to JSON: %s", e, exc_info=True)
             return "Error: Could not format data into JSON."

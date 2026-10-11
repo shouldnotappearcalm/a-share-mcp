@@ -6,6 +6,7 @@ import logging
 from typing import List
 
 from mcp.server.fastmcp import FastMCP
+from src.services.tool_runner import json_tool_output
 
 from src.ashare_data_source import AshareDataSource
 from src.use_cases.realtime_market import (
@@ -30,6 +31,7 @@ def register_realtime_market_tools(app: FastMCP, ashare_data_source: AshareDataS
     """
 
     @app.tool()
+    @json_tool_output
     def get_realtime_quote(
         code: str,
         format: str = "markdown",
@@ -64,6 +66,7 @@ def register_realtime_market_tools(app: FastMCP, ashare_data_source: AshareDataS
             return f"获取实时行情失败: {str(e)}"
 
     @app.tool()
+    @json_tool_output
     def get_intraday_minute_kline(
         code: str,
         frequency: str = "5m",
@@ -101,6 +104,7 @@ def register_realtime_market_tools(app: FastMCP, ashare_data_source: AshareDataS
             return f"获取分钟K线失败: {str(e)}"
 
     @app.tool()
+    @json_tool_output
     def get_realtime_multi_quote(
         codes: List[str],
         format: str = "markdown",

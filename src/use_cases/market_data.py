@@ -1,3 +1,4 @@
+import json
 """
 Market data use cases for stock market analysis.
 Provides market-wide data using Akshare and technical indicators using MyTT.
@@ -7,12 +8,15 @@ import os
 from typing import Optional, List
 from datetime import datetime, timedelta
 
-# Add Ashare library path for MyTT
-sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..', '..', '..', 'Ashare'))
-
 import pandas as pd
 import akshare as ak
-from Ashare import get_price
+from src.ashare_data_source import AshareDataSource
+
+
+def get_price(code, frequency="1d", count=120):
+    return AshareDataSource().get_historical_k_data(code, "", "", frequency=frequency, count=count)
+
+
 from MyTT import (
     MA, EMA, MACD, KDJ, RSI, WR, BOLL, BIAS, CCI, ATR, 
     DMI, TAQ, TRIX, VR, EMV, DPO, BRAR, DMA, MTM, ROC, BBI
@@ -95,7 +99,8 @@ def fetch_realtime_kline(
             return f"未找到股票 {code} 的数据"
         
         df = df.reset_index()
-        df.columns = ['time', 'open', 'close', 'high', 'low', 'volume']
+        df = df.rename(columns={df.columns[0]: 'time'})
+        df = df[['time', 'open', 'close', 'high', 'low', 'volume']]
         
         df['open'] = df['open'].round(2)
         df['close'] = df['close'].round(2)
@@ -157,7 +162,8 @@ def fetch_technical_indicators(
         VOL = df['volume'].values if 'volume' in df.columns else None
         
         result_df = df.reset_index()
-        result_df.columns = ['time', 'open', 'close', 'high', 'low', 'volume']
+        result_df = result_df.rename(columns={result_df.columns[0]: 'time'})
+        result_df = result_df[['time', 'open', 'close', 'high', 'low', 'volume']]
         
         calculated = []
         
@@ -168,7 +174,8 @@ def fetch_technical_indicators(
                 result_df['MA5'] = MA(CLOSE, 5)
                 result_df['MA10'] = MA(CLOSE, 10)
                 result_df['MA20'] = MA(CLOSE, 20)
-                calculated.append('MA(5,10,20)')
+                result_df['MA60'] = MA(CLOSE, 60)
+                calculated.append('MA(5,10,20,60)')
                 
             elif ind == 'EMA':
                 result_df['EMA12'] = EMA(CLOSE, 12)
@@ -254,49 +261,11 @@ def fetch_technical_indicators(
         return f"计算技术指标失败: {str(e)}"
 
 
-def fetch_hot_sectors(
-    top_n: int = 20,
-    format: str = 'markdown',
-) -> str:
-    """
-    Fetch hot concept sectors with top gains using Akshare.
-    
-    Args:
-        top_n: Number of top sectors to return (default 20)
-        format: Output format: 'markdown' | 'json' | 'csv'
-    """
-    validate_output_format(format)
-    
-    try:
-        df = ak.stock_board_concept_name_em()
-        
-        if df is None or df.empty:
-            return "获取热点板块数据失败"
-        
-        df = df.sort_values(by='涨跌幅', ascending=False).head(top_n)
-        
-        results = []
-        for i, (_, row) in enumerate(df.iterrows(), 1):
-            results.append({
-                '排名': i,
-                '板块名称': row.get('板块名称', ''),
-                '板块代码': row.get('板块代码', ''),
-                '涨跌幅(%)': round(row.get('涨跌幅', 0), 2),
-                '总市值(亿)': round(row.get('总市值', 0) / 1e8, 2) if row.get('总市值') else 0,
-                '换手率(%)': round(row.get('换手率', 0), 2) if row.get('换手率') else 0,
-            })
-        
-        df_result = pd.DataFrame(results)
-        
-        meta = {
-            'data_source': '东方财富 (Akshare)',
-            'fetch_time': datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
-        }
-        
-        return format_table_output(df_result, format=format, max_rows=top_n, meta=meta)
-        
-    except Exception as e:
-        return f"获取热点板块数据失败: {str(e)}"
+def fetch_hot_sectors(top_n: int = 20, format: str = "markdown") -> str:
+    from src.skill_compat.danginvest import cmd_summary
+    payload=cmd_summary("concept",top_n,"change_desc",0,True)
+    if format=="json":return json.dumps(payload,ensure_ascii=False,allow_nan=False)
+    return format_table_output(pd.DataFrame(payload["data"]),format=format,max_rows=top_n,meta=payload["meta"])
 
 
 def fetch_market_index(

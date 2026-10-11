@@ -1,0 +1,65 @@
+{
+  "source_repo": "https://github.com/shouldnotappearcalm/a-share-skill",
+  "source_commit": "914ee8492e27ec49d4506cf7fc6810def6bee7bd",
+  "modules": {
+    "history": {
+      "source": "fetch_history_fallback.py",
+      "source_sha256": "3e7a8f9f2a0ad71b66565326829ac324b0c6f5f94c3f8d7850765bef74457181",
+      "functions": [
+        "_build_session",
+        "_code_digits",
+        "_estimate_fetch_count",
+        "_fetch_kline_with_fallback",
+        "_filter_financial_periods",
+        "_financial_single_from_akshare",
+        "_financials_from_akshare",
+        "_format_kline_output",
+        "_get_boards_from_akshare",
+        "_get_json",
+        "_get_text",
+        "_industry_from_eastmoney",
+        "_scan_boards_for_code",
+        "_to_secid",
+        "cmd_industry",
+        "get_kline_eastmoney",
+        "get_kline_sina",
+        "get_kline_tencent",
+        "get_kline_xueqiu",
+        "normalize_code"
+      ],
+      "generated_sha256": "22936e077c04b271fb6534e2a349a3cbdc52f29fd0acc33078a6a2c9eea96711"
+    },
+    "danginvest": {
+      "source": "fetch_danginvest.py",
+      "source_sha256": "21df8f5390bdd0b8d1ade54d67576639adbf5a3dbdd4ff122df4954eb136b29c",
+      "functions": [
+        "_build_session",
+        "_get_json",
+        "_now_meta",
+        "cmd_detail",
+        "cmd_news",
+        "cmd_summary",
+        "normalize_mode",
+        "normalize_sort"
+      ],
+      "generated_sha256": "807e0ca51a62e3f6d1ac778991bc9f11087f31dab0af3652fc3c318005691cbd"
+    }
+  },
+  "realtime_helpers": {
+    "source": "fetch_realtime.py",
+    "functions": [
+      "_aggregate_intraday_data",
+      "_drop_forming_minute_bars",
+      "_get_market_status",
+      "_is_forming_minute_bar",
+      "_is_trading_session",
+      "normalize_code"
+    ],
+    "source_sha256": "1f632b1d9d6c4ce8aa2688331eaf169bcce9edde2156c596dbd7be88eb71aebc"
+  },
+  "company_news": {
+    "source": "fetch_company_news.py",
+    "source_sha256": "8016b0743ada18d122467ede4a48546bd61ca51a5904a613bfc8098023c42026",
+    "note": "src/company_news.py keeps the source module through build_payload; CLI main removed"
+  }
+}

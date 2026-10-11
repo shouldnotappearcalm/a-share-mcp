@@ -1,5 +1,10 @@
 """Common error handling for MCP tools."""
 import logging
+import json
+import os
+import queue
+import threading
+from functools import wraps
 from typing import Callable
 
 from src.data_source_interface import NoDataFoundError, LoginError, DataSourceError
@@ -7,7 +12,7 @@ from src.data_source_interface import NoDataFoundError, LoginError, DataSourceEr
 logger = logging.getLogger(__name__)
 
 
-def run_tool_with_handling(action: Callable[[], str], context: str) -> str:
+def run_tool_with_handling(action: Callable[[], str], context: str, format: str = "markdown") -> str:
     """
     Executes a callable and normalizes exceptions to user-friendly strings.
 
@@ -19,16 +24,54 @@ def run_tool_with_handling(action: Callable[[], str], context: str) -> str:
         return action()
     except NoDataFoundError as e:
         logger.warning(f"{context}: No data found: {e}")
+        if format == "json":
+            return json.dumps({"status": "empty", "message": str(e), "data": []}, ensure_ascii=False)
         return f"Error: {e}"
     except LoginError as e:
         logger.error(f"{context}: Login error: {e}")
+        if format == "json":
+            return json.dumps({"status": "error", "error": str(e), "data": []}, ensure_ascii=False)
         return f"Error: Could not connect to data source. {e}"
     except DataSourceError as e:
         logger.error(f"{context}: Data source error: {e}")
+        if format == "json":
+            return json.dumps({"status": "error", "error": str(e), "data": []}, ensure_ascii=False)
         return f"Error: An error occurred while fetching data. {e}"
     except ValueError as e:
         logger.warning(f"{context}: Validation error: {e}")
+        if format == "json":
+            return json.dumps({"status": "error", "error": str(e), "data": []}, ensure_ascii=False)
         return f"Error: Invalid input parameter. {e}"
     except Exception as e:  # Catch-all
         logger.exception(f"{context}: Unexpected error: {e}")
+        if format == "json":
+            return json.dumps({"status": "error", "error": str(e), "data": []}, ensure_ascii=False)
         return f"Error: An unexpected error occurred: {e}"
+
+
+def json_tool_output(fn):
+    """Keep the requested JSON format even when a use case returns an error string."""
+    @wraps(fn)
+    def wrapped(*args, **kwargs):
+        timeout=max(0.01,min(60,float(os.environ.get("A_SHARE_TOOL_TIMEOUT","35"))))
+        completed=queue.Queue()
+        def run():
+            try:completed.put((fn(*args,**kwargs),None))
+            except Exception as exc:completed.put((None,exc))
+        threading.Thread(target=run,daemon=True).start()
+        try:
+            result,error=completed.get(timeout=timeout)
+            if error is not None:raise error
+        except queue.Empty:
+            message=f"data source timeout after {timeout}s"
+            return json.dumps({"status":"error","error":message,"data":[]}) if kwargs.get("format")=="json" else message
+        except Exception as exc:
+            message=f"{type(exc).__name__}: {exc}"
+            return json.dumps({"status":"error","error":message,"data":[]},ensure_ascii=False) if kwargs.get("format")=="json" else message
+        if kwargs.get("format") == "json" and isinstance(result, str):
+            try:
+                json.loads(result)
+            except ValueError:
+                return json.dumps({"status": "error", "error": result, "data": []}, ensure_ascii=False)
+        return result
+    return wrapped

@@ -102,7 +102,7 @@ a_share_mcp/
 
 ## 先决条件
 
-1. **Python 环境**: Python 3.10+
+1. **Python 环境**: Python 3.12+
 2. **依赖管理**: 使用 `uv` 包管理器安装依赖
 3. **数据来源**: 基于 Baostock 数据源 + 腾讯/新浪实时数据源，无需付费账号
 
@@ -238,7 +238,7 @@ uv --directory "/Users/YourName/Projects/a-share-mcp" run python mcp_server.py
 
 ## 工具列表
 
-该 MCP 服务器目前提供 **53** 个工具，覆盖股票、财报、宏观、日期分析、实时行情等全方位数据。以下是完整列表：
+该 MCP 服务器目前提供 **62** 个工具，覆盖股票、财报、宏观、日期分析、实时行情等全方位数据。以下是完整列表：
 
 <div align="center">
   <details>
@@ -352,3 +352,17 @@ uv --directory "/Users/YourName/Projects/a-share-mcp" run python mcp_server.py
 <div align="center">
 <img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=12,15,20,24&section=footer&height=100&animation=fadeIn" />
 </div>
+
+
+## 数据修复与原始新闻（2026-10-11）
+
+依赖使用MCP v1（`mcp<2`）并显式声明MyTT，无需旁目录Ashare。`get_company_news(code, name="", days=7, limit=100, scope="all", no_cache=False)`提供未分类新闻/公告及来源诊断。港美新闻由港美数据仓库提供。
+
+修复了JSON日志污染、日期/NaN、OHLC列映射、休市涨跌幅与批量等待。完整实测、坏源及原始输出位置见[体检报告](reports/data-health-2026-10-11.md)。
+
+
+## 与 a-share-skill 对齐
+
+常规数据优先 `get_price_history`、`get_financials`、`get_industry_info`、`get_boards_summary`、`get_board_members`、`get_company_news`、`get_market_news`。它们参照a-share-data同函数/数据源，保留原始字段及stale。旧Baostock接口保留复权、完整财务维度和证监会分类语义。
+
+[对齐矩阵、同步维护与逐项输出对比](reports/skill-alignment-2026-10-11.md)。

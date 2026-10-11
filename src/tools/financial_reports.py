@@ -34,6 +34,7 @@ def register_financial_report_tools(app: FastMCP, active_data_source: FinancialD
         return run_tool_with_handling(
             lambda: fetch_profit_data(active_data_source, code=code, year=year, quarter=quarter, limit=limit, format=format),
             context=f"get_profit_data:{code}:{year}Q{quarter}",
+            format=format,
         )
 
     @app.tool()
@@ -42,6 +43,7 @@ def register_financial_report_tools(app: FastMCP, active_data_source: FinancialD
         return run_tool_with_handling(
             lambda: fetch_operation_data(active_data_source, code=code, year=year, quarter=quarter, limit=limit, format=format),
             context=f"get_operation_data:{code}:{year}Q{quarter}",
+            format=format,
         )
 
     @app.tool()
@@ -50,6 +52,7 @@ def register_financial_report_tools(app: FastMCP, active_data_source: FinancialD
         return run_tool_with_handling(
             lambda: fetch_growth_data(active_data_source, code=code, year=year, quarter=quarter, limit=limit, format=format),
             context=f"get_growth_data:{code}:{year}Q{quarter}",
+            format=format,
         )
 
     @app.tool()
@@ -58,6 +61,7 @@ def register_financial_report_tools(app: FastMCP, active_data_source: FinancialD
         return run_tool_with_handling(
             lambda: fetch_balance_data(active_data_source, code=code, year=year, quarter=quarter, limit=limit, format=format),
             context=f"get_balance_data:{code}:{year}Q{quarter}",
+            format=format,
         )
 
     @app.tool()
@@ -66,6 +70,7 @@ def register_financial_report_tools(app: FastMCP, active_data_source: FinancialD
         return run_tool_with_handling(
             lambda: fetch_cash_flow_data(active_data_source, code=code, year=year, quarter=quarter, limit=limit, format=format),
             context=f"get_cash_flow_data:{code}:{year}Q{quarter}",
+            format=format,
         )
 
     @app.tool()
@@ -74,6 +79,7 @@ def register_financial_report_tools(app: FastMCP, active_data_source: FinancialD
         return run_tool_with_handling(
             lambda: fetch_dupont_data(active_data_source, code=code, year=year, quarter=quarter, limit=limit, format=format),
             context=f"get_dupont_data:{code}:{year}Q{quarter}",
+            format=format,
         )
 
     @app.tool()
@@ -84,6 +90,7 @@ def register_financial_report_tools(app: FastMCP, active_data_source: FinancialD
                 active_data_source, code=code, start_date=start_date, end_date=end_date, limit=limit, format=format
             ),
             context=f"get_performance_express_report:{code}:{start_date}-{end_date}",
+            format=format,
         )
 
     @app.tool()
@@ -94,6 +101,7 @@ def register_financial_report_tools(app: FastMCP, active_data_source: FinancialD
                 active_data_source, code=code, start_date=start_date, end_date=end_date, limit=limit, format=format
             ),
             context=f"get_forecast_report:{code}:{start_date}-{end_date}",
+            format=format,
         )
 
     @app.tool()
@@ -120,4 +128,5 @@ def register_financial_report_tools(app: FastMCP, active_data_source: FinancialD
                 active_data_source, code=code, start_date=start_date, end_date=end_date, limit=limit, format=format
             ),
             context=f"get_fina_indicator:{code}:{start_date}-{end_date}",
+            format=format,
         )
